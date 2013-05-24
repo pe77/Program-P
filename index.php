@@ -2,17 +2,12 @@
 
 require 'vendor/autoload.php';
 
-$programP = new ProgramP($config);
-$bot	  = $programP->GetBot('cenouro');
-
-// use Pe77\ProgramP;
 use Symfony\Component\Yaml\Yaml;
+use Pe77\ProgramP\ProgramP;
 
-require 'src/program-p/ProgramP.php';
-// require 'src/program-p/utils/spyc.php';
+// load config
+$config = Yaml::parse('config.yml');
 
-$config = Yaml::parse('src/program-p/config.template.yml');
-
+// ini
 $programP = new ProgramP($config);
-
 $bot	  = $programP->GetBot('cenouro');

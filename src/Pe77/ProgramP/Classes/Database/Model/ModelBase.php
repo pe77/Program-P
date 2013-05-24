@@ -1,6 +1,8 @@
 <?php
 
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . '../Connect.php';
+namespace Pe77\ProgramP\Classes\Database\Model;
+
+user Pe77\ProgramP\Class\Connect;
 
 class ModelBase {
 	

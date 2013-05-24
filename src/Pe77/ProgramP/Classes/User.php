@@ -1,6 +1,6 @@
 <?php
 
-require 'Human.php';
+namespace Pe77\ProgramP\Classes;
 
 class User extends Human 
 {

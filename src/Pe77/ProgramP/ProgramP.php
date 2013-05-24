@@ -1,7 +1,9 @@
 <?php
 
-require 'inc/database/Connect.php';
-require 'inc/Bot.php'; 
+namespace Pe77\ProgramP;
+
+use Pe77\ProgramP\Classes\Bot;
+use Pe77\ProgramP\Classes\Database\Connect; 
 
 class ProgramP 
 {	
@@ -11,7 +13,7 @@ class ProgramP
 	
 	static $config;
 	
-	function ProgramP($config) 
+	function __construct($config) 
 	{
 		self::$config = $config;
 		
@@ -39,6 +41,8 @@ class ProgramP
 	{
 		
 		$fileFullName = ProgramP::$config['aiml']['dir'] . '/' . $unique.'.aiml';
+		
+		
 		if(file_exists($fileFullName))
 		{
 			// read aiml file
@@ -47,7 +51,7 @@ class ProgramP
 			fclose($fh);
 			
 		}else{
-			throw new Exception("File AIML not found");
+			throw new \Exception("File AIML not found in : " . $fileFullName);
 		}
 		
 		// @todo check aiml format

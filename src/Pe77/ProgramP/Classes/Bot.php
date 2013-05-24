@@ -1,7 +1,6 @@
 <?php
 
-require 'Human.php';
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . '../ProgramP.php';
+namespace Pe77\ProgramP\Classes;
 
 class Bot extends Human
 {

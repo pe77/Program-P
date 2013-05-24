@@ -1,5 +1,7 @@
 <?php
 
+namespace Pe77\ProgramP\Classes\Database;
+
 /**
  * Classe de conexão com o DB Mysql
  * @author Henrique

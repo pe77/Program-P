@@ -1,5 +1,7 @@
 <?php
 
+namespace Pe77\ProgramP\Classes;
+
 class Human 
 {
 	var $_unique;
