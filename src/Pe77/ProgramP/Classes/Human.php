@@ -6,14 +6,19 @@ use Pe77\ProgramP\Classes\Database\Connect;
 
 class Human 
 {
-	var $_unique;
-	var $_name;
-	var $_type;
+	protected $_programp;
 	
-	var $_props = array();
+	protected $_unique;
+	protected $_type;
 	
-	function __construct() 
+	private  $_props = array();
+	
+	function __construct($programp, $unique, $type) 
 	{
+		$this->_programp    = $programp;
+        $this->_unique      = $unique;
+        $this->_type        = $type;
+        
 		// Load all properties
 		$this->LoadProp();
 	}
@@ -22,9 +27,9 @@ class Human
 	 * Return property by name
 	 * @param string $name
 	 */
-	function GetProp($name)
+	public function GetProp($name)
 	{
-		return key_exists($name, $this->_props) ? $this->_props[$name] : '';
+		return array_key_exists($name, $this->_props) ? $this->_props[$name] : '';
 	}
 	
 	
@@ -33,7 +38,7 @@ class Human
 	 * @param string $name
 	 * @param string $value
 	 */
-	function SetProp($name, $value)
+	public function SetProp($name, $value)
 	{
 		// save prop in db
 		$this->_props[$name] = $value;
@@ -43,9 +48,13 @@ class Human
 	/**
 	 * Load properties in DB 
 	 */
-	function LoadProp()
+	private function LoadProp()
 	{
-		$arrData = Connect::Fetch("SELECT * FROM prop WHERE unique = '{$this->_unique}' AND type = '{$this->_type}'");
+		// clear
+		$this->_props = array();
+		
+		// load data
+		$arrData = Connect::Fetch("SELECT * FROM `prop` WHERE `unique` = '{$this->_unique}' AND `type` = '{$this->_type}'");
 		foreach ($arrData as $data)
 			$this->_props[$data['name']] = $data['value'];
 		//
@@ -54,24 +63,31 @@ class Human
 	/**
 	 * Update prop in DB
 	 */
-	function Save()
+	public function Save()
 	{
 		// clear all prop
-		$this->ClearProp();
+		$this->ClearAllProp();
 		
 		// save all prop in DB
 		foreach ($this->_props as $name=>$value)
-			Connect::Query("INSERT prop SET ('{$this->_unique}', {'{$this->_type}'}, {{$name}}, '{$value}')");
+			Connect::Query("INSERT `prop` VALUES ('{$this->_unique}', '{$this->_type}', '{$name}', '{$value}')");
 		//
 	}
 	
-	
 	/**
-	 * Delete All properties
+	 * Delete all properties
 	 */
-	function ClearProp()
+	public function ClearAllProp()
 	{
 		// delete all prop in DB
-		Connect::Query("DELETE from prop WHERE unique = '{$this->_unique}' AND type = '{$this->_type}'");
+		Connect::Query("DELETE from `prop` WHERE `unique` = '{$this->_unique}' AND `type` = '{$this->_type}'");
+	}
+	
+	/**
+	 * Delete property
+	 */
+	public function DelProp($name)
+	{
+		unset($this->_props[$name]);
 	}
 }

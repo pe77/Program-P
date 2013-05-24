@@ -4,9 +4,8 @@ namespace Pe77\ProgramP\Classes;
 
 class User extends Human 
 {
-	function __construct($unique) 
-	{
-		$this->_unique		= $unique; 
-		$this->_type		= "user";
-	}
+	public function __construct($programp, $unique)
+    {	
+        parent::__construct($programp, $unique, "user");
+    }
 }

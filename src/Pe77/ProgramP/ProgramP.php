@@ -2,6 +2,8 @@
 
 namespace Pe77\ProgramP;
 
+use Pe77\ProgramP\Classes\User;
+
 use Pe77\ProgramP\Classes\Bot;
 use Pe77\ProgramP\Classes\Database\Connect;
 
@@ -15,7 +17,7 @@ class ProgramP
     {
         $this->_config = $config;
 
-        // Connect::init($this->_config['db']);
+        Connect::init($this->_config['db']);
     }
 
     /**
@@ -29,47 +31,53 @@ class ProgramP
 
     }
 
-    /**
-     * Load user by unique key (name+IP exemple)
-     * @param string $userUnique
-     */
-    function GetUser($userUnique)
-    {
-        // check if user exist
-
-        // if exist, load
-
-        // else, create user
-
-        // return user
-    }
-
-
     public function GetConfig()
     {
         return $this->_config;
     }
 
+    /**
+     * Return a Bot
+     * @param string $unique - Unique Identification (AIML file in dir, without '.aiml') 
+     * @return Bot:
+     */
     public function GetBot($unique)
     {
-        if (!array_key_exists($unique, $this->_bots)) {
+        if (!array_key_exists($unique, $this->_bots)) 
             $this->_bots[$unique] = $this->CreateBot($unique);
-        }
+        
 
         return $this->_bots[$unique];
     }
+    
+	/**
+     * Load user by unique key (name+IP exemple)
+     * @param string $userUnique
+     */
+    function GetUser($unique)
+    {
+        if (!array_key_exists($unique, $this->_users)) 
+            $this->_users[$unique] = new User($this, $unique);
+        
 
+        return $this->_users[$unique];
+    }
+
+    /**
+     * Return total bots in Program P
+     * @return number - Total bots
+     */
     public function CountBots()
     {
         return count($this->_bots);
     }
 
     /**
-     * Load Bot
+     * Create Bot
      * @param string $botName - unique key for identific bot, and bot aiml file to.
-     * @return Bot/Boolean - if bot not exist return false
+     * @return Bot
      */
-    private function CreateBot($unique)
+    public function CreateBot($unique)
     {
         $fileFullName = $this->_config['aiml']['dir'] . '/' . $unique.'.aiml';
 
