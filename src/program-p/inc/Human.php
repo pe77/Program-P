@@ -6,6 +6,8 @@ class Human
 	var $_name;
 	var $_type;
 	
+	var $_props = array();
+	
 	function Human() 
 	{
 		
@@ -17,7 +19,7 @@ class Human
 	 */
 	function GetProp($name)
 	{
-		
+		return key_exists($name, $this->_props) ? $this->_props[$name] : '';
 	}
 	
 	
@@ -28,6 +30,8 @@ class Human
 	 */
 	function SetProp($name, $value)
 	{
+		// save prop in db
+		$this->_props[$name] = $value; 
 		
 	}
 	
@@ -37,11 +41,7 @@ class Human
 	 */
 	function LoadProp()
 	{
-		// check if exist by unique, load
 		
-		// else, create 
-		
-		// return instance
 	}
 	
 	/**
