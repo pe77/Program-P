@@ -1,0 +1,19 @@
+{
+    "name": "pe77/aiml-program",
+    "description": "AIML manipulation tool",
+    "license": "WTFPL",
+    "authors": [
+        {
+            "name": "pe77",
+            "email": "p321654987@outlook.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Pe77": "src/"
+        }
+    },
+    "require": {
+        "symfony/yaml": "2.2.*"
+    }
+}
