@@ -1,0 +1,8 @@
+db:
+  host: localhost
+  user: root
+  pass: 
+  dbName:  cmsclient
+
+aiml:
+  dir: aiml

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<aiml version="1.0">
+<meta name="author" content="P."/>
+<meta name="language" content="pt-br"/>
+
+
+<category> 
+    <pattern>e ae*</pattern> 
+    <template>
+        <srai>Oi</srai>
+    </template> 
+</category>
+
+<category> 
+    <pattern>Olá</pattern> 
+    <template>
+        <srai>Oi</srai>
+    </template> 
+</category>
+
+<category>
+    <pattern>Oi</pattern>
+    <template>
+        Oi, como vai você?
+    </template>
+</category>
+
+<category>
+    <pattern>TOK TOK</pattern>
+    <template>Quem é?</template>
+</category>
+
+<category>
+    <pattern>VOU BEM</pattern>
+    <template>
+        <if name="nome" exists="true">
+            Quer falar sobre o que <get name="nome"/>??
+        <else/> 
+            Qual seu nome?
+        </if>
+    </template>
+</category>
+
+
+<category>
+    <pattern>QUAL MEU NOME</pattern>
+    <template>Seu nome é <get name="nome"/>.</template>
+</category>
+
+<category>
+    <pattern>QUAL SEU NOME</pattern>
+    <template>
+        <bot name="name"/> idiota. Não sabe ler?
+    </template>
+</category>
+
+<category>
+    <pattern>MEU NOME E *</pattern>
+    <template>
+        <think>
+            <set name="nome"><star/></set>
+        </think>
+        Olá, <get name="nome"/>.    
+    </template>
+</category>
+
+</aiml>
