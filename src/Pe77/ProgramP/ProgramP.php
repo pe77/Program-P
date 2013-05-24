@@ -35,7 +35,7 @@ class ProgramP
 	/**
 	 * Load Bot
 	 * @param string $botName - unique key for identific bot, and bot aiml file to. 
-	 * @return Bot/Boolean - if bot not exist return false
+	 * @return Bot
 	 */
 	function GetBot($unique)
 	{

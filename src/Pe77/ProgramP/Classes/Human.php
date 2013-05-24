@@ -2,6 +2,8 @@
 
 namespace Pe77\ProgramP\Classes;
 
+use Pe77\ProgramP\Classes\Database\Connect;
+
 class Human 
 {
 	var $_unique;
@@ -10,9 +12,10 @@ class Human
 	
 	var $_props = array();
 	
-	function Human() 
+	function __construct() 
 	{
-		
+		// Load all properties
+		$this->LoadProp();
 	}
 	
 	/**
@@ -33,17 +36,19 @@ class Human
 	function SetProp($name, $value)
 	{
 		// save prop in db
-		$this->_props[$name] = $value; 
-		
+		$this->_props[$name] = $value;
 	}
 	
 	
 	/**
-	 * Load property 
+	 * Load properties in DB 
 	 */
 	function LoadProp()
 	{
-		
+		$arrData = Connect::Fetch("SELECT * FROM prop WHERE unique = '{$this->_unique}' AND type = '{$this->_type}'");
+		foreach ($arrData as $data)
+			$this->_props[$data['name']] = $data['value'];
+		//
 	}
 	
 	/**
@@ -55,15 +60,11 @@ class Human
 		$this->ClearProp();
 		
 		// save all prop in DB
+		foreach ($this->_props as $name=>$value)
+			Connect::Query("INSERT prop SET ('{$this->_unique}', {'{$this->_type}'}, {{$name}}, '{$value}')");
+		//
 	}
 	
-	/**
-	 * Delete, delete, delete!
-	 */
-	function Delete()
-	{
-		
-	}
 	
 	/**
 	 * Delete All properties
@@ -71,5 +72,6 @@ class Human
 	function ClearProp()
 	{
 		// delete all prop in DB
+		Connect::Query("DELETE from prop WHERE unique = '{$this->_unique}' AND type = '{$this->_type}'");
 	}
 }
