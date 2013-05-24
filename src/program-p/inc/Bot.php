@@ -13,7 +13,6 @@ class Bot extends Human
 		$this->_aimlString 	= $aimlString;
 		$this->_unique		= $unique; 
 		
-		
 		// load/create prop
 		$this->LoadProp();
 	}

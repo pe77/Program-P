@@ -7,4 +7,3 @@ $config = Spyc::YAMLLoad('src/program-p/config.yml');
 
 $programP = new ProgramP($config);
 $bot	  = $programP->GetBot('cenouro');
-print_r($bot); 
