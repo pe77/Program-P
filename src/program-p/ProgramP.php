@@ -1,5 +1,7 @@
 <?php
 
+na
+
 require 'inc/database/Connect.php';
 require 'inc/Bot.php'; 
 

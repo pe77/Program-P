@@ -2,3 +2,5 @@
 .buildpath
 .project
 config.yml
+vendor
+

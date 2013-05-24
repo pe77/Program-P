@@ -8,7 +8,12 @@
             "email": "p321654987@outlook.com"
         }
     ],
+    "autoload": {
+        "psr-0": {
+            "Pe77": "src/"
+        }
+    },
     "require": {
-
+        "symfony/yaml": "2.2.*"
     }
 }
