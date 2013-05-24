@@ -1,0 +1,14 @@
+{
+    "name": "pe77/aiml-program",
+    "description": "AIML manipulation tool",
+    "license": "WTFPL",
+    "authors": [
+        {
+            "name": "pe77",
+            "email": "p321654987@outlook.com"
+        }
+    ],
+    "require": {
+
+    }
+}
