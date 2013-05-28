@@ -33,10 +33,22 @@ class Parser
 		self::$_response = new Response();
 		
 		if($category = self::SearchCategory(self::$_obj))
-			self::$_response->SetResponse($category->template);
+			self::$_response->SetResponse(self::ProcessTemplate($category->template));
 		//
 		
 		return self::$_response;
+	}
+	
+	static private function ProcessTemplate($template)
+	{
+		// process srai
+		foreach ($template->srai as $srai) 
+		{
+			
+		}
+		
+		
+		return (string)$template;
 	}
 	
 	/**
@@ -78,7 +90,7 @@ class Parser
 		{
 			if($category = self::SearchCategory($topicObj))
 			{
-				self::SetTopic((string)$topicObj['name']);
+				self::SetTopic($topicObj['name']);
 				return $category;
 			}
 		} 

@@ -8,7 +8,7 @@
 <category> 
     <pattern>e ae*</pattern> 
     <template>
-        <srai>Oi</srai>
+        <srai>Oi</srai> aaa
     </template> 
 </category>
 
