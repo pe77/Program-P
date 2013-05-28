@@ -4,6 +4,7 @@ require 'vendor/autoload.php';
 
 use Symfony\Component\Yaml\Yaml;
 use Pe77\ProgramP\ProgramP;
+use Pe77\ProgramP\ProgramP\Classes\Response;
 
 
 // load config

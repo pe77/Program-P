@@ -10,6 +10,7 @@ class Parser
 	static private $_topicObj = null;
 	
 	static private $_input;
+	static private $_response;
 	
 	/**
      * Get user question, parse and response
@@ -28,11 +29,14 @@ class Parser
 		die();
 		// */
 		
+		// response object
+		self::$_response = new Response();
+		
 		if($category = self::SearchCategory(self::$_obj))
-			return $category->template; 
+			self::$_response->SetResponse($category->template);
 		//
 		
-		return '';
+		return self::$_response;
 	}
 	
 	/**
@@ -106,7 +110,7 @@ class Parser
 	
 	static private function SetTopic($topicName)
 	{
-		echo 'set t : ' . $topicName;
+		self::$_response->AddTopic($topicName);
 		self::$_topicName = $topicName;
 	}
 }
