@@ -3,7 +3,7 @@
 namespace Pe77\ProgramP;
 
 use Pe77\ProgramP\Classes\User;
-
+use Pe77\ProgramP\Classes\Parser;
 use Pe77\ProgramP\Classes\Bot;
 use Pe77\ProgramP\Classes\Database\Connect;
 
@@ -25,10 +25,11 @@ class ProgramP
      * @param User $user - User who is asking
      * @param Bot $bot - bot are replying
      * @param string $question - User input
+     * @return string - response
      */
     function GetResponse($user, $bot, $question)
     {
-
+		return Parser::Parse($user, $bot, $question);
     }
 
     public function GetConfig()
@@ -39,7 +40,7 @@ class ProgramP
     /**
      * Return a Bot
      * @param string $unique - Unique Identification (AIML file in dir, without '.aiml') 
-     * @return Bot:
+     * @return Bot
      */
     public function GetBot($unique)
     {

@@ -12,12 +12,46 @@
     </template> 
 </category>
 
+<topic name="dog">
+	<category> 
+	    <pattern>Cachorro</pattern> 
+	    <template>
+	        Cachorro foi
+	    </template> 
+	</category>
+	
+	<category> 
+	    <pattern>Pastor</pattern> 
+	    <template>
+	        Pastor Cachorro foi
+	    </template> 
+	</category>
+	
+	<topic name="toy">
+		<category> 
+		    <pattern>bone</pattern> 
+		    <template>
+		        My dog love it
+		    </template> 
+		</category>
+	</topic>
+</topic>
+
+<topic name="chan">
+	<category> 
+	    <pattern>77chan</pattern> 
+	    <template>
+	        O melhor chan brasileiro
+	    </template> 
+	</category>
+</topic>
+
 <category> 
-    <pattern>Olá</pattern> 
-    <template>
-        <srai>Oi</srai>
-    </template> 
-</category>
+	    <pattern>Olá</pattern> 
+	    <template>
+	        <srai>Oi</srai>
+	    </template> 
+	</category>
 
 <category>
     <pattern>Oi</pattern>
@@ -55,6 +89,7 @@
     </template>
 </category>
 
+
 <category>
     <pattern>MEU NOME E *</pattern>
     <template>
@@ -64,5 +99,6 @@
         Olá, <get name="nome"/>.    
     </template>
 </category>
+
 
 </aiml>
