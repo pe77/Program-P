@@ -4,11 +4,17 @@
 <meta name="author" content="P."/>
 <meta name="language" content="pt-br"/>
 
+<category> 
+    <pattern>srai test 2</pattern> 
+    <template>
+        1 <srai>srai test 1</srai> 2
+    </template> 
+</category>
 
 <category> 
-    <pattern>e ae*</pattern> 
+    <pattern>srai test 1</pattern> 
     <template>
-        aaa <srai>Oi</srai> ccc
+        a <srai>Oi</srai> c
     </template> 
 </category>
 
@@ -56,13 +62,13 @@
 <category>
     <pattern>Oi</pattern>
     <template>
-        Oi, como vai vocÃª?
+        Oi, como vai você?
     </template>
 </category>
 
 <category>
     <pattern>TOK TOK</pattern>
-    <template>Quem Ã©?</template>
+    <template>Quem é?</template>
 </category>
 
 <category>

@@ -27,34 +27,48 @@ class Parser
 		self::$_domDoc->loadXML($bot->aimlString());
 		self::$_domXPath = new \DomXPath(self::$_domDoc);
 		
-		// set user input
-		self::SetInput($input);
-		
 		// response object
 		self::$_response = new Response();
 		
+		self::$_response->SetResponse(self::Find($input));
+		
+		
+		return self::$_response;
+	}
+	
+	static private function Find($input)
+	{
+		// set user input
+		self::SetInput($input);
 		
 		// pass the aiml category list
 		if($categories = self::$_domXPath->query('//aiml')->item(0))
 			// find corresponding category
 			if($category = self::SearchCategory($categories))
 				// pre-process template tag and set response
-				self::$_response->SetResponse(
-					self::ProcessTemplate(
-						self::GetAllTagsByName($category, 'template')
-					)
-				);
+				return self::ProcessTemplate(
+						self::GetAllTagsByName($category, 'template', true)
+					);
 			//
 		//
 		
-		return self::$_response;
+		return '';
 	}
 	
 	static private function ProcessTemplate($template)
 	{
-		$template = $template[0];
+		// compile srai
+		if($srais = self::GetAllTagsByName($template, 'srai'))
+		{
+			foreach ($srais as $srai) 
+			{
+				// re-find another response for srai and replace
+				$newNode = self::$_domDoc->createTextNode(self::Find($srai->nodeValue));
+				$template->replaceChild($newNode, $srai);
+			}
+		}
 		
-		return (string)$template[0]->nodeValue;
+		return (string)$template->nodeValue;
 	}
 	
 	/**
