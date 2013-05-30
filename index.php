@@ -24,6 +24,6 @@ $user->SetProp('name', 'P.');
 $user->SetProp('gender', 'male');
 $user->Save();
 
-$response = $programP->GetResponse($user, $bot, "e ae*");
+$response = $programP->GetResponse($user, $bot, "bone");
 
 echo $response;

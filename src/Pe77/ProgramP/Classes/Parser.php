@@ -4,7 +4,8 @@ namespace Pe77\ProgramP\Classes;
 
 class Parser 
 {
-	static private $_obj;
+	static private $_domDoc;
+	static private $_domXPath;
 	
 	static private $_topicName = '';
 	static private $_topicObj = null;
@@ -14,26 +15,36 @@ class Parser
 	
 	/**
      * Get user question, parse and response
-     * @param User $user - User who is asking
-     * @param Bot $bot - bot are replying
+     * @param \User $user - User who is asking
+     * @param \Bot $bot - bot are replying
      * @param string $input - User input
      * @return string - response
      */
 	static function Parse($user, $bot, $input)
 	{
-		self::$_obj = simplexml_load_string($bot->aimlString());
+		// create and load xml handler
+		self::$_domDoc = new \DOMDocument();
+		self::$_domDoc->loadXML($bot->aimlString());
+		self::$_domXPath = new \DomXPath(self::$_domDoc);
 		
+		// set user input
 		self::SetInput($input);
-		/*
-		echo '<pre>' . print_r(self::$_obj, true);
-		die();
-		// */
 		
 		// response object
 		self::$_response = new Response();
 		
-		if($category = self::SearchCategory(self::$_obj))
-			self::$_response->SetResponse(self::ProcessTemplate($category->template));
+		
+		// pass the aiml category list
+		if($categories = self::$_domXPath->query('//aiml')->item(0))
+			// find corresponding category
+			if($category = self::SearchCategory($categories))
+				// pre-process template tag and set response
+				self::$_response->SetResponse(
+					self::ProcessTemplate(
+						self::GetAllTagsByName($category, 'template')
+					)
+				);
+			//
 		//
 		
 		return self::$_response;
@@ -41,56 +52,62 @@ class Parser
 	
 	static private function ProcessTemplate($template)
 	{
-		// process srai
-		foreach ($template->srai as $srai) 
-		{
-			
-		}
+		$template = $template[0];
 		
-		
-		return (string)$template;
+		return (string)$template[0]->nodeValue;
 	}
 	
 	/**
 	 * Get valid category for input
-	 * @param aiml simpleXML parse $obj
+	 * @param DOMElement
 	 * @return Category|False 
 	 */
-	static private function SearchCategory($obj)
-	{
-		// check pattern in default patterns
-		foreach ($obj->category as $category)
+	static private function SearchCategory($domNode)
+	{		
+		
+		
+		// check if categories exist
+		if(!$categories = self::GetAllTagsByName($domNode, 'category'))
+			return false;
+		
+		// check if any pattern in default patterns
+		foreach ($categories as $category)
 		{
-			if(self::CheckPattern($category->pattern))
+			foreach (self::GetAllTagsByName($category, 'pattern') as $pattern)
 			{
-				self::SetDefaultTopic();
-				return $category;
+				if(self::CheckPattern($pattern->nodeValue))
+				{
+					self::SetDefaultTopic();
+					return $category;
+				}				
 			}
 		}
 		//
 		
 		// check inside topics
-		return self::SearchTopic($obj); 
+		return self::SearchTopic($domNode); 
 	}
 	
 	/**
 	 * Get valid category for input inside any topic
-	 * @param aiml simpleXML parse $obj
+	 * @param DOMElement
 	 * @return Category|False 
 	 */
-	static private function SearchTopic($obj)
+	static private function SearchTopic($domNode)
 	{
 		// if no exist topics, return false
-		if(!array_key_exists('topic', $obj))
+		if(!$topics = self::GetAllTagsByName($domNode, 'topic'))
 			return false;
 		//
 		
+			
+		
 		// check each topic looking for another valid category 
-		foreach ($obj->topic as $topicObj)
+		foreach ($topics as $topic)
 		{
-			if($category = self::SearchCategory($topicObj))
+			if($category = self::SearchCategory($topic))
 			{
-				self::SetTopic($topicObj['name']);
+				self::SetTopic($category->getAttribute('name'));
 				return $category;
 			}
 		} 
@@ -124,5 +141,29 @@ class Parser
 	{
 		self::$_response->AddTopic($topicName);
 		self::$_topicName = $topicName;
+	}
+	
+	/**
+	 * Search in node by tag
+	 * @param DOMElement $domNode
+	 * @param string $tagName
+	 * @param boolean $getOne - if true, get only one element, not array ([0])
+	 * @return array<DOMElement>|DOMElement|False
+	 */
+	static private function GetAllTagsByName($domNode, $tagName, $getOne = false)
+	{
+		if(!$domNode->hasChildNodes())
+			return false;
+		//
+		
+		$arrResponse = array();
+		
+		foreach ($domNode->childNodes as $child)
+			if($child->nodeName == $tagName)
+				$arrResponse[] = $child; 
+			//
+		//
+		
+		return count($arrResponse) > 0 ? $getOne ? $arrResponse[0] : $arrResponse : false;
 	}
 }
