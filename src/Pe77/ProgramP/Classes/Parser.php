@@ -57,19 +57,61 @@ class Parser
 	
 	static private function ProcessTemplate($template)
 	{
-		
 		// compile srai
-		if($srais = self::GetAllTagsByName($template, 'srai'))
+		self::CompileSrai($template);
+		
+		// compile random
+		self::CompileRandom($template);
+		
+		return (string)$template->nodeValue;
+	}
+	
+	static private function CompileRandom($domNode)
+	{
+		if($randomNodes = self::GetAllTagsByName($domNode, 'random'))
+		{
+			foreach ($randomNodes as $rNode) 
+			{
+				// check if li tag exist 
+				if($liNodes = self::GetAllTagsByName($rNode, 'li'))
+				{
+					$lis = array();
+					
+					foreach ($liNodes as $lNode) 
+						$lis[] = $lNode;
+					//
+					
+					// select li node
+					$selectedLi = $lis[array_rand($lis, 1)];
+					
+					// remove all others node from random
+					foreach ($lis as $lnode) 
+						if(!$lnode->isSameNode($selectedLi))
+							$rNode->removeChild($lnode);
+					//
+					
+					// change random node for selectedLi value
+					$domNode->replaceChild(
+						self::$_domDoc->createTextNode($selectedLi->nodeValue),
+						$rNode
+					);
+					
+				}
+			}
+		}
+	}
+	
+	static private function CompileSrai($node)
+	{
+		if($srais = self::GetAllTagsByName($node, 'srai'))
 		{
 			foreach ($srais as $srai) 
 			{
 				// re-find another response for srai and replace
 				$newNode = self::$_domDoc->createTextNode(self::Find($srai->nodeValue));
-				$template->replaceChild($newNode, $srai);
+				$node->replaceChild($newNode, $srai);
 			}
 		}
-		
-		return (string)$template->nodeValue;
 	}
 	
 	/**
