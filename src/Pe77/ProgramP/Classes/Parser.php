@@ -57,6 +57,7 @@ class Parser
 	
 	static private function ProcessTemplate($template)
 	{
+		
 		// compile srai
 		if($srais = self::GetAllTagsByName($template, 'srai'))
 		{
@@ -160,7 +161,7 @@ class Parser
 	/**
 	 * Search in node by tag
 	 * @param DOMElement $domNode
-	 * @param string $tagName
+	 * @param string $tagName - xpath model
 	 * @param boolean $getOne - if true, get only one element, not array ([0])
 	 * @return array<DOMElement>|DOMElement|False
 	 */
@@ -172,10 +173,8 @@ class Parser
 		
 		$arrResponse = array();
 		
-		foreach ($domNode->childNodes as $child)
-			if($child->nodeName == $tagName)
-				$arrResponse[] = $child; 
-			//
+		foreach(self::$_domXPath->query($tagName, $domNode) as $node)
+			$arrResponse[] = $node;
 		//
 		
 		return count($arrResponse) > 0 ? $getOne ? $arrResponse[0] : $arrResponse : false;
