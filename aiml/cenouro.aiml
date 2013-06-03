@@ -63,6 +63,17 @@
     <pattern>Oi</pattern>
     <template>
         Oi, como vai você?
+        <random>
+        	<li>a</li>
+        	<li>b</li>
+        	<li>
+				<random>
+					<li>1</li>
+					<li>2</li>
+					<li>|<srai>TOK TOK</srai>|</li>				
+				</random>
+			</li>
+        </random>
     </template>
 </category>
 

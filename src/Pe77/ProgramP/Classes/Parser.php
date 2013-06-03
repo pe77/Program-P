@@ -92,7 +92,7 @@ class Parser
 					
 					// change random node for selectedLi value
 					$domNode->replaceChild(
-						self::$_domDoc->createTextNode($selectedLi->nodeValue),
+						self::$_domDoc->createTextNode(self::ProcessTemplate($selectedLi)),
 						$rNode
 					);
 					
@@ -108,7 +108,10 @@ class Parser
 			foreach ($srais as $srai) 
 			{
 				// re-find another response for srai and replace
-				$newNode = self::$_domDoc->createTextNode(self::Find($srai->nodeValue));
+				$newNode = self::$_domDoc->createTextNode(
+					self::Find(
+						self::ProcessTemplate($srai)));
+				
 				$node->replaceChild($newNode, $srai);
 			}
 		}
@@ -209,10 +212,6 @@ class Parser
 	 */
 	static private function GetAllTagsByName($domNode, $tagName, $getOne = false)
 	{
-		if(!$domNode->hasChildNodes())
-			return false;
-		//
-		
 		$arrResponse = array();
 		
 		foreach(self::$_domXPath->query($tagName, $domNode) as $node)
