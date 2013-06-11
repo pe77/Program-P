@@ -5,6 +5,7 @@ namespace Pe77\ProgramP;
 use Pe77\ProgramP\Classes\User;
 use Pe77\ProgramP\Classes\Parser;
 use Pe77\ProgramP\Classes\Bot;
+use Pe77\ProgramP\Classes\Data;
 use Pe77\ProgramP\Classes\Database\Connect;
 
 class ProgramP
@@ -16,8 +17,9 @@ class ProgramP
     function __construct($config)
     {
         $this->_config = $config;
+        
 
-        Connect::init($this->_config['db']);
+        Connect::init($this->_config['db']);        
     }
 
     /**
