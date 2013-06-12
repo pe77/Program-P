@@ -28,7 +28,7 @@ class Response
 	 */
 	public function GetTopics()
 	{
-		return array_reverse($this->_topics);
+		return ($this->_topics);
 	}
 	
 	/**
@@ -37,8 +37,7 @@ class Response
 	 */
 	public function GetMainTopic()
 	{
-		$topicRevert = array_reverse($this->_topics);
-		return count($this->_topics) > 0 ? $topicRevert[count($this->_topics-1)] : false; 
+		return count($this->_topics) > 0 ? $this->_topics[count($this->_topics)-1] : false; 
 	}
 	
 	/**

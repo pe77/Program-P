@@ -37,7 +37,7 @@
 		<category> 
 		    <pattern>bone</pattern> 
 		    <template>
-		        My dog love it
+		        My dog love it(bone)
 		    </template> 
 		</category>
 	</topic>
@@ -50,6 +50,24 @@
 	        O melhor chan brasileiro
 	    </template> 
 	</category>
+	
+	<topic name="cumprimento">
+		<category> 
+		    <pattern>Oi</pattern> 
+		    <template>
+		        Oi anão.
+		    </template> 
+		</category>
+		
+		<topic name="agressivo">
+			<category> 
+			    <pattern>Oi viado</pattern> 
+			    <template>
+			        Vai dar oi pra sua mãe, akela puta.
+			    </template> 
+			</category>
+		</topic>
+	</topic>
 </topic>
 
 <category> 

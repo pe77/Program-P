@@ -5,7 +5,6 @@ namespace Pe77\ProgramP;
 use Pe77\ProgramP\Classes\User;
 use Pe77\ProgramP\Classes\Parser;
 use Pe77\ProgramP\Classes\Bot;
-use Pe77\ProgramP\Classes\Data;
 use Pe77\ProgramP\Classes\Database\Connect;
 
 class ProgramP

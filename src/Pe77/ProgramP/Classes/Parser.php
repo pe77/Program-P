@@ -2,16 +2,18 @@
 
 namespace Pe77\ProgramP\Classes;
 
+use Pe77\ProgramP\Classes\Data;
+
 class Parser 
 {
 	static private $_domDoc;
 	static private $_domXPath;
 	
-	static private $_topicName = '';
-	static private $_topicObj = null;
-	
 	static private $_input;
 	static private $_response;
+	
+	static private $_data;
+	static private $_dataStorage;
 	
 	/**
      * Get user question, parse and response
@@ -27,12 +29,34 @@ class Parser
 		self::$_domDoc->loadXML($bot->aimlString());
 		self::$_domXPath = new \DomXPath(self::$_domDoc);
 		
+		// create a storage data instance
+		self::$_dataStorage = new Data(Data::$SAVETYPE_DATABASE);
+		self::$_data = self::$_dataStorage->Load();
+		
+		// self::$_data['topics'] = array('chan', 'cumprimento', 'agressivo');
+		
+		// set default
+		if(!isset(self::$_data['topics']))
+			self::$_data['topics'] = array();
+		//
+		
 		// response object
 		self::$_response = new Response();
 		
+		// set response
 		self::$_response->SetResponse(self::Find($input));
 		
+		// add topics
+		foreach (self::$_data['topics'] as $topicName)
+			self::$_response->AddTopic($topicName);
+		//
 		
+		// save temp data
+		self::$_dataStorage->Save(self::$_data);
+		
+		// self::$_dataStorage->Clear();
+		
+		// return response
 		return self::$_response;
 	}
 	
@@ -41,8 +65,20 @@ class Parser
 		// set user input
 		self::SetInput($input);
 		
+		$xpathQuery = '//aiml';
+		
+		// if topic exist, try search inside topic before
+		if(count(self::$_data['topics']) > 0)
+		{
+			// mount query string
+			$xpathQuery = "/";
+			foreach (self::$_data['topics'] as $topic)
+				$xpathQuery .= "/topic[@name='" . $topic . "']";
+			//
+		}
+		
 		// pass the aiml category list
-		if($categories = self::$_domXPath->query('//aiml')->item(0))
+		if($categories = self::$_domXPath->query($xpathQuery)->item(0))
 			// find corresponding category
 			if($category = self::SearchCategory($categories))
 				// pre-process template tag and set response
@@ -51,7 +87,7 @@ class Parser
 					);
 			//
 		//
-		
+					
 		return '';
 	}
 	
@@ -122,10 +158,8 @@ class Parser
 	 * @param DOMElement
 	 * @return Category|False 
 	 */
-	static private function SearchCategory($domNode)
-	{		
-		
-		
+	static private function SearchCategory($domNode, $reverse = false)
+	{
 		// check if categories exist
 		if(!$categories = self::GetAllTagsByName($domNode, 'category'))
 			return false;
@@ -137,15 +171,40 @@ class Parser
 			{
 				if(self::CheckPattern($pattern->nodeValue))
 				{
-					self::SetDefaultTopic();
+					// set topic
+					$domNode->nodeName == 'topic' ? self::SetTopic($domNode) : self::SetDefaultTopic(); 
+					
 					return $category;
-				}				
+				}
 			}
 		}
 		//
 		
 		// check inside topics
-		return self::SearchTopic($domNode); 
+		if(!$reverse)
+			if($category = self::SearchTopic($domNode))
+				return $category;
+		//
+		
+		// revert search in topics
+		if($category = self::SearchTopicReverse($domNode))
+			return $category;
+		//
+		
+		return false;
+	}
+	
+	static private function SearchTopicReverse($domNode)
+	{
+		// Get prev node
+		$prevNode = $domNode->parentNode;
+		
+		// check category
+		if($category = self::SearchCategory($prevNode, true))
+			return $category;
+		
+		
+		return false;
 	}
 	
 	/**
@@ -160,14 +219,11 @@ class Parser
 			return false;
 		//
 		
-			
-		
 		// check each topic looking for another valid category 
 		foreach ($topics as $topic)
 		{
 			if($category = self::SearchCategory($topic))
 			{
-				self::SetTopic($category->getAttribute('name'));
 				return $category;
 			}
 		} 
@@ -188,8 +244,7 @@ class Parser
 	
 	static private function SetDefaultTopic()
 	{
-		self::$_topicName = '';
-		self::$_topicObj = null;
+		self::$_data['topics'] = array();
 	}
 	
 	static private function SetInput($input)
@@ -197,10 +252,20 @@ class Parser
 		self::$_input = $input;
 	}
 	
-	static private function SetTopic($topicName)
+	static private function SetTopic($node)
 	{
-		self::$_response->AddTopic($topicName);
-		self::$_topicName = $topicName;
+		self::$_data['topics'] = array_reverse(self::GetTopicTree($node, array()));
+	}
+	
+	static private function GetTopicTree($node, $arrTopics)
+	{
+		if($node->nodeName != 'topic')
+			return $arrTopics;
+		//
+		
+		$arrTopics[] = $node->getAttribute('name');
+		
+		return self::GetTopicTree($node->parentNode, $arrTopics);
 	}
 	
 	/**

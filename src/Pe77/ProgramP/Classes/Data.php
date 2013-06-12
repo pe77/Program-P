@@ -74,7 +74,12 @@ class Data
 			break;
 			
 			case Data::$SAVETYPE_SESSION:
-				session_start();
+				$sid = session_id();
+		
+				if(empty($sid))
+					session_start();
+				//
+				
 				$_SESSION['ppdata'] = $data;
 			break;
 			
