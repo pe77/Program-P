@@ -23,8 +23,8 @@
     <pattern>tink set</pattern> 
     <template>
 	    <think>
-	    	<set><name>xxx</name><value>foiccc</value></set>
-	    	<set name="teste" value="foi2"/>
+	    	<set><name>xxx</name><value>foi</value></set>
+	    	<set name="teste"><get><name>xxx</name></get></set>
 	    </think>
         tink set!
     </template> 

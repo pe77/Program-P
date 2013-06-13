@@ -144,14 +144,19 @@ class Parser
 					$name = $name->nodeValue;
 				//
 				
-				if($value = self::GetAllTagsByName($setNode, 'value', true))
-					$value = $value->nodeValue;
-				//
+				$value = self::GetAllTagsByName($setNode, 'value', true);
 				
 				// check for name in old aiml model
-				$name = $setNode->getAttribute('name') != '' ? $setNode->getAttribute('name') : $name;
-				$value = $setNode->getAttribute('value') != '' ? $setNode->getAttribute('value') : $value;
+				if($setNode->getAttribute('name') != '')
+				{
+					$name = $setNode->getAttribute('name');
+					$value = $setNode; 
+				}
 				
+				// parse or re-parse value
+				if($value)
+					$value = self::ProcessTemplate($value);
+				//
 				
 				// save data for user
 				if($name && $value)
