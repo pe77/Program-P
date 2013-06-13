@@ -24,6 +24,8 @@ $user->SetProp('name', 'P.');
 $user->SetProp('gender', 'male');
 $user->Save();
 
-$response = $programP->GetResponse($user, $bot, "tok tok");
+
+
+$response = $programP->GetResponse($user, $bot, "tink get");
 
 echo $response;

@@ -6,6 +6,9 @@ use Pe77\ProgramP\Classes\Data;
 
 class Parser 
 {
+	static private $_user;
+	static private $_bot;
+	
 	static private $_domDoc;
 	static private $_domXPath;
 	
@@ -22,12 +25,16 @@ class Parser
      * @param string $input - User input
      * @return string - response
      */
-	static function Parse($user, $bot, $input)
+	static function Parse(User $user, Bot $bot, $input)
 	{
 		// create and load xml handler
 		self::$_domDoc = new \DOMDocument();
 		self::$_domDoc->loadXML($bot->aimlString());
 		self::$_domXPath = new \DomXPath(self::$_domDoc);
+		
+		// set bot and user
+		self::$_user = $user;
+		self::$_bot = $bot;
 		
 		// create a storage data instance
 		self::$_dataStorage = new Data(Data::$SAVETYPE_DATABASE);
@@ -99,7 +106,99 @@ class Parser
 		// compile random
 		self::CompileRandom($template);
 		
+		// compile think
+		self::CompileThink($template);
+		
+		// compile get
+		self::CompileGet($template);
+		
 		return (string)$template->nodeValue;
+	}
+	
+	static private function CompileThink($node)
+	{
+		if($thinkNodes = self::GetAllTagsByName($node, 'think'))
+		{
+			foreach ($thinkNodes as $think)
+			{
+				// compile set
+				self::CompileSet($think);
+				
+				// compile get
+				self::CompileGet($think);
+			}
+		}
+	}
+	
+	static private function CompileSet($node)
+	{
+		if($sets = self::GetAllTagsByName($node, 'set'))
+		{
+			foreach ($sets as $setNode)
+			{
+				$name = false;
+				$value = false;
+				
+				// check for 2.0 model
+				if($name = self::GetAllTagsByName($setNode, 'name', true))
+					$name = $name->nodeValue;
+				//
+				
+				if($value = self::GetAllTagsByName($setNode, 'value', true))
+					$value = $value->nodeValue;
+				//
+				
+				// check for name in old aiml model
+				$name = $setNode->getAttribute('name') != '' ? $setNode->getAttribute('name') : $name;
+				$value = $setNode->getAttribute('value') != '' ? $setNode->getAttribute('value') : $value;
+				
+				
+				// save data for user
+				if($name && $value)
+				{
+					self::$_user->SetProp($name, $value);
+					self::$_user->Save();
+				}
+				
+				// remove node
+				$node->removeChild($setNode);
+			}
+		}
+		
+		
+	}
+	
+	static private function CompileGet($node)
+	{
+		if($gets = self::GetAllTagsByName($node, 'get'))
+		{
+			foreach ($gets as $getNode)
+			{
+				$name = false;
+				$value = '';
+		
+				// check for another tags
+				if($name = self::GetAllTagsByName($getNode, 'name', true))
+				{
+					$value = self::$_domDoc->createTextNode(
+									self::ProcessTemplate($name)
+							   );
+			    	
+				}else{
+					// check for name in old aiml model
+					if($node->getAttribute('name') != '')
+						$value = self::$_domDoc->createTextNode($node->getAttribute('name'));
+					//
+				}
+				
+				// load value from db
+				$value = self::$_domDoc->createTextNode(
+					self::$_user->GetProp($value->nodeValue));
+				
+				// replace child for the value
+				$node->replaceChild($value, $getNode);
+			}
+		}
 	}
 	
 	static private function CompileRandom($domNode)

@@ -18,6 +18,32 @@
     </template> 
 </category>
 
+
+<category> 
+    <pattern>tink set</pattern> 
+    <template>
+	    <think>
+	    	<set><name>xxx</name><value>foiccc</value></set>
+	    	<set name="teste" value="foi2"/>
+	    </think>
+        tink set!
+    </template> 
+</category>
+
+<category> 
+    <pattern>tink get</pattern> 
+    <template>
+        tink geting: <get><name>xxx</name></get>
+    </template> 
+</category>
+
+<category> 
+    <pattern>srai test 1</pattern> 
+    <template>
+        a <srai>Oi</srai> c
+    </template> 
+</category>
+
 <topic name="dog">
 	<category> 
 	    <pattern>Cachorro</pattern> 
