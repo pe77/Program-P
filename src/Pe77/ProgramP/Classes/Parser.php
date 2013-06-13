@@ -126,6 +126,9 @@ class Parser
 				
 				// compile get
 				self::CompileGet($think);
+				
+				// remove think node
+				$node->removeChild($think);
 			}
 		}
 	}
@@ -255,6 +258,11 @@ class Parser
 				$node->replaceChild($newNode, $srai);
 			}
 		}
+	}
+	
+	static private function CompileCondition($node)
+	{
+			
 	}
 	
 	/**
