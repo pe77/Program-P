@@ -18,6 +18,23 @@
     </template> 
 </category>
 
+<category> 
+    <pattern>condition test</pattern> 
+    <template>
+        <condition name="xxx" value="foi">minha nossa foi</condition>
+        <condition><name>xxx</name><value>foi</value>foi novamente</condition>
+        <condition name="xxx">
+        	<li value="foi1">aaa</li>
+        	<li value="foi">bbb</li>
+        	<li value="foi1">ccc</li>
+        	<li value="true">ddd</li>
+        	
+        	<li><value>true</value>eee</li>
+        </condition>
+        ?
+    </template> 
+</category>
+
 
 <category> 
     <pattern>tink set</pattern> 

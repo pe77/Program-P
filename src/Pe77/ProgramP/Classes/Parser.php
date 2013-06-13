@@ -112,6 +112,9 @@ class Parser
 		// compile get
 		self::CompileGet($template);
 		
+		// compile template
+		self::CompileCondition($template);
+		
 		return (string)$template->nodeValue;
 	}
 	
@@ -262,7 +265,138 @@ class Parser
 	
 	static private function CompileCondition($node)
 	{
-			
+		// search condition tag
+		if($conditions = self::GetAllTagsByName($node, 'condition'))
+		{
+			foreach ($conditions as $conditionNode)
+			{
+				$varValue = $pass = false;
+				
+				// simple condition, 1.1 aiml style
+				if($conditionNode->getAttribute('name') != '')
+				{
+					$varValue = $name = self::$_user->GetProp($conditionNode->getAttribute('name')); 
+					
+					if($name == $conditionNode->getAttribute('value'))
+						$pass = true;
+					//
+				}
+				
+				// simple condition for 2.0 aiml
+				if($name = self::GetAllTagsByName($conditionNode, 'name', true))
+				{
+					// get var value
+					$varValue = self::$_user->GetProp($name->nodeValue);
+					
+					if($value = self::GetAllTagsByName($conditionNode, 'value', true))
+					{
+						// hold instance
+						$tmp_value = $value;
+						
+						// pre-process value
+						$value = self::$_domDoc->createTextNode(
+							self::ProcessTemplate($value)
+						);
+						
+						// check flag
+						$pass =  $varValue == $value->nodeValue;
+						
+						// remove nodes
+						$conditionNode->removeChild($name);
+						$conditionNode->removeChild($tmp_value);
+					}
+				}
+				
+				// check for <li> conditional type tag
+				if($varValue && $lis = self::GetAllTagsByName($conditionNode, 'li'))
+				{
+					foreach ($lis as $liNode)
+					{
+						// check li value 1.1 aiml
+						if($liNode->getAttribute('value') != '')
+						{
+							if(
+								$varValue == $liNode->getAttribute('value')
+								||
+									(
+										$liNode->getAttribute('value') == 'true'
+										&&
+										$varValue != ''
+									)
+								)
+							{
+								// replace <li>conditional by value
+								$newNode = self::$_domDoc->createTextNode(
+									self::ProcessTemplate($liNode)
+								);
+								
+								// replace child for the value
+								$conditionNode->replaceChild($newNode, $liNode);
+								
+								// set flag
+								$pass = true;
+							}else{
+								// remove li
+								$conditionNode->removeChild($liNode);
+							}
+						}
+						
+						// check li value 2.0 aiml
+						if($value = self::GetAllTagsByName($liNode, 'value', true))
+						{
+							// set flag
+							if(
+								$varValue == $value->nodeValue 
+								|| 
+								(
+									$varValue != ''
+									&&
+									$value->nodeValue == 'true'
+								)
+							)
+							{
+								// hold value
+								$tmp_value = $value;
+								
+								// remove value
+								$liNode->removeChild($value); 
+								 
+								// pre-process value
+								$newNode = self::$_domDoc->createTextNode(
+									self::ProcessTemplate($liNode)
+								);
+								
+								// replace child for the value
+								$conditionNode->replaceChild($newNode, $liNode);
+								
+								$pass = true;
+								
+							}else{
+								// remove
+								$conditionNode->removeChild($liNode); 
+							}
+							
+							
+						}
+					}
+				}
+				
+				if($pass)
+				{					
+					// replace conditional by value
+					$newNode = self::$_domDoc->createTextNode(
+						self::ProcessTemplate($conditionNode)
+					);
+					
+					// replace child for the value
+					$node->replaceChild($newNode, $conditionNode);
+					
+				}else{
+					// remove conditional
+					$node->removeChild($conditionNode);
+				}
+			}
+		} 
 	}
 	
 	/**
