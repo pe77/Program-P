@@ -26,6 +26,6 @@ $user->Save();
 
 
 
-$response = $programP->GetResponse($user, $bot, "condition test");
+$response = $programP->GetResponse($user, $bot, "tink get");
 
 echo $response;

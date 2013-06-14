@@ -109,13 +109,67 @@ class Parser
 		// compile think
 		self::CompileThink($template);
 		
+		// compile set
+		self::CompileSet($template);
+		
 		// compile get
 		self::CompileGet($template);
 		
-		// compile template
+		// compile condition
 		self::CompileCondition($template);
 		
+		// compile lowercase
+		self::CompileLowercase($template);
+		
+		// compile uppercase
+		self::CompileUppercase($template);
+		
+		
 		return (string)$template->nodeValue;
+	}
+	
+	static private function CompileLowercase($node)
+	{
+		// check lowercase tag
+		if($lowers = self::GetAllTagsByName($node, 'lowercase'))
+		{
+			foreach ($lowers as $lowerTag)
+			{
+				// die(strtolower(self::ProcessTemplate($lowerTag)));
+				
+				// load value from db
+				$newNode = self::$_domDoc->createTextNode(
+						strtolower(
+							self::ProcessTemplate($lowerTag)
+							)
+					);
+				
+				// replace child for the value
+				$node->replaceChild($newNode, $lowerTag);
+			}
+		}
+	}
+	
+	static private function CompileUppercase($node)
+	{
+		// check lowercase tag
+		if($uppers = self::GetAllTagsByName($node, 'uppercase'))
+		{
+			foreach ($uppers as $upperTag)
+			{
+				// die(strtolower(self::ProcessTemplate($lowerTag)));
+				
+				// load value from db
+				$newNode = self::$_domDoc->createTextNode(
+						strtoupper(
+							self::ProcessTemplate($upperTag)
+							)
+					);
+				
+				// replace child for the value
+				$node->replaceChild($newNode, $upperTag);
+			}
+		}
 	}
 	
 	static private function CompileThink($node)
@@ -124,11 +178,8 @@ class Parser
 		{
 			foreach ($thinkNodes as $think)
 			{
-				// compile set
-				self::CompileSet($think);
-				
-				// compile get
-				self::CompileGet($think);
+				// process $think
+				self::ProcessTemplate($think);
 				
 				// remove think node
 				$node->removeChild($think);

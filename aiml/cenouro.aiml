@@ -19,6 +19,20 @@
 </category>
 
 <category> 
+    <pattern>lowertest</pattern> 
+    <template>
+        AAA <lowercase>BBbBB</lowercase> CCCC
+    </template> 
+</category>
+
+<category> 
+    <pattern>uppercase test</pattern> 
+    <template>
+        AAA <uppercase>BbbBb</uppercase> CCCC
+    </template> 
+</category>
+
+<category> 
     <pattern>condition test</pattern> 
     <template>
         <condition name="xxx" value="foi">minha nossa foi</condition>
@@ -40,7 +54,7 @@
     <pattern>tink set</pattern> 
     <template>
 	    <think>
-	    	<set><name>xxx</name><value>foi</value></set>
+	    	<set><name>xxx</name><value>foiz</value></set>
 	    	<set name="teste"><get><name>xxx</name></get></set>
 	    </think>
         tink set!
