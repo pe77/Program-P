@@ -26,6 +26,6 @@ $user->Save();
 
 
 
-$response = $programP->GetResponse($user, $bot, "tink get");
+$response = $programP->GetResponse($user, $bot, "test that 2");
 
 echo $response;

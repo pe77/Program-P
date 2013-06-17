@@ -19,6 +19,23 @@
 </category>
 
 <category> 
+    <pattern>test that 1</pattern> 
+    <template>
+        test that response
+    </template> 
+</category>
+
+<category> 
+    <pattern>test that 2</pattern>
+    <that>test that response   </that> 
+    <template>
+        well done
+    </template> 
+</category>
+
+
+
+<category> 
     <pattern>lowertest</pattern> 
     <template>
         AAA <lowercase>BBbBB</lowercase> CCCC

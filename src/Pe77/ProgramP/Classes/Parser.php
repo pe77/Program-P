@@ -42,11 +42,16 @@ class Parser
 		
 		// self::$_data['topics'] = array('chan', 'cumprimento', 'agressivo');
 		
-		// set default
+		// set default topics
 		if(!isset(self::$_data['topics']))
 			self::$_data['topics'] = array();
 		//
 		
+		// set default that
+		if(!isset(self::$_data['that']))
+			self::$_data['that'] = array();
+		//
+
 		// response object
 		self::$_response = new Response();
 		
@@ -58,6 +63,9 @@ class Parser
 			self::$_response->AddTopic($topicName);
 		//
 		
+		// set response for 'that'
+		self::SetResponse((string)self::$_response);
+			
 		// save temp data
 		self::$_dataStorage->Save(self::$_data);
 		
@@ -464,15 +472,13 @@ class Parser
 		// check if any pattern in default patterns
 		foreach ($categories as $category)
 		{
-			foreach (self::GetAllTagsByName($category, 'pattern') as $pattern)
+			// check patterns
+			if(self::CheckPattern($category))
 			{
-				if(self::CheckPattern($pattern->nodeValue))
-				{
-					// set topic
-					$domNode->nodeName == 'topic' ? self::SetTopic($domNode) : self::SetDefaultTopic(); 
-					
-					return $category;
-				}
+				// set topic
+				$domNode->nodeName == 'topic' ? self::SetTopic($domNode) : self::SetDefaultTopic(); 
+				
+				return $category;
 			}
 		}
 		//
@@ -534,10 +540,50 @@ class Parser
 	 * Check if pattern in category node is ok
 	 * @return boolean - if ok or not
 	 */
-	static private function CheckPattern($pattern)
+	static private function CheckPattern($category)
 	{
-		return strtolower(self::$_input) == strtolower($pattern);
+		$patterns = self::GetAllTagsByName($category, 'pattern');
+		
+		// search for any math pattern
+		foreach ($patterns as $pattern)
+		{
+			if (self::ValidatePattern(self::$_input, $pattern->nodeValue))
+			{
+				// looking for that tag
+				if($that = self::GetAllTagsByName($category, 'that', true))
+				{
+					if(count(self::$_data['that']) > 0)
+					{
+						// check if same last response
+						return
+							self::ValidatePattern(
+								self::$_data['that'][count(self::$_data['that'])-1],
+								$that->nodeValue
+								); 
+					}
+					// have a that tag but no last responses
+					return false;
+				}
+				// no have that tag
+				return true;
+			}
+		}
+		
+		// no have pattern tag
+		return false;
 	}
+	
+	static private function ValidatePattern($patternA, $patternB)
+	{
+		$patternA = trim($patternA);
+		$patternA = strtolower($patternA);
+
+		$patternB = trim($patternB);
+		$patternB = strtolower($patternB);
+		
+		return strtolower($patternA) == strtolower($patternB);
+	} 
+	
 	
 	static private function SetDefaultTopic()
 	{
@@ -547,6 +593,23 @@ class Parser
 	static private function SetInput($input)
 	{
 		self::$_input = $input;
+	}
+	
+	
+	/**
+	 * Save last 10 response
+	 * @param string $lastResponse
+	 */
+	static private function SetResponse($lastResponse)
+	{
+		
+		// add response
+		array_push(self::$_data['that'], $lastResponse);
+		
+		// if array length is more than 10, cut-off
+		if(count(self::$_data['that']) > 10)
+			array_shift(self::$_data['that']);
+		//
 	}
 	
 	static private function SetTopic($node)
