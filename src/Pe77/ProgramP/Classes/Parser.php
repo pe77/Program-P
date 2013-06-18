@@ -37,6 +37,9 @@ class Parser
 		self::$_user = $user;
 		self::$_bot = $bot;
 		
+		// preparse input
+		$input = self::PreParseInput($input);
+		
 		// create a storage data instance
 		self::$_dataStorage = new Data(Data::$SAVETYPE_DATABASE);
 		self::$_data = self::$_dataStorage->Load();
@@ -684,7 +687,7 @@ class Parser
 						// check if same last response
 						return
 							self::ValidatePattern(
-								self::$_data['that'][count(self::$_data['that'])-1],
+								self::GetLastThat(),
 								$that->nodeValue
 								); 
 					}
@@ -710,6 +713,16 @@ class Parser
 		$pattern = strtolower($pattern);
 		$pattern = str_replace('_', '*', $pattern); // _ = * in aiml
 		
+		// remove some chars
+		$pattern = str_replace('+', '', $pattern);
+		$pattern = str_replace('-', '', $pattern);
+		$pattern = str_replace('[', '', $pattern);
+		$pattern = str_replace(']', '', $pattern);
+		$pattern = str_replace('(', '', $pattern);
+		$pattern = str_replace(')', '', $pattern);
+		$pattern = str_replace('?', '', $pattern);
+		$pattern = str_replace('!', '', $pattern);
+		
 		// replace pattern
 		$pattern = str_replace(' * ', ' (.+) ', $pattern);
 		$pattern = str_replace('* ', '(.+) ', $pattern);
@@ -720,17 +733,19 @@ class Parser
 		$pattern = str_replace('# ', '(.*) ', $pattern);
 		$pattern = str_replace('#', '(.*)', $pattern);
 		
+		
+		
 		// form regular expression
 		$regex = '/';
-		$regex .= $pattern;
+		$regex .= '^' . $pattern . '$';
 		$regex .= '/i';
 		
 		// check expr
 		$is_match = preg_match($regex, $input, $matches) ? true : false;
-		// echo '<p>', $regex, ' - ', $input, ' :', preg_match($regex, $input), '[<pre>' . print_r($matches, true) . ']';
+		// echo '(', $input, ' - ', $regex, '){' . ($is_match ? 't' : 'f') . '}';
 
 		// set star(s)
-		if(count($matches) > 0)
+		if(count($matches) > 1)
 		{
 			array_shift($matches);
 			self::$_star = $matches;
@@ -774,18 +789,6 @@ class Parser
 			array_shift(self::$_data['that']);
 		//
 	}
-	/*
-	static private function SetResponse($lastResponse)
-	{
-		// add response
-		array_push(self::$_data['that'], $lastResponse);
-		
-		// if array length is more than 10, cut-off
-		if(count(self::$_data['that']) > 10)
-			array_shift(self::$_data['that']);
-		//
-	}
-	*/
 	
 	static private function SetTopic($node)
 	{
@@ -805,6 +808,8 @@ class Parser
 	
 	static private function GetStar($index = 0)
 	{
+		// echo '(', print_r(self::$_star, true), '){', $index, '}';
+		
 		// check consoudhiayw
 		if($index > count(self::$_star))
 			return false;
@@ -822,6 +827,32 @@ class Parser
 		
 		$reverseArray = array_reverse(self::$_data['input']);
 		return count(self::$_data['input']) == 0 ? false : $reverseArray[$index];
+	} 
+	
+	static private function GetLastThat()
+	{
+		if(count(self::$_data['that']) == 0)
+			return '';
+		//
+		
+		$that = self::$_data['that'][count(self::$_data['that'])-1];
+		$that = trim($that);
+		$that = preg_replace("/[[:punct:]]/", "", $that);
+		
+		return $that; 
+	}
+	
+	static public function PreParseInput($string)
+	{
+		// remove accents
+		$input = strtr($string,'àáâãäçèéêëìíîïñòóôõöùúûüıÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜİ','aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
+		
+		// remove ponctuation
+		$input = str_replace(array('?', '!'), '', $input);
+		
+		$input = preg_replace("/[[:punct:]]/", "", $input);
+		
+		return $input;
 	} 
 	
 	/**
