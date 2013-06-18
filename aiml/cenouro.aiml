@@ -5,24 +5,185 @@
 <meta name="language" content="pt-br"/>
 
 <category>
-    <pattern>Oi</pattern>
+    <pattern>Ola</pattern>
     <template>
-    	<condition name="nome" value="true">
-	    	<random>
-	        	<li>Olá <get name="nome"/></li>
-	        	<li>Como vai <get name="nome"/>?</li>
-	    	</random>
-	    	<condition name="irma" value="true">
-	    		Sua irmã continua gostosa?
-	    	</condition>
-    	</condition>
-    	<condition name="nome" value="false">
-        	Oi, como vai você?
-        </condition>   
-        Oi, como vai você?
+    	<srai>Oi</srai>
     </template>
 </category>
 
+<category>
+    <pattern>Oi</pattern>
+    <pattern>Oi cenouro</pattern>
+    <template>
+    	<random>
+        	<li>Olá<condition name="nome" value="true"> <get name="nome"/></condition>.</li>
+        	<li>Oi, como vai você?</li>
+        	<li>
+        		<condition name="irma" value="false">
+        			Você tem irmã?
+        		</condition>
+        		<condition name="irma" value="gostosa">
+		    		Sua irmã continua gostosa?
+		    	</condition>
+		    	<condition name="irma" value="vadia">
+		    		Sua irmã continua vadiando?
+		    	</condition>
+		    	<condition name="irma" value="feia">
+		    		Tua irmã é tão feia que tem filhos de 3 e 9 anos e todos pensam que são gêmeos pois não acreditam que comeram ela 2 vezes!
+		    	</condition>
+		    	<condition name="irma" value="true">
+		    		Manda uma abraço pra sua irmã, aquela <get name="irma"/>.
+		    	</condition>
+        	</li>
+    	</random>
+		
+    </template>
+</category>
 
+<category>
+    <pattern>Tenho#</pattern>
+    <pattern>Sim#</pattern>
+    <that>Você tem irma?</that>
+    <template>
+    	Ela é gostosa, feia ou só uma vadia?
+    </template>
+</category>
+
+<category>
+    <pattern>#vadia#</pattern>
+    <that>#Ela é gostosa, feia ou só uma vadia?</that>
+    <template>
+    	<think>
+    		<set name="irma">vadia</set>
+    	</think>
+    	Bom saber.
+    </template>
+</category>
+
+<category>
+    <pattern>#feia#</pattern>
+    <that>#Ela é gostosa, feia ou só uma vadia?</that>
+    <template>
+    	<think>
+    		<set name="irma">feia</set>
+    	</think>
+    	Bom saber.
+    </template>
+</category>
+
+<category>
+    <pattern>#gostosa#</pattern>
+    <that>#Ela é gostosa, feia ou só uma vadia?</that>
+    <template>
+    	<think>
+    		<set name="irma">gostosa</set>
+    	</think>
+    	Bom saber.
+    </template>
+</category>
+
+<category>
+    <pattern>#minha irma e uma *</pattern>
+    <template>
+    	<think>
+    		<set name="irma"><star/></set>
+    	</think>
+    	Tudo bem, vou me lembrar disso.
+    </template>
+</category>
+
+<category>
+    <pattern>vou bem#</pattern>
+    <pattern>vou mais ou menos#</pattern>
+    <pattern>vou mal#</pattern>
+    <pattern>vou muito#</pattern>
+    <template>
+		<random>
+	    	<li>Problema seu.</li>
+	    	<li>Na verdade, eu não dou a mínima.</li>
+	    	<li>Que bom para você.</li>
+	    	<li>Ok...</li>
+		</random>
+    </template>
+</category>
+
+<category>
+    <pattern>tok tok</pattern>
+    <template>
+    	Quem é?
+    </template>
+</category>
+
+<category>
+    <pattern>*</pattern>
+    <that>Quem é</that>
+    <template>
+    	<star/> quem?
+    </template>
+</category>
+
+<category>
+    <pattern>*</pattern>
+    <that>* quem?</that>
+    <template>
+		<srai>XXSURPRESOXX</srai>
+    </template>
+</category>
+
+<category>
+    <pattern>XXSURPRESOXX</pattern>
+    <template>
+    	<random>
+			<li>
+				Que bosta<condition name="nome" value="true">, <get name="nome"/></condition>.
+			</li>
+			<li>
+				HUEHUEHUHEUHEUHE
+			</li>
+			<li>
+				Hoje não, tente novamente.
+			</li>
+			<li>
+				aeHOOOOOOOOOOO
+			</li>
+			<li>
+				Mas que caralhos!?
+			</li>
+			<li>
+				Jesus cristo que horrivel.jpg
+			</li>
+		</random>
+    </template>
+</category>
+
+<category>
+    <pattern>*</pattern>
+    <template>
+    	<random>
+	    	<li>
+	    		Ok. Agora vamos falar de coisa boa, vamos falar  
+	    		<random>
+	    			<li>
+	    				de Iogurteira top therm
+	    			</li>
+	    			<li>
+	    				de TekPix
+	    			</li>
+	    			<li>
+	    				do 77chan
+	    			</li>
+	    		</random>
+	    	</li>
+	    	<li>Pergunte de uma forma diferente anão.</li>
+	    	<li>Não entendi o que você falou, vamos falar sobre o chan. 
+		    	<random>
+		    		<li>Faz quanto tempo que está aqui?</li>
+		    		<li>Qual sua board preferida?</li>
+		    		<li>Como descobriu o 77?</li>
+		    	</random>
+	    	</li>
+		</random>
+    </template>
+</category>
 
 </aiml>
