@@ -41,8 +41,6 @@ class Parser
 		self::$_dataStorage = new Data(Data::$SAVETYPE_DATABASE);
 		self::$_data = self::$_dataStorage->Load();
 		
-		// self::$_data['topics'] = array('chan', 'cumprimento', 'agressivo');
-		
 		// set default topics
 		if(!isset(self::$_data['topics']))
 			self::$_data['topics'] = array();
@@ -52,7 +50,12 @@ class Parser
 		if(!isset(self::$_data['that']))
 			self::$_data['that'] = array();
 		//
-
+		
+		// set default that
+		if(!isset(self::$_data['input']))
+			self::$_data['input'] = array();
+		//
+			
 		self::$_star = array();
 		
 		// response object
@@ -119,6 +122,9 @@ class Parser
 		
 		// compile think
 		self::CompileThink($template);
+		
+		// compile input 
+		self::CompileInput($template);
 		
 		// compile star pattern
 		self::CompileStar($template);
@@ -359,6 +365,34 @@ class Parser
 		}
 	}
 	
+	static private function CompileInput($node)
+	{
+		// search for input tag
+		if($inputs = self::GetAllTagsByName($node, 'input'))
+		{
+			foreach ($inputs as $inputNode)
+			{
+				$value = ''; 
+				$index = 0;
+				
+				// get index
+				if($inputNode->getAttribute('index') != '')
+				{
+					$index = intval($inputNode->getAttribute('index'));
+					$index--;
+				} 
+				
+				// get value
+				if(self::GetInput($index) !== false)
+					$value = self::GetInput($index); 
+				// 
+				
+				// replace child for the value
+				$node->replaceChild(self::$_domDoc->createTextNode($value), $inputNode);
+			}
+		}
+	}
+	 
 	static private function CompileCondition($node)
 	{
 		// search condition tag
@@ -659,6 +693,14 @@ class Parser
 	static private function SetInput($input)
 	{
 		self::$_input = $input;
+		
+		// add response
+		array_push(self::$_data['input'], $input);
+		
+		// if array length is more than 10, cut-off
+		if(count(self::$_data['input']) > 10)
+			array_shift(self::$_data['input']);
+		//
 	}
 	
 	
@@ -668,7 +710,6 @@ class Parser
 	 */
 	static private function SetResponse($lastResponse)
 	{
-		
 		// add response
 		array_push(self::$_data['that'], $lastResponse);
 		
@@ -677,6 +718,18 @@ class Parser
 			array_shift(self::$_data['that']);
 		//
 	}
+	/*
+	static private function SetResponse($lastResponse)
+	{
+		// add response
+		array_push(self::$_data['that'], $lastResponse);
+		
+		// if array length is more than 10, cut-off
+		if(count(self::$_data['that']) > 10)
+			array_shift(self::$_data['that']);
+		//
+	}
+	*/
 	
 	static private function SetTopic($node)
 	{
@@ -696,12 +749,23 @@ class Parser
 	
 	static private function GetStar($index = 0)
 	{
-		// check consistenci
+		// check consoudhiayw
 		if($index > count(self::$_star))
 			return false;
 		//
 		
 		return count(self::$_star) == 0 ? false : self::$_star[$index];
+	} 
+	
+	static private function GetInput($index = 0)
+	{
+		// check consoudhiayw
+		if($index > count(self::$_data['input']))
+			return false;
+		//
+		
+		$reverseArray = array_reverse(self::$_data['input']);
+		return count(self::$_data['input']) == 0 ? false : $reverseArray[$index];
 	} 
 	
 	/**

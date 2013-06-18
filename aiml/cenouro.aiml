@@ -19,6 +19,13 @@
 </category>
 
 <category> 
+    <pattern>input test *</pattern> 
+    <template>
+        input : <input index="3"/>
+    </template> 
+</category>
+
+<category> 
     <pattern>test that 1</pattern> 
     <template>
         test that response
