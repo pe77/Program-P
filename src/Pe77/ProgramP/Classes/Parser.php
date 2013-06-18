@@ -14,6 +14,7 @@ class Parser
 	
 	static private $_input;
 	static private $_response;
+	static private $_star;
 	
 	static private $_data;
 	static private $_dataStorage;
@@ -52,6 +53,8 @@ class Parser
 			self::$_data['that'] = array();
 		//
 
+		self::$_star = array();
+		
 		// response object
 		self::$_response = new Response();
 		
@@ -117,6 +120,9 @@ class Parser
 		// compile think
 		self::CompileThink($template);
 		
+		// compile star pattern
+		self::CompileStar($template);
+		
 		// compile set
 		self::CompileSet($template);
 		
@@ -135,6 +141,34 @@ class Parser
 		
 		return (string)$template->nodeValue;
 	}
+	
+	static private function CompileStar($node)
+	{
+		// search for star
+		if($stars = self::GetAllTagsByName($node, 'star'))
+		{
+			foreach ($stars as $starNode)
+			{
+				$value = ''; 
+				$index = 0;
+				
+				// get index
+				if($starNode->getAttribute('index') != '')
+				{
+					$index = intval($starNode->getAttribute('index'));
+					$index--;
+				} 
+				
+				// get value
+				if(self::GetStar($index) !== false)
+					$value = self::GetStar($index); 
+				// 
+				
+				// replace child for the value
+				$node->replaceChild(self::$_domDoc->createTextNode($value), $starNode);
+			}
+		}
+	} 
 	
 	static private function CompileLowercase($node)
 	{
@@ -216,12 +250,16 @@ class Parser
 				{
 					$name = $setNode->getAttribute('name');
 					$value = $setNode; 
+					
+					
 				}
 				
 				// parse or re-parse value
 				if($value)
 					$value = self::ProcessTemplate($value);
 				//
+				
+				
 				
 				// save data for user
 				if($name && $value)
@@ -256,11 +294,10 @@ class Parser
 			    	
 				}else{
 					// check for name in old aiml model
-					if($node->getAttribute('name') != '')
-						$value = self::$_domDoc->createTextNode($node->getAttribute('name'));
+					if($getNode->getAttribute('name') != '')
+						$value = self::$_domDoc->createTextNode($getNode->getAttribute('name'));
 					//
 				}
-				
 				// load value from db
 				$value = self::$_domDoc->createTextNode(
 					self::$_user->GetProp($value->nodeValue));
@@ -573,15 +610,44 @@ class Parser
 		return false;
 	}
 	
-	static private function ValidatePattern($patternA, $patternB)
+	static private function ValidatePattern($input, $pattern)
 	{
-		$patternA = trim($patternA);
-		$patternA = strtolower($patternA);
-
-		$patternB = trim($patternB);
-		$patternB = strtolower($patternB);
+		$input = trim($input);
+		$input = strtolower($input);
 		
-		return strtolower($patternA) == strtolower($patternB);
+		// clear
+		$pattern = trim($pattern);
+		$pattern = strtolower($pattern);
+		$pattern = str_replace('_', '*', $pattern); // _ = * in aiml
+		
+		// replace pattern
+		$pattern = str_replace(' * ', ' (.+) ', $pattern);
+		$pattern = str_replace('* ', '(.+) ', $pattern);
+		$pattern = str_replace(' *', ' (.+)', $pattern);
+		$pattern = str_replace('*', '(.+)', $pattern);
+		$pattern = str_replace(' # ', ' (.*) ', $pattern);
+		$pattern = str_replace(' #', ' (.*)', $pattern);
+		$pattern = str_replace('# ', '(.*) ', $pattern);
+		$pattern = str_replace('#', '(.*)', $pattern);
+		
+		// form regular expression
+		$regex = '/';
+		$regex .= $pattern;
+		$regex .= '/i';
+		
+		// check expr
+		$is_match = preg_match($regex, $input, $matches) ? true : false;
+		// echo '<p>', $regex, ' - ', $input, ' :', preg_match($regex, $input), '[<pre>' . print_r($matches, true) . ']';
+
+		// set star(s)
+		if(count($matches) > 0)
+		{
+			array_shift($matches);
+			self::$_star = $matches;
+		}
+		
+		// return math
+		return $is_match;
 	} 
 	
 	
@@ -627,6 +693,16 @@ class Parser
 		
 		return self::GetTopicTree($node->parentNode, $arrTopics);
 	}
+	
+	static private function GetStar($index = 0)
+	{
+		// check consistenci
+		if($index > count(self::$_star))
+			return false;
+		//
+		
+		return count(self::$_star) == 0 ? false : self::$_star[$index];
+	} 
 	
 	/**
 	 * Search in node by tag

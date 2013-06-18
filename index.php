@@ -26,6 +26,6 @@ $user->Save();
 
 
 
-$response = $programP->GetResponse($user, $bot, "test that 2");
+$response = $programP->GetResponse($user, $bot, "pattern test Z x B");
 
 echo $response;
