@@ -712,6 +712,9 @@ class Parser
 		$input = trim($input);
 		$input = strtolower($input);
 		
+		$input = self::PreParseInput($input);
+		$pattern = self::RemoveAccentuarion($pattern);
+		
 		// clear
 		$pattern = trim($pattern);
 		$pattern = strtolower($pattern);
@@ -726,6 +729,8 @@ class Parser
 		$pattern = str_replace(')', '', $pattern);
 		$pattern = str_replace('?', '', $pattern);
 		$pattern = str_replace('!', '', $pattern);
+		$pattern = str_replace(',', '', $pattern);
+		$pattern = str_replace('.', '', $pattern);
 		
 		// replace pattern
 		$pattern = str_replace(' * ', ' (.+) ', $pattern);
@@ -846,18 +851,28 @@ class Parser
 		return $that; 
 	}
 	
-	static public function PreParseInput($string)
+	static public function PreParseInput($input)
 	{
 		// remove accents
-		$input = strtr($string,'àáâãäçèéêëìíîïñòóôõöùúûüıÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜİ','aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
+		$input = self::RemoveAccentuarion($input);
 		
 		// remove ponctuation
-		$input = str_replace(array('?', '!'), '', $input);
-		
+		$input = str_replace(array('?', '!', '.'), '', $input);
 		$input = preg_replace("/[[:punct:]]/", "", $input);
 		
 		return $input;
 	} 
+	
+	static public function RemoveAccentuarion($input)
+	{
+		$input = iconv('utf-8', 'us-ascii//TRANSLIT', $input);
+		// $input = preg_replace('#[^-\w]+#', '', $input);
+		$input = str_replace('^', '', $input);
+		$input = str_replace('~', '', $input);
+		$input = str_replace('\'', '', $input);
+		
+		return $input; 
+	}
 	
 	/**
 	 * Search in node by tag
