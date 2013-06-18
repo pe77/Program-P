@@ -28,6 +28,7 @@ class Parser
      */
 	static function Parse(User $user, Bot $bot, $input)
 	{
+		
 		// create and load xml handler
 		self::$_domDoc = new \DOMDocument();
 		self::$_domDoc->loadXML($bot->aimlString());
@@ -393,7 +394,10 @@ class Parser
 		if($srais = self::GetAllTagsByName($node, 'srai'))
 		{
 			foreach ($srais as $srai) 
-			{
+			{ 
+				// fix for loop error in srai and that in same category
+				array_push(self::$_data['that'], '');
+				
 				// re-find another response for srai and replace
 				$newNode = self::$_domDoc->createTextNode(
 					self::Find(
