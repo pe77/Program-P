@@ -443,7 +443,21 @@ class Parser
 				{
 					$varValue = $name = self::$_user->GetProp($conditionNode->getAttribute('name')); 
 					
-					if($name == $conditionNode->getAttribute('value'))
+					if(
+						$name == $conditionNode->getAttribute('value') 
+						|| 
+						(
+							$varValue != '' 
+							&& 
+							$conditionNode->getAttribute('value') == 'true'
+						)
+						||
+						(
+							$varValue == ''
+							&&
+							$conditionNode->getAttribute('value') == 'false'
+						)
+					)
 						$pass = true;
 					//
 				}
@@ -488,6 +502,12 @@ class Parser
 										$liNode->getAttribute('value') == 'true'
 										&&
 										$varValue != ''
+									)
+									||
+									(
+										$liNode->getAttribute('value') == 'false'
+										&&
+										$varValue == ''
 									)
 								)
 							{
