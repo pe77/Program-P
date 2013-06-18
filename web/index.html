@@ -1,0 +1,97 @@
+<html>
+	<head>
+		<title>AIML 2.5 Web Test</title>
+		<script src="js/jquery.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="css/main.css" type="text/css" />
+		
+		<script type="text/javascript">
+			$(document).ready(function(){
+				
+				var webServiceUrl 	= "http://localhost/programp/";
+				var userName		= "";
+				
+				$('.setName').click(function(){
+					// set user name
+					if($('div.userData input[name="userName"]').val() != '')
+					{
+						userName = $('div.userData input[name="userName"]').val();
+						$('div.userData').remove();
+						$('div.userMessage').show();
+					}else{
+						alert('Escreva seu nome, cara de melão.');
+					}
+				});
+				
+				$('.send').click(function(){
+					
+					// get user input
+					var userInput		= $('input[name="userInput"]').val();
+					
+					// basic check
+					if(userName == '' || userInput == '')
+						return false;
+					//
+					
+					// clear
+					$('input[name="userInput"]').val('');
+					
+					// hide button
+					$(this).hide();
+					
+					// show user input
+					AddText(userName, userInput);
+					
+					$.ajax({
+					  type: "GET",
+					  url: webServiceUrl,
+					  data: {
+						  	input:userInput,
+						  	user:userName,
+					  	},
+					  success: function(response){
+						  AddText('Cenouro', response);
+						  $('.send').show();
+					  },
+					  error: function(request, status, error)
+					  {
+						  alert('error');
+						  $('.send').show();
+					  }
+					});
+					
+				});
+				
+				function AddText(user, message)
+				{
+					var div 	= $('<div>');
+					var name	= $('<labe>').addClass('name');
+					var text	= $('<span>').addClass('message');
+					
+					name.text(user + ':');
+					text.text('\t' + message);
+					
+					div.append(name);
+					div.append(text);
+					
+					$('.chatBox').append(div);
+					
+					$('.chatBox').scrollTop($(".chatBox").scrollTop() + 100);
+				}
+				
+				
+				
+				
+			});
+		</script>
+	</head>
+	<body>
+		<div class="chatBox">
+		
+		</div>
+		<label>
+		<div class="userData">Seu nome:<input type="text" name="userName"/><button class="setName">Gravar</button></div>
+		<div style="display:none" class="userMessage">
+			<input type="text" name="userInput"/><button class="send">Enviar</button>
+		</div>
+	</body>
+</html>
