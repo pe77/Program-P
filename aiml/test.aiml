@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<aiml version="1.0">
+<meta name="author" content="P."/>
+<meta name="language" content="pt-br"/>
+
+<category> 
+    <pattern>srai test 2</pattern> 
+    <template>
+        1 <srai>srai test 1</srai> 2
+    </template> 
+</category>
+
+<category> 
+    <pattern>srai test 1</pattern> 
+    <template>
+        a <srai>Oi</srai> c
+    </template> 
+</category>
+
+<category> 
+    <pattern>input test *</pattern> 
+    <template>
+        input : <input index="3"/>
+    </template> 
+</category>
+
+<category> 
+    <pattern>bot test</pattern> 
+    <template>
+        bot name : <bot name="name"/>:<bot><name>gender</name></bot>
+    </template> 
+</category>
+
+<category> 
+    <pattern>test that 1</pattern> 
+    <template>
+        test that response
+    </template> 
+</category>
+
+<category> 
+    <pattern>test that 2</pattern>
+    <that>test that response   </that> 
+    <template>
+        well done
+    </template> 
+</category>
+
+
+<category> 
+    <pattern>pattern test * x *</pattern> 
+    <template><set name="star"><star/></set>
+        pattern test ok star :(<get name="star"/>)
+    </template> 
+</category>
+
+<category> 
+    <pattern>lowertest</pattern> 
+    <template>
+        AAA <lowercase>BBbBB</lowercase> CCCC
+    </template> 
+</category>
+
+<category> 
+    <pattern>uppercase test</pattern> 
+    <template>
+        AAA <uppercase>BbbBb</uppercase> CCCC
+    </template> 
+</category>
+
+<category> 
+    <pattern>condition test</pattern> 
+    <template>
+        <condition name="xxx" value="foi">minha nossa foi</condition>
+        <condition><name>xxx</name><value>foi</value>foi novamente</condition>
+        <condition name="xxx">
+        	<li value="foi1">aaa</li>
+        	<li value="foi">bbb</li>
+        	<li value="foi1">ccc</li>
+        	<li value="true">ddd</li>
+        	
+        	<li><value>true</value>eee</li>
+        </condition>
+        ?
+    </template> 
+</category>
+
+
+<category> 
+    <pattern>tink set</pattern> 
+    <template>
+	    <think>
+	    	<set><name>xxx</name><value>foiz</value></set>
+	    	<set name="teste"><get><name>xxx</name></get></set>
+	    </think>
+        tink set!
+    </template> 
+</category>
+
+<category> 
+    <pattern>tink get</pattern> 
+    <template>
+        tink geting: <get><name>xxx</name></get>
+    </template> 
+</category>
+
+<category> 
+    <pattern>srai test 1</pattern> 
+    <template>
+        a <srai>Oi</srai> c
+    </template> 
+</category>
+
+<topic name="dog">
+	<category> 
+	    <pattern>Cachorro</pattern> 
+	    <template>
+	        Cachorro foi
+	    </template> 
+	</category>
+	
+	<category> 
+	    <pattern>Pastor</pattern> 
+	    <template>
+	        Pastor Cachorro foi
+	    </template> 
+	</category>
+	
+	<topic name="toy">
+		<category> 
+		    <pattern>bone</pattern> 
+		    <template>
+		        My dog love it(bone)
+		    </template> 
+		</category>
+	</topic>
+</topic>
+
+<topic name="chan">
+	<category> 
+	    <pattern>77chan</pattern> 
+	    <template>
+	        O melhor chan brasileiro
+	    </template> 
+	</category>
+	
+	<topic name="cumprimento">
+		<category> 
+		    <pattern>Oi</pattern> 
+		    <template>
+		        Oi anão.
+		    </template> 
+		</category>
+		
+		<topic name="agressivo">
+			<category> 
+			    <pattern>Oi viado</pattern> 
+			    <template>
+			        Vai dar oi pra sua mãe, akela puta.
+			    </template> 
+			</category>
+		</topic>
+	</topic>
+</topic>
+
+<category> 
+	    <pattern>OlÃ¡</pattern> 
+	    <template>
+	        <srai>Oi</srai>
+	    </template> 
+	</category>
+
+<category>
+    <pattern>Oi</pattern>
+    <template>
+        Oi, como vai você?
+        <random>
+        	<li>a</li>
+        	<li>b</li>
+        	<li>
+				<random>
+					<li>1</li>
+					<li>2</li>
+					<li>|<srai>TOK TOK</srai>|</li>				
+				</random>
+			</li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>TOK TOK</pattern>
+    <template>Quem é?</template>
+</category>
+
+<category>
+    <pattern>VOU BEM</pattern>
+    <template>
+        <if name="nome" exists="true">
+            Quer falar sobre o que <get name="nome"/>??
+        <else/> 
+            Qual seu nome?
+        </if>
+    </template>
+</category>
+
+
+<category>
+    <pattern>QUAL MEU NOME</pattern>
+    <template>Seu nome Ã© <get name="nome"/>.</template>
+</category>
+
+<category>
+    <pattern>QUAL SEU NOME</pattern>
+    <template>
+        <bot name="name"/> idiota. NÃ£o sabe ler?
+    </template>
+</category>
+
+
+<category>
+    <pattern>MEU NOME E *</pattern>
+    <template>
+        <think>
+            <set name="nome"><star/></set>
+        </think>
+        OlÃ¡, <get name="nome"/>.    
+    </template>
+</category>
+
+
+</aiml>
