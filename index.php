@@ -16,7 +16,7 @@ $bot	  = $programP->GetBot('cenouro');
 $user	  = $programP->GetUser('P.');
 
 $bot->SetProp('name', 'Cenouro');
-$bot->SetProp('gender', 'male');
+$bot->SetProp('gender', 'Male');
 $bot->DelProp('nome');
 $bot->Save();
 
@@ -26,6 +26,6 @@ $user->Save();
 
 
 
-$response = $programP->GetResponse($user, $bot, "input test 12");
+$response = $programP->GetResponse($user, $bot, "bot test");
 
 echo $response;

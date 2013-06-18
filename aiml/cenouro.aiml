@@ -26,6 +26,13 @@
 </category>
 
 <category> 
+    <pattern>bot test</pattern> 
+    <template>
+        bot name : <bot name="name"/>:<bot><name>gender</name></bot>
+    </template> 
+</category>
+
+<category> 
     <pattern>test that 1</pattern> 
     <template>
         test that response

@@ -135,6 +135,9 @@ class Parser
 		// compile get
 		self::CompileGet($template);
 		
+		// compile bot
+		self::CompileBot($template);
+		
 		// compile condition
 		self::CompileCondition($template);
 		
@@ -310,6 +313,39 @@ class Parser
 				
 				// replace child for the value
 				$node->replaceChild($value, $getNode);
+			}
+		}
+	}
+	
+	static private function CompileBot($node)
+	{
+		if($bots = self::GetAllTagsByName($node, 'bot'))
+		{
+			foreach ($bots as $botNode)
+			{
+				$name = false;
+				$value = '';
+		
+				// check for another tags
+				if($name = self::GetAllTagsByName($botNode, 'name', true))
+				{
+					$value = self::$_domDoc->createTextNode(
+									self::ProcessTemplate($name)
+							   );
+			    	
+				}else{
+					// check for name in old aiml model
+					if($botNode->getAttribute('name') != '')
+						$value = self::$_domDoc->createTextNode($botNode->getAttribute('name'));
+					//
+				}
+				
+				// load value from db
+				$value = self::$_domDoc->createTextNode(
+					self::$_bot->GetProp($value->nodeValue));
+				
+				// replace child for the value
+				$node->replaceChild($value, $botNode);
 			}
 		}
 	}
