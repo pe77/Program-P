@@ -1,5 +1,6 @@
 <html>
 	<head>
+		<link rel="shortcut icon" href="favicon.ico" />
 		<title>AIML 2.5 Web Test</title>
 		<script src="js/jquery.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="css/main.css" type="text/css" />
