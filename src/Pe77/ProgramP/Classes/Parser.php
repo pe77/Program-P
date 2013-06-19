@@ -65,8 +65,8 @@ class Parser
 		// response object
 		self::$_response = new Response();
 		
-		// set response
-		self::$_response->SetResponse(self::Find($input));
+		// get response
+		$response = self::Find($input);
 		
 		// add topics
 		foreach (self::$_data['topics'] as $topicName)
@@ -74,12 +74,18 @@ class Parser
 		//
 		
 		// set response for 'that'
-		self::SetResponse((string)self::$_response);
+		self::SetResponse($response);
 			
 		// save temp data
 		self::$_dataStorage->Save(self::$_data);
 		
 		// self::$_dataStorage->Clear();
+		
+		// if response is '', looking for default tag
+		$response = $response == '' ? self::GetDafault() : $response;
+		
+		// set response
+		self::$_response->SetResponse($response);
 		
 		// return response
 		return self::$_response;
@@ -115,6 +121,22 @@ class Parser
 					
 		return '';
 	}
+	
+	static private function GetDafault()
+	{
+		$xpathQuery = '//default';
+		
+		// pass the aiml category list
+		if($default = self::$_domXPath->query($xpathQuery)->item(0))
+				// pre-process default tag and set response
+				return self::ProcessTemplate(
+						$default
+					);
+			//
+		//
+		
+		return 'a';
+	} 
 	
 	static private function ProcessTemplate($template)
 	{
@@ -802,6 +824,7 @@ class Parser
 	
 	static private function SetTopic($node)
 	{
+		
 		self::$_data['topics'] = array_reverse(self::GetTopicTree($node, array()));
 	}
 	
