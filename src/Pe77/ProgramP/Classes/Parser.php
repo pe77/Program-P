@@ -495,7 +495,7 @@ class Parser
 				}
 				
 				// check for <li> conditional type tag
-				if($varValue && $lis = self::GetAllTagsByName($conditionNode, 'li'))
+				if($lis = self::GetAllTagsByName($conditionNode, 'li'))
 				{
 					foreach ($lis as $liNode)
 					{
@@ -531,6 +531,7 @@ class Parser
 							}else{
 								// remove li
 								$conditionNode->removeChild($liNode);
+								
 							}
 						}
 						
