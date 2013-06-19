@@ -17,23 +17,26 @@
     <template>
     	<random>
         	<li>Olá<condition name="nome" value="true"> <get name="nome"/></condition>.</li>
-        	<li>Oi, como vai você?</li>
         	<li>
         		<condition name="irma" value="false">
         			Você tem irmã?
         		</condition>
-        		<condition name="irma" value="gostosa">
-		    		Sua irmã continua gostosa?
+        		<condition name="irma">
+					<li value="true">
+						Oi, manda uma abraço para sua irmã, aquela <get name="irma"/>.
+					</li>
+					<li value="gostosa">
+						Continua gostosa?
+					</li>
+					<li value="vadia">
+						Ela continua vadiando?
+					</li>
+					<li value="feia">
+						Tua irmã é tão feia que tem filhos de 3 e 9 anos e todos pensam que são gêmeos pois não acreditam que comeram ela 2 vezes!
+					</li>
+					
 		    	</condition>
-		    	<condition name="irma" value="vadia">
-		    		Sua irmã continua vadiando?
-		    	</condition>
-		    	<condition name="irma" value="feia">
-		    		Tua irmã é tão feia que tem filhos de 3 e 9 anos e todos pensam que são gêmeos pois não acreditam que comeram ela 2 vezes!
-		    	</condition>
-		    	<condition name="irma" value="true">
-		    		Manda uma abraço pra sua irmã, aquela <get name="irma"/>.
-		    	</condition>
+				(<get name="irma"/>)
         	</li>
     	</random>
 		
@@ -83,10 +86,20 @@
 </category>
 
 <category>
+    <pattern>#minha irma e *</pattern>
+    <template>
+    	<think>
+    		<set name="irma"><star index="2"/></set>
+    	</think>
+    	Tudo bem, vou me lembrar disso.
+    </template>
+</category>
+
+<category>
     <pattern>#minha irma e uma *</pattern>
     <template>
     	<think>
-    		<set name="irma"><star/></set>
+    		<set name="irma"><star index="2"/></set>
     	</think>
     	Tudo bem, vou me lembrar disso.
     </template>
