@@ -8,27 +8,14 @@
 			$(document).ready(function(){
 				
 				var webServiceUrl 	= "http://localhost/programp/";
-				var userName		= "";
 				
-				$('.setName').click(function(){
-					// set user name
-					if($('div.userData input[name="userName"]').val() != '')
-					{
-						userName = $('div.userData input[name="userName"]').val();
-						$('div.userData').remove();
-						$('div.userMessage').show();
-					}else{
-						alert('Escreva seu nome, cara de melão.');
-					}
-				});
-				
-				$('.send').click(function(){
+				$('#fMessage').submit(function(){
 					
 					// get user input
 					var userInput		= $('input[name="userInput"]').val();
 					
 					// basic check
-					if(userName == '' || userInput == '')
+					if(userInput == '')
 						return false;
 					//
 					
@@ -39,26 +26,26 @@
 					$(this).hide();
 					
 					// show user input
-					AddText(userName, userInput);
+					AddText('Você', userInput);
 					
 					$.ajax({
 					  type: "GET",
 					  url: webServiceUrl,
 					  data: {
-						  	input:userInput,
-						  	user:userName,
+						  	input:userInput
 					  	},
 					  success: function(response){
 						  AddText('Cenouro', response);
-						  $('.send').show();
+						  $('#fMessage').show();
 					  },
 					  error: function(request, status, error)
 					  {
 						  alert('error');
-						  $('.send').show();
+						  $('#fMessage').show();
 					  }
 					});
 					
+					return false;
 				});
 				
 				function AddText(user, message)
@@ -89,9 +76,10 @@
 		
 		</div>
 		<label>
-		<div class="userData">Seu nome:<input type="text" name="userName"/><button class="setName">Gravar</button></div>
-		<div style="display:none" class="userMessage">
-			<input type="text" name="userInput"/><button class="send">Enviar</button>
+		<div class="userMessage">
+			<form id="fMessage">
+				<input type="text" name="userInput"/><input type="submit" value="Enviar" class="send"/>
+			</form>
 		</div>
 	</body>
 </html>

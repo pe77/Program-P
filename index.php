@@ -19,9 +19,6 @@ $bot->SetProp('name', 'Cenouro');
 $bot->SetProp('gender', 'homem');
 $bot->Save();
 
-$user->SetProp('nome', $_REQUEST['user']);
-$user->Save();
-
 $response = $programP->GetResponse($user, $bot, $_REQUEST['input']);
 
 echo $response;
