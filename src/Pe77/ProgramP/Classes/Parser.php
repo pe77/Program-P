@@ -28,9 +28,15 @@ class Parser
      */
 	static function Parse(User $user, Bot $bot, $input)
 	{
+		/*
+		$x = preg_match('/^(.*)voce tem irma(.*)$/i', "oi p voce tem irma");
+		print_r($x);
+		die();
+		*/
 		
 		// create and load xml handler
 		self::$_domDoc = new \DOMDocument();
+		self::$_domDoc->preserveWhiteSpace = false;
 		self::$_domDoc->loadXML($bot->aimlString());
 		self::$_domXPath = new \DomXPath(self::$_domDoc);
 		
@@ -54,7 +60,7 @@ class Parser
 		if(!isset(self::$_data['that']))
 			self::$_data['that'] = array();
 		//
-		
+		// echo '[' . self::GetLastThat() . ']';
 		// set default that
 		if(!isset(self::$_data['input']))
 			self::$_data['input'] = array();
@@ -153,7 +159,7 @@ class Parser
 		self::CompileInput($template);
 		
 		// compile star pattern
-		self::CompileStar($template);
+		// self::CompileStar($template);
 		
 		// compile set
 		self::CompileSet($template);
@@ -177,10 +183,11 @@ class Parser
 		return (string)$template->nodeValue;
 	}
 	
-	static private function CompileStar($node)
+	static private function CompileStar($templateNode)
 	{
+		
 		// search for star
-		if($stars = self::GetAllTagsByName($node, 'star'))
+		if($stars = self::GetAllTagsByName($templateNode, './/star'))
 		{
 			foreach ($stars as $starNode)
 			{
@@ -200,7 +207,7 @@ class Parser
 				// 
 				
 				// replace child for the value
-				$node->replaceChild(self::$_domDoc->createTextNode($value), $starNode);
+				$starNode->parentNode->replaceChild(self::$_domDoc->createTextNode($value), $starNode);
 			}
 		}
 	} 
@@ -413,6 +420,7 @@ class Parser
 	
 	static private function CompileSrai($node)
 	{
+		
 		if($srais = self::GetAllTagsByName($node, 'srai'))
 		{
 			foreach ($srais as $srai) 
@@ -428,6 +436,7 @@ class Parser
 				$node->replaceChild($newNode, $srai);
 			}
 		}
+		
 	}
 	
 	static private function CompileInput($node)
@@ -700,11 +709,12 @@ class Parser
 	static private function CheckPattern($category)
 	{
 		$patterns = self::GetAllTagsByName($category, 'pattern');
+		$template = self::GetAllTagsByName($category, 'template', true);
 		
 		// search for any math pattern
 		foreach ($patterns as $pattern)
 		{
-			if (self::ValidatePattern(self::$_input, $pattern->nodeValue))
+			if (self::ValidatePattern(self::$_input, $pattern->nodeValue, $template))
 			{
 				// looking for that tag
 				if($that = self::GetAllTagsByName($category, 'that', true))
@@ -715,7 +725,8 @@ class Parser
 						return
 							self::ValidatePattern(
 								self::GetLastThat(),
-								$that->nodeValue
+								$that->nodeValue,
+								$template
 								); 
 					}
 					// have a that tag but no last responses
@@ -730,8 +741,11 @@ class Parser
 		return false;
 	}
 	
-	static private function ValidatePattern($input, $pattern)
+	static private function ValidatePattern($input, $pattern, $template)
 	{
+		$old_input = $input;
+		$old_pattern = $pattern;
+		
 		$input = trim($input);
 		$input = strtolower($input);
 		
@@ -772,15 +786,21 @@ class Parser
 		$regex .= '^' . $pattern . '$';
 		$regex .= '/i';
 		
+		
 		// check expr
 		$is_match = preg_match($regex, $input, $matches) ? true : false;
-		// echo '(', $input, ' - ', $regex, '){' . ($is_match ? 't' : 'f') . '}';
+		// echo '(', $input, '-', $regex, '){' . ($is_match ? 't' : 'f') . '-' . print_r(preg_match($regex, $input), true) . '}';
 
 		// set star(s)
 		if(count($matches) > 1)
 		{
+			// replace all srai tag inside templateNode
+			// echo '(['.$old_input.','.$old_pattern.']setstar:' . print_r($matches, true) . ')';
 			array_shift($matches);
 			self::$_star = $matches;
+			
+			self::CompileStar($template);
+			// fazer com o que star tag seja subistiuida aqui
 		}
 		
 		// return math
@@ -841,10 +861,8 @@ class Parser
 	
 	static private function GetStar($index = 0)
 	{
-		// echo '(', print_r(self::$_star, true), '){', $index, '}';
-		
 		// check consoudhiayw
-		if($index > count(self::$_star))
+		if($index >= count(self::$_star))
 			return false;
 		//
 		
@@ -879,6 +897,9 @@ class Parser
 	{
 		// remove accents
 		$input = self::RemoveAccentuarion($input);
+		
+		// remove line breaks
+		$input = preg_replace('/^\s+|\n|\r|\s+$/m', '', $input);
 		
 		// remove ponctuation
 		$input = str_replace(array('?', '!', '.'), '', $input);
