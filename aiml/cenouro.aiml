@@ -4,6 +4,8 @@
 <meta name="author" content="P."/>
 <meta name="language" content="pt-br"/>
 
+
+<!-- cumprimentos -->
 <category>
     <pattern>Ola</pattern>
     <template>
@@ -15,38 +17,116 @@
     <pattern>Oi</pattern>
     <pattern>Oi cenouro</pattern>
     <template>
-    	<random>
-        	<li>Olá<condition name="nome" value="true"> <get name="nome"/></condition>.</li>
-        	<li>
-        		<condition name="irma" value="false">
-        			Você tem irmã?
-        		</condition>
-        		<condition name="irma">
-					<li value="true">
-						Oi, manda uma abraço para sua irmã, aquela <get name="irma"/>.
-					</li>
-					<li value="gostosa">
-						Continua gostosa?
-					</li>
-					<li value="vadia">
-						Ela continua vadiando?
-					</li>
-					<li value="feia">
-						Tua irmã é tão feia que tem filhos de 3 e 9 anos e todos pensam que são gêmeos pois não acreditam que comeram ela 2 vezes!
-					</li>
-					
-		    	</condition>
-				(<get name="irma"/>)
-        	</li>
-    	</random>
-		
+    	<condition name="nome">
+			<li value="false">
+				Oi, como quer ser chamado anão?
+			</li>
+			<li value="true">
+				Oi <get name="nome"/>. 
+				<random>
+					<li>Como vai você?</li>
+					<li><srai>7IRMA7</srai></li>
+				</random>
+			</li>
+    	</condition>
     </template>
 </category>
 
 <category>
-    <pattern>Tenho#</pattern>
-    <pattern>Sim#</pattern>
-    <that>Você tem irma?</that>
+    <pattern>vou bem#</pattern>
+    <pattern>vou mais ou menos#</pattern>
+    <pattern>vou mal#</pattern>
+    <pattern>vou muito#</pattern>
+    <that>#como vai voce#</that>
+    <template>
+		<random>
+	    	<li>Problema seu.</li>
+	    	<li>Na verdade, eu não dou a mínima.</li>
+	    	<li>Que bom para você.</li>
+	    	<li>Ok...</li>
+		</random>
+		<srai>7PUXARASSUNTO7</srai>
+    </template>
+</category>
+
+<!-- NOME -->
+<category>
+    <pattern>#quero ser chamado de *</pattern>
+    <pattern>me chame de *</pattern>
+    <pattern>#meu nome e *</pattern>
+    <template>
+    	<think>
+    		<set name="nome"><star index="2"/></set>
+    	</think>
+    	Tudo bem, <get name="nome"/>. <srai>7IRMA7</srai>
+    </template>
+</category>
+
+<category>
+    <pattern>me chame de *</pattern>
+    <pattern>*</pattern>
+    <that>Oi, como quer ser chamado anão?</that>
+    <template>
+    	<think>
+    		<set name="nome"><star/></set>
+    	</think>
+    	Tudo bem, <get name="nome"/>.
+		<condition name="irma">
+			<li value="true">
+				Como anda sua irmã, aquela <get name="irma"/>.
+			</li>
+			<li value="false">
+				Você tem irmã?
+			</li>
+    	</condition>
+    </template>
+</category>
+
+
+<!-- OFENSAS COMBO-BREAKER -->
+<category>
+	<pattern>#coelho burro#</pattern>
+    <pattern>#voce e burro#</pattern>
+    <template>
+		Eu sou burro? E você que está discutindo comigo, é oque?
+    </template>
+</category>
+
+<!-- IRMA -->
+<category>
+    <pattern>7IRMA7</pattern>
+    <template>
+    	<condition name="irma">
+			<li value="true">
+				Como anda sua irmã, aquela <get name="irma"/>.
+			</li>
+			<li value="false">
+				Você tem irmã?
+			</li>
+    	</condition>
+    </template>
+</category>
+
+<category>
+    <pattern>tenho#</pattern>
+    <pattern>sim#</pattern>
+    <that>#voce tem irma#</that>
+    <template>
+    	Ela é gostosa, feia ou só uma vadia?
+    </template>
+</category>
+
+<category>
+    <pattern>#nao#</pattern>
+    <that>#Você tem irma?#</that>
+    <template>
+    	Fala que sim, é só um teste.
+    </template>
+</category>
+
+<category>
+    <pattern>#sim#</pattern>
+    <that>Fala que sim, é só um teste.</that>
     <template>
     	Ela é gostosa, feia ou só uma vadia?
     </template>
@@ -59,7 +139,7 @@
     	<think>
     		<set name="irma">vadia</set>
     	</think>
-    	Bom saber.
+    	Bom saber. <srai>7PUXARASSUNTO7</srai>
     </template>
 </category>
 
@@ -70,7 +150,7 @@
     	<think>
     		<set name="irma">feia</set>
     	</think>
-    	Bom saber.
+    	Bom saber. <srai>7PUXARASSUNTO7</srai>
     </template>
 </category>
 
@@ -81,7 +161,18 @@
     	<think>
     		<set name="irma">gostosa</set>
     	</think>
-    	Bom saber.
+    	Bom saber. <srai>7PUXARASSUNTO7</srai>
+    </template>
+</category>
+
+<category>
+    <pattern>#uma *</pattern>
+    <that>#Ela é gostosa, feia ou só uma vadia?</that>
+    <template>
+    	<think>
+    		<set name="irma"><star index="2"/></set>
+    	</think>
+    	Bom saber. <srai>7PUXARASSUNTO7</srai>
     </template>
 </category>
 
@@ -91,7 +182,7 @@
     	<think>
     		<set name="irma"><star index="2"/></set>
     	</think>
-    	Tudo bem, vou me lembrar disso.
+    	Tudo bem, vou me lembrar disso. <srai>7PUXARASSUNTO7</srai>
     </template>
 </category>
 
@@ -101,25 +192,54 @@
     	<think>
     		<set name="irma"><star index="2"/></set>
     	</think>
-    	Tudo bem, vou me lembrar disso.
+    	Tudo bem, vou me lembrar disso. <srai>7PUXARASSUNTO7</srai>
     </template>
 </category>
 
 <category>
-    <pattern>vou bem#</pattern>
-    <pattern>vou mais ou menos#</pattern>
-    <pattern>vou mal#</pattern>
-    <pattern>vou muito#</pattern>
+    <pattern>conhece a minha irma</pattern>
+    <pattern>conhece minha irma</pattern>
     <template>
-		<random>
-	    	<li>Problema seu.</li>
-	    	<li>Na verdade, eu não dou a mínima.</li>
-	    	<li>Que bom para você.</li>
-	    	<li>Ok...</li>
-		</random>
+    	<condition name="irma" value="true">
+    		Claro que sim, aquela <get name="irma"/>.
+    	</condition>
+    	<condition name="irma" value="false">
+    		Não, você tem irmã?
+    	</condition>
     </template>
 </category>
 
+
+
+
+
+
+
+<!-- PASQUALE -->
+<category>
+	<pattern>#virgula no vocativo#</pattern>
+    <pattern>#nao sabe usar # virgula#</pattern>
+    <template>
+		Pegue essa vírgula e enfia no seu cú.
+    </template>
+</category>
+
+
+
+
+<!-- CHAN -->
+<category>
+	<pattern>*</pattern>
+    <that>faz quanto tempo que esta aqui, no chan</that>
+    <template>
+		...
+    </template>
+</category>
+
+
+
+
+<!-- BRINCADEIRAS -->
 <category>
     <pattern>tok tok</pattern>
     <template>
@@ -140,6 +260,37 @@
     <that>* quem?</that>
     <template>
 		<srai>XXSURPRESOXX</srai>
+    </template>
+</category>
+
+
+
+<!-- UTILITARIOS -->
+<category>
+    <pattern>7PUXARASSUNTO7</pattern>
+    <template>
+		<condition name="temponochan">
+			<li value="true">
+				<condition name="descobriu77">
+    				<li value="true">
+    					<condition name="boardpreferida">
+		    				<li value="true">
+		    					Já conversei com você, tudo que fui programado para falar.
+		    				</li>
+		    				<li value="false">
+		    					Qual sua board preferida?
+		    				</li>
+		    			</condition>
+    				</li>
+    				<li value="false">
+    					Como descobriu o 77?
+    				</li>
+    			</condition>
+			</li>
+			<li value="false">
+				Faz quanto tempo que está aqui, no chan?
+			</li>
+		</condition>
     </template>
 </category>
 
@@ -169,34 +320,11 @@
     </template>
 </category>
 
-<category>
-    <pattern>*</pattern>
-    <template>
-    	<random>
-	    	<li>
-	    		Ok. Agora vamos falar de coisa boa, vamos falar  
-	    		<random>
-	    			<li>
-	    				de Iogurteira top therm
-	    			</li>
-	    			<li>
-	    				de TekPix
-	    			</li>
-	    			<li>
-	    				do 77chan
-	    			</li>
-	    		</random>
-	    	</li>
-	    	<li>Pergunte de uma forma diferente anão.</li>
-	    	<li>Não entendi o que você falou, vamos falar sobre o chan. 
-		    	<random>
-		    		<li>Faz quanto tempo que está aqui?</li>
-		    		<li>Qual sua board preferida?</li>
-		    		<li>Como descobriu o 77?</li>
-		    	</random>
-	    	</li>
-		</random>
-    </template>
-</category>
+<default>
+	<random>
+    	<li>Pergunte de uma forma diferente, anão.</li>
+    	<li>Não entendi o que você falou. <srai>7PUXARASSUNTO7</srai></li>
+	</random>
+</default>
 
 </aiml>
