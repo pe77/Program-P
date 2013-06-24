@@ -79,12 +79,6 @@ class Parser
 			self::$_response->AddTopic($topicName);
 		//
 		
-		// set response for 'that'
-		self::SetResponse($response);
-			
-		// save temp data
-		self::$_dataStorage->Save(self::$_data);
-		
 		// self::$_dataStorage->Clear();
 		
 		// if response is '', looking for default tag
@@ -92,6 +86,12 @@ class Parser
 		
 		// set response
 		self::$_response->SetResponse($response);
+		
+		// set response for 'that'
+		self::SetResponse($response);
+		
+		// save temp data
+		self::$_dataStorage->Save(self::$_data);
 		
 		// return response
 		return self::$_response;
@@ -141,7 +141,7 @@ class Parser
 			//
 		//
 		
-		return 'a';
+		return '';
 	} 
 	
 	static private function ProcessTemplate($template)
@@ -789,7 +789,7 @@ class Parser
 		
 		// check expr
 		$is_match = preg_match($regex, $input, $matches) ? true : false;
-		// echo '(', $input, '-', $regex, '){' . ($is_match ? 't' : 'f') . '-' . print_r(preg_match($regex, $input), true) . '}';
+		// echo '(', $input, '-', $regex, '){' . ($is_match ? 't' : 'f') . '}[' . self::GetLastThat() . ']';
 
 		// set star(s)
 		if(count($matches) > 1)
