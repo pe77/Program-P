@@ -4,7 +4,6 @@
 <meta name="author" content="P."/>
 <meta name="language" content="pt-br"/>
 
-
 <!-- cumprimentos -->
 <category>
     <pattern>Ola</pattern>
@@ -49,7 +48,10 @@
     </template>
 </category>
 
+
+
 <!-- NOME -->
+
 <category>
     <pattern>#quero ser chamado de *</pattern>
     <pattern>me chame de *</pattern>
@@ -64,8 +66,10 @@
 
 <category>
     <pattern>me chame de *</pattern>
+    <pattern>ser chamado de *</pattern>
+    <pattern>quero ser chamado de *</pattern>
     <pattern>*</pattern>
-    <that>Oi, como quer ser chamado anão?</that>
+    <that>#como quer ser chamado anão#</that>
     <template>
     	<think>
     		<set name="nome"><star/></set>
@@ -83,7 +87,9 @@
 </category>
 
 
+
 <!-- OFENSAS COMBO-BREAKER -->
+
 <category>
 	<pattern>#coelho burro#</pattern>
     <pattern>#voce e burro#</pattern>
@@ -92,7 +98,10 @@
     </template>
 </category>
 
+
+
 <!-- IRMA -->
+
 <category>
     <pattern>7IRMA7</pattern>
     <template>
@@ -227,18 +236,6 @@
 
 
 
-<!-- CHAN -->
-<category>
-	<pattern>*</pattern>
-    <that>faz quanto tempo que esta aqui, no chan</that>
-    <template>
-		...
-    </template>
-</category>
-
-
-
-
 <!-- BRINCADEIRAS -->
 <category>
     <pattern>tok tok</pattern>
@@ -265,32 +262,186 @@
 
 
 
+
+
+
+
+
+<!-- CHAN -->
+
+
+<category>
+	<pattern>faz *</pattern>
+	<pattern>*</pattern>
+    <that>#faz quanto tempo que está aqui, no chan#</that>
+    <template>
+		<think>
+			<set><name>temponochan</name><value><star/></value></set>
+		</think>
+		Eu estou aqui desde o nascimento do chan, mas só agora "aprendi" a conversar. <srai>7PUXARASSUNTO7</srai> 
+    </template>
+</category>
+
+<category>
+	<pattern>#55#</pattern>
+	<pattern>#SS #</pattern>
+	<pattern># SS #</pattern>
+	<pattern># SS#</pattern>
+    <that>#Como descobriu o 77#</that>
+    <template>
+		<think>
+			<set><name>descobriu77</name><value>55chan</value></set>
+		</think>
+		55? Você ainda frequenta aquela bosta? 
+    </template>
+</category>
+
+<category>
+	<pattern>#tropical#</pattern>
+    <that>#Como descobriu o 77#</that>
+    <template>
+		<think>
+			<set><name>descobriu77</name><value>55chan</value></set>
+		</think>
+		Foi tarde, nunca gostei daquele chan administrado por depositos. 
+    </template>
+</category>
+
+<category>
+	<pattern>#1500#</pattern>
+    <that>#Como descobriu o 77#</that>
+    <template>
+		<think>
+			<set><name>descobriu77</name><value>1500chan</value></set>
+		</think>
+		Ainda frequenta aquela bosta?
+    </template>
+</category>
+
+<category>
+	<pattern>#x#chan#</pattern>
+	<pattern>#xchan#</pattern>
+    <that>#Como descobriu o 77#</that>
+    <template>
+		<think>
+			<set><name>descobriu77</name><value>xchan</value></set>
+		</think>
+		Ainda frequenta aquela bosta?
+    </template>
+</category>
+
+
+<category>
+	<pattern>#no *</pattern>
+    <that>#Como descobriu o 77#</that>
+    <template>
+		<think>
+			<set><name>descobriu77</name><value><star index="2"/></value></set>
+		</think>
+		<srai>7PUXARASSUNTO7</srai>
+    </template>
+</category>
+
+<category>
+	<pattern>*</pattern>
+    <that>#Como descobriu o 77#</that>
+    <template>
+		<think>
+			<set><name>descobriu77</name><value><star/></value></set>
+		</think>
+		<srai>7PUXARASSUNTO7</srai>
+    </template>
+</category>
+
+<category>
+	<pattern>*</pattern>
+    <that>#ainda frequenta aquela bosta</that>
+    <template>
+		Fique apenas com o 77. O melhor chan hoje, o melhor chan amanha, o melhor chan sempre. <srai>7PUXARASSUNTO7</srai>
+    </template>
+</category>
+
+
+<category>
+	<pattern># b#</pattern>
+    <that>#qual sua board preferida</that>
+    <template>
+		<think>
+			<set><name>boardpreferida</name><value>b</value></set>
+		</think>
+		A minha também, a mais movimentada em todos os chans. <srai>7PUXARASSUNTO7</srai>
+    </template>
+</category>
+
+<category>
+	<pattern># minha preferida e a *</pattern>
+	<pattern>#o *</pattern>
+	<pattern>#a *</pattern>
+    <that>#qual sua board preferida</that>
+    <template>
+		<think>
+			<set><name>boardpreferida</name><value><star index="2"/></value></set>
+		</think>
+		A minha é o /b/. <srai>7PUXARASSUNTO7</srai>
+    </template>
+</category>
+
+<category>
+	<pattern>*</pattern>
+    <that>#qual sua board preferida</that>
+    <template>
+		<think>
+			<set><name>boardpreferida</name><value><star index="1"/></value></set>
+		</think>
+		A minha é o /b/. <srai>7PUXARASSUNTO7</srai>
+    </template>
+</category>
+
+
+
+
+
 <!-- UTILITARIOS -->
+
 <category>
     <pattern>7PUXARASSUNTO7</pattern>
     <template>
-		<condition name="temponochan">
-			<li value="true">
-				<condition name="descobriu77">
-    				<li value="true">
-    					<condition name="boardpreferida">
+    	<condition name="nome">
+    		<li value="true">
+    			<condition name="temponochan">
+					<li value="true">
+						<condition name="descobriu77">
 		    				<li value="true">
-		    					Já conversei com você, tudo que fui programado para falar.
+		    					<condition name="boardpreferida">
+				    				<li value="true">
+				    					<condition name="irma">
+				    						<li value="false">
+				    							<srai>7IRMA7</srai>
+				    						</li>
+				    						<li value="true">
+				    							Já conversei com você, tudo que fui programado para falar. Por que não colabora com o projeto, e me deixa mais esperto?
+				    						</li>
+				    					</condition>
+				    				</li>
+				    				<li value="false">
+				    					Qual sua board preferida?
+				    				</li>
+				    			</condition>
 		    				</li>
 		    				<li value="false">
-		    					Qual sua board preferida?
+		    					Como descobriu o 77?
 		    				</li>
 		    			</condition>
-    				</li>
-    				<li value="false">
-    					Como descobriu o 77?
-    				</li>
-    			</condition>
-			</li>
-			<li value="false">
-				Faz quanto tempo que está aqui, no chan?
-			</li>
-		</condition>
+					</li>
+					<li value="false">
+						Faz quanto tempo que está aqui, no chan?
+					</li>
+				</condition>
+    		</li>
+    		<li value="false">
+    			Como quer ser chamado anão?
+    		</li>
+    	</condition>
     </template>
 </category>
 
@@ -322,7 +473,6 @@
 
 <default>
 	<random>
-    	<li>Pergunte de uma forma diferente, anão.</li>
     	<li>Não entendi o que você falou. <srai>7PUXARASSUNTO7</srai></li>
 	</random>
 </default>
