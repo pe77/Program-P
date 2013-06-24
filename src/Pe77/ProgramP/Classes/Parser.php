@@ -146,14 +146,14 @@ class Parser
 	
 	static private function ProcessTemplate($template)
 	{
+		// compile think
+		self::CompileThink($template);
+		
 		// compile srai
 		self::CompileSrai($template);
 		
 		// compile random
 		self::CompileRandom($template);
-		
-		// compile think
-		self::CompileThink($template);
 		
 		// compile input 
 		self::CompileInput($template);
