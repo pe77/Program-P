@@ -34,6 +34,15 @@ class Human
 	
 	
 	/**
+	 * Get unique key
+	 */
+	public function GetUnique()
+	{
+		return $this->_unique;
+	}
+	
+	
+	/**
 	 * Create property, if exist, override
 	 * @param string $name
 	 * @param string $value

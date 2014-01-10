@@ -10,15 +10,33 @@ use Pe77\ProgramP\ProgramP\Classes\Response;
 // load config
 $config = Yaml::parse('config.yml');
 
+
+// check request type
+if(!isset($_REQUEST['requestType']))
+	die();
+//
+
 // ini
 $programP = new ProgramP($config);
 $bot	  = $programP->GetBot('cenouro');
 $user	  = $programP->GetUser($_SERVER['REMOTE_ADDR']);
 
-$bot->SetProp('name', 'Cenouro');
-$bot->SetProp('gender', 'homem');
-$bot->Save();
 
-$response = $programP->GetResponse($user, $bot, $_REQUEST['input']);
+// talk
+if($_REQUEST['requestType'] == 'talk')
+{
+	$bot->SetProp('nome', 'Cenouro');
+	$bot->Save();
+	
+	$response = $programP->GetResponse($user, $bot, $_REQUEST['input']);
+	
+	echo $response;
+}
 
-echo $response;
+
+// clear
+if($_REQUEST['requestType'] == 'forget')
+{
+	$user->ClearAllProp();
+	echo '1';
+}

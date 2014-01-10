@@ -25,12 +25,17 @@ class ProgramP
      * Get user question, parse and response
      * @param User $user - User who is asking
      * @param Bot $bot - bot are replying
-     * @param string $question - User input
+     * @param string $input - User input
      * @return string - response
      */
-    function GetResponse($user, $bot, $question)
+    function GetResponse($user, $bot, $input)
     {
-		return Parser::Parse($user, $bot, $question);
+    	
+		$response =  Parser::Parse($user, $bot, $input);
+		
+		$this->Log($user, $input, $response, $bot);
+		
+		return $response;
     }
 
     public function GetConfig()
@@ -97,5 +102,16 @@ class ProgramP
 
         // return bot
         return new Bot($this, $unique, $aimlString);
+    }
+    
+    private function Log(User $user, $input, $response, Bot $bot)
+    {
+    	// log conversation
+    	Connect::Query("
+    		INSERT INTO 
+    			`programp`.`log` 
+    		(`user`, `input`, `response`, `bot`, `data`) 
+    			VALUES 
+    		('" . $user->GetUnique() . "', '" . $input . "', '" . trim($response) . "', '" . $bot->GetUnique() . "', NOW());");
     }
 }

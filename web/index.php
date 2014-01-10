@@ -9,6 +9,35 @@
 			$(document).ready(function(){
 				
 				var webServiceUrl 	= "http://localhost/programp/";
+
+				
+
+				$('.esquecer').click(function(){
+
+					Clear();
+					AddText('Sistema', 'Esquecendo...');
+					
+					$('.userMessage').hide();
+
+					$.ajax({
+						  type: "GET",
+						  url: webServiceUrl,
+						  data: {
+							  	requestType:'forget'
+						  	},
+						  success: function(response){
+							  AddText('Sistema', 'Ok!');
+							  $('.userMessage').show();
+						  },
+						  error: function(request, status, error)
+						  {
+							  Clear();
+							  alert('error');
+							  $('.userMessage').show();
+						  }
+						});
+				});
+				
 				
 				$('#fMessage').submit(function(){
 					
@@ -33,7 +62,8 @@
 					  type: "GET",
 					  url: webServiceUrl,
 					  data: {
-						  	input:userInput
+						  	input:userInput,
+						  	requestType:'talk'
 					  	},
 					  success: function(response){
 						  AddText('Cenouro', response);
@@ -48,6 +78,11 @@
 					
 					return false;
 				});
+
+				function Clear()
+				{
+					$('.chatBox').html('');
+				}
 				
 				function AddText(user, message)
 				{
@@ -81,6 +116,7 @@
 			<form id="fMessage">
 				<input type="text" name="userInput"/><input type="submit" value="Enviar" class="send"/>
 			</form>
+			<button class="esquecer">Esquecer</button>
 		</div>
 	</body>
 </html>

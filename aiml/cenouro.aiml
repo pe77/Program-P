@@ -54,7 +54,7 @@
 
 <category>
     <pattern>#quero ser chamado de *</pattern>
-    <pattern>me chame de *</pattern>
+    <pattern>#me chame de *</pattern>
     <pattern>#meu nome e *</pattern>
     <template>
     	<think>
@@ -117,6 +117,22 @@
 </category>
 
 <category>
+    <pattern>*</pattern>
+    <that>#como anda sua irma#</that>
+    <template>
+    	<random>
+    		<li>
+    			Na verdade eu não me importo com ela.
+    		</li>
+    		<li>
+    			Serio?! Que bosta, problema dela.
+    		</li>
+    	</random>
+    	<srai>7PUXARASSUNTO7</srai>
+    </template>
+</category>
+
+<category>
     <pattern>tenho#</pattern>
     <pattern>sim#</pattern>
     <that>#voce tem irma#</that>
@@ -134,7 +150,17 @@
 </category>
 
 <category>
+    <pattern>#nao#</pattern>
+    <pattern>#filho unico#</pattern>
+    <that>Fala que sim, é só um teste.</that>
+    <template>
+    	Ok 
+    </template>
+</category>
+
+<category>
     <pattern>#sim#</pattern>
+    <pattern>#tenho#</pattern>
     <that>Fala que sim, é só um teste.</that>
     <template>
     	Ela é gostosa, feia ou só uma vadia?
@@ -206,8 +232,7 @@
 </category>
 
 <category>
-    <pattern>conhece a minha irma</pattern>
-    <pattern>conhece minha irma</pattern>
+    <pattern>conhece#minha irma</pattern>
     <template>
     	<condition name="irma" value="true">
     		Claro que sim, aquela <get name="irma"/>.
