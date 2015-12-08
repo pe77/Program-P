@@ -1,5 +1,6 @@
-<html>
+﻿<html lang="pt_BR">
 	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
 		<link rel="shortcut icon" href="favicon.ico" />
 		<title>AIML 2.5 Web Test</title>
 		<script src="js/jquery.js" type="text/javascript"></script>
@@ -56,7 +57,7 @@
 					$(this).hide();
 					
 					// show user input
-					AddText('Voc�', userInput);
+					AddText('Você', userInput);
 					
 					$.ajax({
 					  type: "GET",
@@ -68,6 +69,7 @@
 					  success: function(response){
 						  AddText('Cenouro', response);
 						  $('#fMessage').show();
+						  $('input[name="userInput"]').focus();
 					  },
 					  error: function(request, status, error)
 					  {
@@ -75,7 +77,7 @@
 						  $('#fMessage').show();
 					  }
 					});
-					
+
 					return false;
 				});
 
@@ -86,6 +88,9 @@
 				
 				function AddText(user, message)
 				{
+					console.log(user);
+					console.log(message);
+
 					var div 	= $('<div>');
 					var name	= $('<labe>').addClass('name');
 					var text	= $('<span>').addClass('message');

@@ -60,6 +60,7 @@ class Parser
 		if(!isset(self::$_data['that']))
 			self::$_data['that'] = array();
 		//
+		
 		// echo '[' . self::GetLastThat() . ']';
 		// set default that
 		if(!isset(self::$_data['input']))

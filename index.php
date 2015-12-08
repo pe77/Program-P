@@ -8,6 +8,7 @@ use Symfony\Component\Yaml\Yaml;
 use Pe77\ProgramP\ProgramP;
 use Pe77\ProgramP\ProgramP\Classes\Response;
 
+
 // check request type
 if(!isset($_REQUEST['requestType']))
 	die();
@@ -15,7 +16,7 @@ if(!isset($_REQUEST['requestType']))
 
 // ini
 $programP = new ProgramP($config);
-$bot	  = $programP->GetBot('cenouro');
+$bot	  = $programP->GetBot('cenouroresponde');
 $user	  = $programP->GetUser($_SERVER['REMOTE_ADDR']);
 
 
@@ -24,7 +25,7 @@ if($_REQUEST['requestType'] == 'talk')
 {
 	$bot->SetProp('nome', 'Cenouro');
 	$bot->Save();
-	
+
 	$response = $programP->GetResponse($user, $bot, $_REQUEST['input']);
 	
 	echo $response;

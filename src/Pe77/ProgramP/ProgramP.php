@@ -106,10 +106,13 @@ class ProgramP
     
     private function Log(User $user, $input, $response, Bot $bot)
     {
-    	// log conversation
+        $input = utf8_decode($input);
+        $response = utf8_decode($response);
+
+        // log conversation
     	Connect::Query("
     		INSERT INTO 
-    			`programp`.`log` 
+    			`log` 
     		(`user`, `input`, `response`, `bot`, `data`) 
     			VALUES 
     		('" . $user->GetUnique() . "', '" . $input . "', '" . trim($response) . "', '" . $bot->GetUnique() . "', NOW());");
