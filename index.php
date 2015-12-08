@@ -1,6 +1,7 @@
 <?php
 
 
+require 'config.php';
 require 'vendor/autoload.php';
 
 use Symfony\Component\Yaml\Yaml;
@@ -8,7 +9,10 @@ use Pe77\ProgramP\ProgramP;
 use Pe77\ProgramP\ProgramP\Classes\Response;
 
 // load config
-$config = Yaml::parse('config.yml');
+// $config = Yaml::parse('config.yml');
+
+print_r($config);
+die('-');
 
 
 // check request type
