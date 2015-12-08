@@ -919,6 +919,8 @@ class Parser
 		$input = str_replace('~', '', $input);
 		$input = str_replace('\'', '', $input);
 		$input = str_replace('´', '', $input);
+		$input = str_replace('<', '', $input);
+		$input = str_replace('>', '', $input);
 		
 		return $input; 
 	}
