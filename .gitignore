@@ -1,6 +1,6 @@
 .settings
 .buildpath
 .project
-config.yml
+config.php
 vendor
 
