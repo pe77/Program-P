@@ -28,7 +28,7 @@ if($_REQUEST['requestType'] == 'talk')
 
 	$response = $programP->GetResponse($user, $bot, $_REQUEST['input']);
 	
-	header("Content-Type: text/plain");
+	header("Content-Type: text/plain; charset=utf-8");
 	echo trim($response);
 }
 
