@@ -3,4 +3,5 @@
 .project
 config.php
 vendor
-
+aiml/*.aiml
+!aiml/test.aiml
