@@ -9,7 +9,7 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 				
-				var webServiceUrl 	= "http://77chan.com/modules/cr2/";
+				var webServiceUrl 	= "http://localhost/henrique/pp/";
 
 				
 

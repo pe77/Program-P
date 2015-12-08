@@ -107,7 +107,7 @@ class ProgramP
     private function Log(User $user, $input, $response, Bot $bot)
     {
         $input = mysql_real_escape_string(utf8_decode($input));
-        $response = mysql_real_escape_string(trim($response));
+        $response = mysql_real_escape_string(utf8_decode(trim($response)));
 
         // log conversation
     	Connect::Query("
