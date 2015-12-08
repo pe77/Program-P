@@ -8,13 +8,6 @@ use Symfony\Component\Yaml\Yaml;
 use Pe77\ProgramP\ProgramP;
 use Pe77\ProgramP\ProgramP\Classes\Response;
 
-// load config
-// $config = Yaml::parse('config.yml');
-
-print_r($config);
-die('-');
-
-
 // check request type
 if(!isset($_REQUEST['requestType']))
 	die();
