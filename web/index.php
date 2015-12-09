@@ -8,10 +8,12 @@
 		
 		<script type="text/javascript">
 			$(document).ready(function(){
-				
-				var webServiceUrl 	= "http://localhost/henrique/pp/";
 
-				
+				var localUrl = window.location.href;
+				localUrl = localUrl.replace('web/', '');
+
+				// só um advinhador simples
+				var webServiceUrl 	= window.location.href.replace('web/', '');
 
 				$('.esquecer').click(function(){
 
