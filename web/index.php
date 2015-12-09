@@ -69,7 +69,7 @@
 						  	requestType:'talk'
 					  	},
 					  success: function(response){
-						  AddText('Cenouro', response);
+						  AddText('Cenouro', response.message);
 						  $('#fMessage').show();
 						  $('input[name="userInput"]').focus();
 					  },

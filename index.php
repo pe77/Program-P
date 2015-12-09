@@ -14,10 +14,18 @@ if(!isset($_REQUEST['requestType']))
 	die();
 //
 
+// user id | usa o IP por padrão como identificador unico
+$userId = $_SERVER['REMOTE_ADDR'];
+
+// se foi enviado o ID substitui
+if(isset($_REQUEST['uid']))
+	$userId = $_REQUEST['uid'];
+//
+
 // ini
 $programP = new ProgramP($config);
 $bot	  = $programP->GetBot('cenouroresponde');
-$user	  = $programP->GetUser($_SERVER['REMOTE_ADDR']);
+$user	  = $programP->GetUser($userId);
 
 
 // talk
@@ -26,10 +34,21 @@ if($_REQUEST['requestType'] == 'talk')
 	$bot->SetProp('nome', 'Cenouro');
 	$bot->Save();
 
-	$response = $programP->GetResponse($user, $bot, $_REQUEST['input']);
+	// fixa o rand com base na perunta + uid
+	$seed  = substr(base_convert(md5($userId . $_REQUEST['input']), 16, 10) , -10);
+	srand($seed);
+
+
+	$response = array(
+		'status'=>1,
+		'message'=>'',
+		'data'=>null,
+	);
+
+	$response['message'] = trim($programP->GetResponse($user, $bot, $_REQUEST['input']));
 	
-	header("Content-Type: text/plain; charset=utf-8");
-	echo trim($response);
+	header("Content-Type: application/json; charset=utf-8");
+	echo json_encode($response);
 }
 
 
