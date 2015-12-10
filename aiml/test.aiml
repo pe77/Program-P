@@ -87,6 +87,27 @@
 </category>
 
 
+
+<category>
+    <pattern>count test</pattern>
+    <template>
+        <think>
+            <set name="count"><count>5+5</count></set>
+        </think>
+        <condition name="count">
+            <li value="false">
+                não sei. (?)
+            </li>
+            <li value="true">
+                resp:!(<get name="count"/>)
+                    <del name="count"></del>
+                
+            </li>
+        </condition>
+    </template>
+</category>
+
+
 <category> 
     <pattern>tink set</pattern> 
     <template>

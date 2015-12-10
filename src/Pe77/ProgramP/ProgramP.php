@@ -6,6 +6,7 @@ use Pe77\ProgramP\Classes\User;
 use Pe77\ProgramP\Classes\Parser;
 use Pe77\ProgramP\Classes\Bot;
 use Pe77\ProgramP\Classes\Database\Connect;
+use Pe77\ProgramP\Classes\Database\Utils;
 
 class ProgramP
 {

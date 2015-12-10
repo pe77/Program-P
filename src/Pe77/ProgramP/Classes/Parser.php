@@ -3,6 +3,7 @@
 namespace Pe77\ProgramP\Classes;
 
 use Pe77\ProgramP\Classes\Data;
+use Pe77\ProgramP\Classes\Utils\Math;
 
 class Parser 
 {
@@ -93,6 +94,9 @@ class Parser
 		
 		// save temp data
 		self::$_dataStorage->Save(self::$_data);
+
+		// mostra os operadores matematicos novamente
+		self::$_response = self::ReturnMathematicalOperators(self::$_response);
 		
 		// return response
 		return self::$_response;
@@ -164,9 +168,12 @@ class Parser
 		
 		// compile set
 		self::CompileSet($template);
-		
+
 		// compile get
 		self::CompileGet($template);
+
+		// compile del
+		self::CompileDel($template);
 		
 		// compile bot
 		self::CompileBot($template);
@@ -179,6 +186,9 @@ class Parser
 		
 		// compile uppercase
 		self::CompileUppercase($template);
+
+		// compile count
+		self::CompileCount($template);
 		
 		
 		return (string)$template->nodeValue;
@@ -256,6 +266,30 @@ class Parser
 			}
 		}
 	}
+
+
+	static private function CompileCount($node)
+	{
+		// check count tag
+		if($counts = self::GetAllTagsByName($node, 'count'))
+		{
+			foreach ($counts as $countTag)
+			{
+
+				// process another nodes
+				$val = self::ProcessTemplate($countTag);
+
+				// calc
+				$val = Math::calculate(self::ReturnMathematicalOperators($val));
+
+				// create new note
+				$newNode = self::$_domDoc->createTextNode($val);
+
+				// replace child for the value
+				$node->replaceChild($newNode, $countTag);
+			}
+		}
+	}
 	
 	static private function CompileThink($node)
 	{
@@ -307,6 +341,11 @@ class Parser
 				// save data for user
 				if($name && $value)
 				{
+					// clear any math operator safe
+					$value = self::ClearMathematicalOperators($value);
+					$name = self::ClearMathematicalOperators($name);
+
+					// save
 					self::$_user->SetProp($name, $value);
 					self::$_user->Save();
 				}
@@ -317,6 +356,40 @@ class Parser
 		}
 		
 		
+	}
+
+
+	static private function CompileDel($node)
+	{
+		if($sets = self::GetAllTagsByName($node, 'del'))
+		{
+			foreach ($sets as $setNode)
+			{
+				$name = false;
+				$value = false;
+				
+				// check for 2.0 model
+				if($name = self::GetAllTagsByName($setNode, 'name', true))
+					$name = $name->nodeValue;
+				//
+				
+				// check for name in old aiml model
+				if($setNode->getAttribute('name') != '')
+					$name = $setNode->getAttribute('name');
+				//
+				
+				
+				// del data for user
+				if($name)
+				{
+					self::$_user->DelProp($name);
+					self::$_user->Save();
+				}
+				
+				// remove node
+				$node->removeChild($setNode);
+			}
+		}
 	}
 	
 	static private function CompileGet($node)
@@ -741,6 +814,44 @@ class Parser
 		// no have pattern tag
 		return false;
 	}
+
+	static private function SetMathematicalOperators($input)
+	{
+		// mathematical operators safe
+		$input = str_replace('+', 'zplusz', $input);
+		$input = str_replace('-', 'zminusz', $input);
+		$input = str_replace('x', 'zmultiplyz', $input);
+		$input = str_replace('*', 'zmultiplyz', $input);
+		$input = str_replace('/', 'zdividez', $input);
+		$input = str_replace('.', 'zpointz', $input);
+
+		return $input;
+	}
+
+	static private function ReturnMathematicalOperators($input)
+	{
+		// mathematical operators safe
+		$input = str_replace('zplusz', '+', $input);
+		$input = str_replace('zminusz', '-', $input);
+		$input = str_replace('zmultiplyz', '*', $input);
+		$input = str_replace('zdividez', '/', $input);
+		$input = str_replace('zpointz', '.', $input);
+
+		return $input;
+	}
+
+
+	static private function ClearMathematicalOperators($input)
+	{
+		// mathematical operators safe
+		$input = str_replace('zplusz', '', $input);
+		$input = str_replace('zminusz', '', $input);
+		$input = str_replace('zmultiplyz', '', $input);
+		$input = str_replace('zdividez', '', $input);
+		$input = str_replace('zpointz', '', $input);
+
+		return $input;
+	}
 	
 	static private function ValidatePattern($input, $pattern, $template)
 	{
@@ -757,7 +868,7 @@ class Parser
 		$pattern = trim($pattern);
 		$pattern = strtolower($pattern);
 		$pattern = str_replace('_', '*', $pattern); // _ = * in aiml
-		
+
 		// remove some chars
 		$pattern = str_replace('+', '', $pattern);
 		$pattern = str_replace('-', '', $pattern);
@@ -866,7 +977,7 @@ class Parser
 		if($index >= count(self::$_star))
 			return false;
 		//
-		
+
 		return count(self::$_star) == 0 ? false : self::$_star[$index];
 	} 
 	
@@ -898,6 +1009,8 @@ class Parser
 	{
 		// remove accents
 		$input = self::RemoveAccentuarion($input);
+
+		$input = self::SetMathematicalOperators($input);
 		
 		// remove line breaks
 		$input = preg_replace('/^\s+|\n|\r|\s+$/m', '', $input);
