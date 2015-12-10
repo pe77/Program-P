@@ -172,9 +172,6 @@ class Parser
 		// compile get
 		self::CompileGet($template);
 
-		// compile del
-		self::CompileDel($template);
-		
 		// compile bot
 		self::CompileBot($template);
 		
@@ -189,6 +186,9 @@ class Parser
 
 		// compile count
 		self::CompileCount($template);
+
+		// compile del
+		self::CompileDel($template);
 		
 		
 		return (string)$template->nodeValue;
@@ -507,6 +507,8 @@ class Parser
 					self::Find(
 						self::ProcessTemplate($srai)));
 				
+
+
 				$node->replaceChild($newNode, $srai);
 			}
 		}
@@ -820,7 +822,7 @@ class Parser
 		// mathematical operators safe
 		$input = str_replace('+', 'zplusz', $input);
 		$input = str_replace('-', 'zminusz', $input);
-		$input = str_replace('x', 'zmultiplyz', $input);
+		$input = str_replace(' x ', 'zmultiplyz', $input);
 		$input = str_replace('*', 'zmultiplyz', $input);
 		$input = str_replace('/', 'zdividez', $input);
 		$input = str_replace('.', 'zpointz', $input);
