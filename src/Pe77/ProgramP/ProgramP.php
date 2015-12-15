@@ -12,6 +12,7 @@ class ProgramP
 {
     private $_bots = array();
     private $_users = array();
+    private $_data;
     private $_config;
 
     function __construct($config)
@@ -33,10 +34,21 @@ class ProgramP
     {
     	
 		$response =  Parser::Parse($user, $bot, $input);
+
+        $data       = Parser::GetResponseData();
+        if($data)
+            $this->_data = $data;
+        //
 		
 		$this->Log($user, $input, $response, $bot);
 		
 		return $response;
+    }
+
+
+    public function GetData()
+    {
+        return $this->_data;
     }
 
     public function GetConfig()

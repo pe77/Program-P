@@ -19,6 +19,14 @@ class Parser
 	
 	static private $_data;
 	static private $_dataStorage;
+
+
+	static private $_responseData;
+
+	static function GetResponseData()
+	{
+		return self::$_responseData;
+	}
 	
 	/**
      * Get user question, parse and response
@@ -189,6 +197,9 @@ class Parser
 
 		// compile del
 		self::CompileDel($template);
+
+		// compile reponse data | <data>
+		self::CompileResponseData($template);
 		
 		
 		return (string)$template->nodeValue;
@@ -222,6 +233,29 @@ class Parser
 			}
 		}
 	} 
+
+	static private function CompileResponseData($node)
+	{
+		// check data tag
+		if($tags = self::GetAllTagsByName($node, 'data'))
+		{
+			foreach ($tags as $tag)
+			{
+				// node to string
+				$xmlStr = $tag->C14N();
+
+				// transform xml string raw data = array
+				$data = json_decode(json_encode((array)simplexml_load_string($xmlStr)),1);
+				$data = array_map('trim',$data); // clear spaces
+				
+				// concat data
+				self::$_responseData[] = $data;
+
+				// clear node, get data only by method
+				$node->removeChild($tag);
+			}
+		}
+	}
 	
 	static private function CompileLowercase($node)
 	{

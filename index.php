@@ -46,6 +46,10 @@ if($_REQUEST['requestType'] == 'talk')
 	);
 
 	$response['message'] = trim($programP->GetResponse($user, $bot, $_REQUEST['input']));
+
+	if($programP->GetData())
+		$response['data'] = $programP->GetData();
+	//
 	
 	header("Content-Type: application/json; charset=utf-8");
 	echo json_encode($response);
