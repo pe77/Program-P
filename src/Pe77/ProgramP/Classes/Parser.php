@@ -57,7 +57,7 @@ class Parser
 		$input = self::PreParseInput($input);
 		
 		// create a storage data instance
-		self::$_dataStorage = new Data(Data::$SAVETYPE_DATABASE);
+		self::$_dataStorage = new Data(Data::$SAVETYPE_DATABASE, $user);
 		self::$_data = self::$_dataStorage->Load();
 		
 		// set default topics
