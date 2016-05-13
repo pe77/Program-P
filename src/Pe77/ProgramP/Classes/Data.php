@@ -17,15 +17,18 @@ class Data
 	
 	private $_saveType;
 	private $_data;
+	private $_user;
 	
 	
 	/**
 	 * Set a save type
 	 * @param Data::$SAVETYPE_COOKIE | Data::$SAVETYPE_SESSION | Data::$SAVETYPE_DATABASE $saveType
+	 * @param \User $user - User to which information will be associated
 	 */
-	function __construct($saveType)
+	function __construct($saveType, $user)
 	{
 		$this->_saveType = $saveType;
+		$this->_user = $user;
 	}
 	
 	/**
@@ -175,13 +178,6 @@ class Data
 	 */
 	public function GetUniqueDB()
 	{
-		$sid = session_id();
-		
-		if(empty($sid))
-			session_start();
-		//
-		
-		return session_id();
-	
+		return $this->_user->GetUnique();
 	}
 }
