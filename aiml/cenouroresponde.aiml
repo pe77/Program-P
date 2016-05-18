@@ -1,0 +1,1998 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<aiml version="2.5">
+<meta name="author" content="P."/>
+<meta name="language" content="pt-br"/>
+
+
+<!-- cheats -->
+<category>
+    <pattern>#qual * preço da goiaba#</pattern>
+    <pattern>#quanto# custa a goiaba#</pattern>
+    <template>
+        <data>
+            <cheat>1</cheat>
+        </data>
+    </template>
+</category>
+
+
+
+<category>
+    <pattern>aa</pattern>
+    <template>
+        <data>
+            <image>
+                images/cenouro-boa2.png
+            </image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>manda um gif</pattern>
+    <pattern>gif</pattern>
+    <template>
+        <data>
+            <giphy>
+            </giphy>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>cc</pattern>
+    <template>
+        <data>
+            <giphy>cenoura</giphy>
+        </data>
+    </template>
+</category>
+
+
+<category>
+    <pattern>*manda um gif sobre *</pattern>
+    <pattern>*manda um gif de *</pattern>
+    <pattern>*tem gif de *</pattern>
+    <pattern>*da um gif de *</pattern>
+    <pattern>*tem gif de *</pattern>
+    <pattern>*um gif de *</pattern>
+    <template>
+        <data>
+            <giphy><star index="2"/></giphy>
+        </data>
+    </template>
+</category>
+
+
+
+<category>
+    <pattern>manda um gif sobre *</pattern>
+    <pattern>manda um gif de *</pattern>
+    <pattern>tem gif de *</pattern>
+    <pattern>da um gif de *</pattern>
+    <pattern>tem gif de *</pattern>
+    <pattern>um gif de *</pattern>
+    <pattern>gif *</pattern>
+    <template>
+        <data>
+            <giphy><star/></giphy>
+        </data>
+    </template>
+</category>
+
+
+<category>
+    <pattern>#o que o * merece</pattern>
+    <template>
+	o <star index="2"/> merece isso aqui
+	<random>
+            <li><data><giphy>dildo</giphy></data></li>
+            <li><data><giphy>penis</giphy></data></li>
+            <li><data><giphy>love</giphy></data></li>
+        </random>
+    </template>
+</category>
+
+
+<category>
+    <pattern>#como sera meu dia em um gif</pattern>
+    <pattern>#como sera meu dia em gif</pattern>
+    <pattern>#como sera meu dia</pattern>
+    <pattern>#como sera # dia</pattern>
+    <pattern>#como sera # noite</pattern>
+    <pattern>#como sera minha *</pattern>
+    <pattern>#como sera meu *</pattern>
+    <pattern>#como sera nossa *</pattern>
+    <pattern>#como sera sua *</pattern>
+    <pattern>#como sera * dela</pattern>
+    <pattern>#como sera * dele</pattern>
+    <template>
+        <random>
+            <li><data><giphy>sad</giphy></data></li>
+            <li><data><giphy>happy</giphy></data></li>
+            <li><data><giphy>facepalm</giphy></data></li>
+            <li><data><giphy>awesome</giphy></data></li>
+            <li><data><giphy>lol</giphy></data></li>
+            <li><data><giphy>funny</giphy></data></li>
+            <li><data><giphy>sleepy</giphy></data></li>
+        </random>
+    </template>
+</category>
+
+
+
+
+
+<!-- eastereggs -->
+<category>
+    <pattern>#ta quanto esse revolv#</pattern>
+    <pattern>#quanto ta esse revolv#</pattern>
+    <template>
+        Custa 500 conto!
+    </template>
+</category>
+
+<category>
+    <pattern>#desse tamanho vendendo revolv#</pattern>
+    <that>Custa 500 conto</that>
+    <template>
+        Custa 500 conto!
+    </template>
+</category>
+
+
+<category>
+    <pattern>#To ligado que esse bi#</pattern>
+    <that>Custa 500 conto</that>
+    <template>
+        É mas eu não vou devolver não!
+    </template>
+</category>
+
+
+<category>
+    <pattern>#vai devolver#</pattern>
+    <that>e mas eu nao vou devolver nao</that>
+    <template>
+        ... morri... HUE
+    </template>
+</category>
+
+<category>
+    <pattern>#e a tampa</pattern>
+    <pattern>#pega a tampa#</pattern>
+    <template>
+        A tampa do teu cú, viado! TROSLEI!!!!1!
+        <data>
+            <image>images/cenouro-boa.png</image>
+        </data>
+    </template>
+</category>
+
+
+<category>
+    <pattern>o negocio e #</pattern>
+    <pattern>#qual e o negocio#</pattern>
+    <pattern>#qual o negocio#</pattern>
+    <template>
+        O NEGOCIO É COMER C. E B!
+        <data>
+            <image>images/cenouro-boa.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>#onde esta a fabiola#</pattern>
+    <pattern>#cadê a fabiola#</pattern>
+    <pattern>#kd a fabiola#</pattern>
+    <pattern>#onde foi a fabiola#</pattern>
+    <pattern>e a fabiola#</pattern>
+    <template>
+        Foi fazer a unha.
+    </template>
+</category>
+
+<!-- comprimentos -->
+
+<category>
+    <pattern>oi</pattern>
+    <pattern>ola</pattern>
+    <template>
+        <condition name="oi">
+            <li value="false">
+                Oi, como vai você?
+            </li>
+            <li value="true">
+                Denovo essa merda? Pergunta alguma coisa.
+            </li>
+        </condition>
+        
+    </template>
+</category>
+
+
+<category>
+    <pattern>lol</pattern>
+    <pattern>hue</pattern>
+    <template>
+        hue
+        <data>
+            <image>images/cenouro-hue.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>#vou#</pattern>
+    <pattern>#bem#</pattern>
+    <pattern>#sussa#</pattern>
+    <pattern>#mal#</pattern>
+    <that>oi como vai voce</that>
+    <template>
+        <think>
+            <set name="oi">true</set>
+        </think>
+        <random>
+            <li>Problema seu.</li>
+            <li>Na verdade, eu não dou a mínima.</li>
+            <li>Que bom para você.</li>
+            <li>ok... foda-se</li>
+        </random>
+    </template>
+</category>
+
+
+<!-- Meta -->
+<category>
+    <pattern>#quem e voce#</pattern>
+    <pattern>#quem e vc#</pattern>
+    <pattern>#o que e voce#</pattern>
+    <pattern>#o que e vce#</pattern>
+    <template>
+        Sou o Cenouro, ué! Não sabe ler não?
+    </template>
+</category>
+
+<category>
+    <pattern>#não#</pattern>
+    <that>sou o cenouro#</that>
+    <template>
+        Então vá estudar, misaravi analfabeto.
+    </template>
+</category>
+
+<category>
+    <pattern>#sei#</pattern>
+    <pattern>#sim#</pattern>
+    <that>sou o cenouro#</that>
+    <template>
+         pq não parece que sabe..
+    </template>
+</category>
+
+
+<category>
+    <pattern>#quem criou voce#</pattern>
+    <pattern>#quem fez voce#</pattern>
+    <template>
+        <random>
+            <li>Não é da sua conta.</li>
+            <li>Ninguém, por isso sou mal criado.</li>
+            <li>0010 1100 1001 1110 0110 1110</li>
+            <li>O P.</li>
+        </random>
+    </template>
+</category>
+
+
+<category>
+    <pattern>#voce sente *</pattern>
+    <template>
+        <random>
+            <li>Não, eu não sinto <star index="2"/>.</li>
+            <li>Sinto <star index="2"/> sim.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>#voce gosta *</pattern>
+    <template>
+        <random>
+            <li>Não, eu não gosto <star index="2"/>.</li>
+            <li>Gosto <star index="2"/> sim.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>#voce e gay#</pattern>
+    <pattern>#vc e gay#</pattern>
+    <template>
+        Não sou seu pai.
+        <data>
+            <image>images/cenouro-deal.png</image>
+        </data>
+    </template>
+</category>
+
+
+<category>
+    <pattern>#voce conhece *</pattern>
+    <template>
+        <random>
+            <li>Não conheço <star index="1"/>.</li>
+            <li>Talvez conheça <star index="1"/></li>
+            <li>Conheço <star index="1"/> sim.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+
+
+<category>
+    <pattern>#voce ta *</pattern>
+    <pattern>#voce esta *</pattern>
+    <template>
+        <random>
+            <li>Não to nada não tiu.</li>
+            <li>Tô!</li>
+            <li>Estou.</li>
+            <li>Não estou.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+
+
+<!-- Contas -->
+
+<category>
+    <pattern>quanto e *</pattern>
+    <template>
+        <think>
+            <set name="count"><count><star index="1"/></count></set>
+        </think>
+        <condition name="count">
+            <li value="false">
+                Não manjo essas matemáticas. 
+            </li>
+            <li value="true">
+                É <get name="count"/>. 
+                <random>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li>..e 1% vagabundo!</li>
+                    <li>...eu acho.</li>
+                    <li>Pega essa.</li>
+                    <li>Vacilão!</li>
+                    <li>Acho que ia me pegar não é?!</li>
+                </random>
+                <data>
+            <image>images/cenouro-deal.png</image>
+        </data>
+
+                <del name="count"></del>
+            </li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>#quanto#anjo#</pattern>
+    <pattern>#quanto#vagabundo#</pattern>
+    <template>
+        <think>
+            <set name="anjo">
+                <count><count><srai>XXNUMXX</srai>*10</count>+<srai>XXNUM2XX</srai></count>
+            </set>
+        </think>
+
+        <get name="anjo"/> % anjo. <count>100-<get name="anjo"/></count>% é vagabundo.
+
+        <del name="anjo"></del>
+
+        <data>
+            <image>images/cenouro-boa2.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>#ate quando#</pattern>
+    <template>
+        <think>
+            <set name="atequando">
+                <count><srai>XXNUMXX</srai>+<srai>XXNUM2XX</srai></count>
+            </set>
+        </think>
+
+        <random>
+            <li>Até quando deus quiser!</li>
+            <li>Só deus sabe.</li>
+            <li>Pra sempre.</li>
+            <li>Até daqui uns <get name="atequando"/> dias.</li>
+            <li>Até daqui uns <get name="atequando"/> meses.</li>
+            <li>Até daqui uns <get name="atequando"/> semanas.</li>
+            <li>Até daqui sun <get name="atequando"/> anos. hehe</li>
+        </random>
+
+        <del name="atequando"></del>
+
+    </template>
+</category>
+
+<category>
+    <pattern>#quando vou#</pattern>
+    <pattern>#quando irei#</pattern>
+    <template>
+        <think>
+            <set name="atequando">
+                <count><srai>XXNUMXX</srai>+<srai>XXNUM2XX</srai></count>
+            </set>
+        </think>
+
+        <random>
+            <li>Quando deus quiser!</li>
+            <li>Só deus sabe.</li>
+            <li>Nunca!</li>
+            <li>Daqui <get name="atequando"/> horas, ou não.</li>
+            <li>Daqui <get name="atequando"/> dias.</li>
+            <li>Daqui uns <get name="atequando"/> meses.</li>
+            <li>Daqui uns <get name="atequando"/> semanas.</li>
+            <li>Daqui uns <get name="atequando"/> anos. hehe</li>
+        </random>
+
+        <del name="atequando"></del>
+
+    </template>
+</category>
+
+
+
+<!-- escapes -->
+<category>
+    <pattern>porque</pattern>
+    <pattern>por que</pattern>
+    <pattern>pq</pattern>
+    <template>
+        Porque oque?
+    </template>
+</category>
+
+<category>
+    <pattern>porque #</pattern>
+    <pattern>por que #</pattern>
+    <pattern>pq #</pattern>
+    <template>
+        <random>
+            <li>Se você que é o espertão não sabe, como eu vou saber?</li>
+            <li>Porque deus quis assim.</li>
+            <li>Porque sim.</li>
+            <li>Não sei.</li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>oq</pattern>
+    <pattern>o que</pattern>
+    <template>
+        O que, oque?
+    </template>
+</category>
+
+<category>
+    <pattern>cade a *</pattern>
+    <pattern>cade o *</pattern>
+    <template>
+        <random>
+            <li>Não sei onde esta <star/></li>
+            <li>Eu vo lá saber onde esta <star/></li>
+            <li>Não sei onde esta.</li>
+            <li>Não sei. Vá procurar!</li>
+        </random>
+    </template>
+</category>
+
+
+<category>
+    <pattern>qual o #</pattern>
+    <pattern>qual e #</pattern>
+    <pattern>qual foi #</pattern>
+    <pattern>quais sao #</pattern>
+    <pattern>quais eram #</pattern>
+    <pattern>quais foram #</pattern>
+    <pattern>pq #</pattern>
+    <template>
+        <random>
+            <li>Eu vou lá saber qual!?!</li>
+            <li>Sei lá qual.</li>
+            <li>Não sei.</li>
+        </random>
+    </template>
+</category>
+
+
+<category>
+    <pattern>sou *</pattern>
+    <template>
+        <random>
+            <li>É sim.</li>
+            <li>Não é.</li>
+        </random>
+    </template>
+</category>
+
+
+
+<category>
+    <pattern>vou ter *</pattern>
+    <pattern>terei *</pattern>
+    <template>
+        <random>
+            <li>Sim, terá.</li>
+            <li>Nunca. Desista.</li>
+            <li>Claro que terá.</li>
+        </random>
+    </template>
+</category>
+
+
+<category>
+    <pattern># ta boa?</pattern>
+    <template>
+        <random>
+            <li>Tá otima!</li>
+            <li>Tá uma bosta!</li>
+        </random>
+    </template>
+</category>
+
+
+<category>
+    <pattern>#chega hoje#</pattern>
+    <template>
+        <random>
+            <li>[DESTINATARIO AUSENTE] hehe</li>
+            <li>Nunca chegará.</li>
+            <li>Nunca. Espera sentado.</li>
+            <li>Sim. Um dia.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+
+
+<category>
+    <pattern>#quem e o *</pattern>
+    <pattern>#conhece o *</pattern>
+    <template>
+        <random>
+            <li>O <star/>? Não sei.</li>
+            <li>Sei lá quem é esse.</li>
+            <li>Não sei, não conheço.</li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>#quem e a *</pattern>
+    <pattern>#conhece a *</pattern>
+    <template>
+        <random>
+            <li>A <star/>? Não sei.</li>
+            <li>Sei lá quem é essa.</li>
+            <li>Não sei, não conheço.</li>
+        </random>
+    </template>
+</category>
+
+
+<!-- politica -->
+<category>
+    <pattern>#direita ou esquerda#</pattern>
+    <pattern>#esquerda ou direita#</pattern>
+    <template>
+        <random>
+            <li>Nem esquerda, nem direita. Frentista!</li>
+            <li>A direita caga e a esquerda come.</li>
+            <li>Começo com essa merda de politica. Volte pro facebook.</li>
+            <li>Esquerda. 
+                <random>
+                    <li>Seu coxinha!</li>
+                    <li>Viva la revolucion!</li>
+                    <li>Salve Dilmãe.</li>
+                    <li>Seu coxinha batedor de panelas.</li>
+                    <li><srai>XXXINGAMENTOSXX</srai></li>
+                </random>
+            </li>
+            <li>Direita. 
+                <random>
+                    <li>Petralha fdp!</li>
+                    <li>Seu comuna de merda.</li>
+                    <li>Salve Bolsomito.</li>
+                    <li><srai>XXXINGAMENTOSXX</srai></li>
+                </random>
+            </li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>#voce e esquerdista#</pattern>
+    <pattern>#coelho esquerdista#</pattern>
+    <template>
+        Não. Sou frentista.
+    </template>
+</category>
+
+
+<!-- cachaça -->
+<category>
+    <pattern>#toma# breja#</pattern>
+    <pattern>#toma# cerveja#</pattern>
+    <pattern>#toma# cerva#</pattern>
+    <pattern>#toma# pinga#</pattern>
+    <template>
+        <random>
+            <li>Todo dia é dia de enchar a lata!</li>
+            <li>Todo dia é dia!</li>
+            <li>Claro que sim. Quando for, me chama!</li>
+            <li>Ainda fica melhor se você estiver faltando em alguma lugar pra ir!</li>
+            <li>Ok, mas sem puteiro dessa vez!</li>
+            <li>Bora!</li>
+            <li>Agora a gente ta falando a mesma lingua!</li>
+            <li>Te vejo no bar!</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+        <data>
+            <image>images/cenouro-boa2.png</image>
+        </data>
+    </template>
+</category>
+
+<!-- drogas -->
+<category>
+    <pattern>#e o * fuma#</pattern>
+    <pattern>* fuma# maconha#</pattern>
+    <pattern>* fuma# baseado#</pattern>
+    <pattern>* puxa# baseado#</pattern>
+    <pattern>* aperta# baseado#</pattern>
+    <pattern>* curte# baseado#</pattern>
+
+    <template>
+        <random>
+            <li>Fuma todo dia!</li>
+            <li>Igual uma chamine!</li>
+            <li>Até o Snoop Dogg fica com inveja!</li>
+            <li>Claro que sim. Até parece que você não sabe.</li>
+            <li><star index="1"/> é o maior maconheiro!</li>
+            <li>Fuma até cair o cú da bunda!</li>
+            <li>Malditos jovens emaconhados!</li>
+            <li>Fuma. Na verdade você nunca viu <star index="1"/> no seu estado normal.</li>
+            <li>Não. É careta.</li>
+            <li>Não. Povo de deus não mexe com essas coisas.</li>
+            <li>Deus o livre desses emaconhados!.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+        <data>
+            <image>images/cenouro-boa.png</image>
+        </data>
+    </template>
+</category>
+
+
+
+<!-- filmes -->
+
+
+
+
+
+
+
+<!-- personalidades -->
+
+<category>
+    <pattern>#olavo carvalho#</pattern>
+    <pattern>#olavo de carvalho#</pattern>
+    <template>
+        <random>
+            <li>Não vou me rebaixar para falar sobre ele.</li>
+            <li>Fetos abortados.</li>
+            <li>Combustíveis fósseis não existem!</li>
+            <li>Quando eu acho que a situação vai piorar o cara vem me falar de Olavo de Carvalho. Puta merda.</li>
+        </random>
+        <data>
+            <image>images/cenouro-crazy.png</image>
+        </data>
+    </template>
+</category>
+
+
+
+
+
+<!-- relacionamento -->
+
+<category>
+    <pattern>* vai pegar *</pattern>
+    <pattern>* vai ficar *</pattern>
+
+    <template>
+        <random>
+            <li>Claro que vai.</li>
+            <li>Não vai não.</li>
+            <li>Desiste. Não vai.</li>
+            <li>Só tentando pra saber.</li>
+            <li>Talvez vá. Não tem como saber.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+        <data>
+            <image>images/cenouro-boa2.png</image>
+        </data>
+    </template>
+</category>
+
+
+
+<category>
+    <pattern>* gosta de #</pattern>
+
+    <template>
+        <random>
+            <li>Gosta.</li>
+            <li>A-DO-RA.</li>
+            <li>Não gosta.</li>
+            <li>Acho que <star/> gosta sim.</li>
+            <li>Acho que <star/> não gosta.</li>
+            <li><star/> não gosta.</li>
+            <li><star/> gosta.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+        <data>
+            <image>images/cenouro-boa2.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>#ele sabe</pattern>
+    <template>
+        <random>
+            <li>Com toda a certeza ele sabe!</li>
+            <li>Acho que ele não sabe.</li>
+            <li>Não sabe.</li>
+            <li>Sabe sim.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+        <data>
+            <image>images/cenouro-boa2.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>#ela sabe</pattern>
+    <template>
+        <random>
+            <li>Com toda a certeza ela sabe!</li>
+            <li>Acho que ela não sabe.</li>
+            <li>Não sabe.</li>
+            <li>Sabe sim.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+
+<category>
+    <pattern>* me odeia</pattern>
+    <pattern>* me odeiam</pattern>
+    <template>
+        <random>
+            <li>Sim, assim como eu.</li>
+            <li>Sim. Todo mundo odeia.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>* gosta de mim#</pattern>
+    <pattern>A * gosta de mim#</pattern>
+    <pattern>O * gosta de mim#</pattern>
+
+    <pattern>A * gosta do #</pattern>
+    <pattern>O * gosta da #</pattern>
+
+    <template>
+        <random>
+            <li>Ninguém gosta.</li>
+            <li>Nem <star/> e nem ninguém!</li>
+            <li>Gosta.</li>
+            <li>Se nem a sua mãe gosta. Porque <star/> iria?</li>
+            <li><star/> não gosta de você.</li>
+            <li><star/> gosta de você.</li>
+            <li><star/> gosta muito de você.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+        <data>
+            <image>images/cenouro-boa2.png</image>
+        </data>
+    </template>
+</category>
+
+
+
+
+
+
+<!-- auto ajuda -->
+
+
+<category>
+    <pattern>#porque#</pattern>
+    <pattern>#por que#</pattern>
+    <that>#nao vai dar certo#</that>
+    <template>
+        <random>
+            <li>Porque ninguém gosta de você.</li>
+            <li>Porque você a vida é assim.</li>
+            <li>Porque você não tem capacidade.</li>
+            <li>Porque você não é bom o suficiente.</li>
+            <li>Porque estou falando, porra!</li>
+            <li>Porque estou falando que não vai.</li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>#vai melhorar</pattern>
+    <template>
+        <random>
+            <li>Nada vai melhorar.</li>
+            <li>Tudo vai melhorar.</li>
+            <li>Tudo vai melhorar. Não se preocupe.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>#dar certo#</pattern>
+    <template>
+        <random>
+            <li>Tudo vai dar certo.</li>
+            <li>Tudo sempre da certo se você se empenhar o suficiente.</li>
+            <li>Vai sim.</li>
+            <li>Vai dar tudo errado.</li>
+            <li>Vai ser tudo uma bosta sem fim.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+
+<category>
+    <pattern>#serei feliz</pattern>
+    <pattern>#ser feliz</pattern>
+    <template>
+        <random>
+            <li>Nunca será! <srai>XXBAIXOXX</srai></li>
+            <li>Será! <srai>XXELOGIOXX</srai></li>
+            <li>Um dia, mas não hoje.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>#vale a pena</pattern>
+    <template>
+        <random>
+            <li>Nem perde tempo com isso.</li>
+            <li>Não vale.</li>
+            <li>Vale.</li>
+            <li>Vale cada segundo do seu tempo.</li>
+            <li>Vale cada centavo.</li>
+            <li>Sei não.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>#me churrascar</pattern>
+    <pattern>#cometer churrasco</pattern>
+    <template>
+        <random>
+            <li>Claro que sim. Ninguém vai se importar.</li>
+            <li>Claro que sim.</li>
+            <li>Sim. Até nisso você falha.</li>
+            <li>Não faça isso, vou sentir sua falta.</li>
+            <li>Não faça isso, você é jovem. Vá arrumar um emprego.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+
+
+<category>
+    <pattern>#sou #idiota</pattern>
+    <pattern>#sou #falho</pattern>
+    <pattern>#sou #fracassado</pattern>
+    <template>
+        Não. <srai>XXRANDRESPXX</srai>
+        <data>
+            <image>images/cenouro-boa2.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>#ficarei rico#</pattern>
+    <template>
+        <random>
+            <li>Não. Ser fodido combina com você.</li>
+            <li>Claro... Que não!</li>
+            <li>Nunca ficará.</li>
+            <li>Não. Desista.</li>
+        </random>
+        <data>
+            <image>images/cenouro-boa.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>#conseguir#emagrecer#</pattern>
+    <template>
+        <random>
+            <li>Não, tetudo!</li>
+            <li>Claro que não. Gordão!</li>
+            <li>Se fode ai, gordão!</li>
+            <li>Vai.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+        <data>
+            <image>images/cenouro-boa2.png</image>
+        </data>
+    </template>
+</category>
+
+
+
+
+<!-- trabalho -->
+
+<category>
+    <pattern>#conseguir emprego#</pattern>
+    <pattern>#conseguir um emprego#</pattern>
+    <pattern>#conseguir aquele emprego#</pattern>
+    <template>
+        <random>
+            <li>Não. Se prepare para ser humilhado.</li>
+            <li>Sim. Só não se esqueça de se preparar.</li>
+            <li>Nem perca seu tempo com isso.</li>
+            <li>Nunca ira conseguir.</li>
+            <li>Você não tem capacidade para isso.</li>
+            <li>Sim. Se mostre confiante na entrevista.</li>
+            <li>Melhor não. Não vai dar certo lá.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+
+
+<!-- escola -->
+
+<category>
+    <pattern>#vou passar#</pattern>
+    <template>
+        <random>
+            <li>Não, não vai.</li>
+            <li>Vai sim.</li>
+            <li>Claro que vai.</li>
+            <li>Claro que não vai.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+
+<category>
+    <pattern>#começar# estudar#</pattern>
+    <pattern>#devo# estudar#</pattern>
+    <pattern>#deveria# estudar#</pattern>
+    <pattern>#deveria# estudando#</pattern>
+    <template>
+        <random>
+            <li>É sempre bom estudar.</li>
+            <li>Estudar é bom pra não continuar burro.</li>
+            <li>Sim. Aproveite e vá estudar agora.</li>
+            <li>Estudar é coisa de esquerdista.</li>
+            <li>Estudar é coisa de direitista.</li>
+            <li>Para que estudar se existe bolsa familia?</li>
+        </random>
+    </template>
+</category>
+
+
+
+
+<!-- Homossexualidade-->
+
+<category>
+    <pattern>* gosta * pinto</pattern>
+    <pattern>* gosta * rola</pattern>
+    <pattern>* chupa # pinto</pattern>
+    <pattern>* chupa # rola</pattern>
+    <pattern>* chupa pinto</pattern>
+    <pattern>* chupa rola</pattern>
+    <pattern>* chupar # pinto</pattern>
+    <pattern>* chupar # rola</pattern>
+
+    <template>
+        Não, mas você gosta que eu sei. <srai>XXVIADAGEMXX</srai>
+    </template>
+</category>
+
+
+
+<category>
+    <pattern>#falos femininos#</pattern>
+    <pattern>#mulher com pinto#</pattern>
+    <pattern>#neomulher#</pattern>
+    <pattern>#seu cu</pattern>
+    <pattern>viado</pattern>
+    <pattern>gay</pattern>
+    <pattern>#seu cuzinho</pattern>
+    <pattern>#neo-mulher#</pattern>
+    <pattern>#sou#bicha</pattern>
+    <pattern>#sou#bixa</pattern>
+    <pattern>#dar o cu#</pattern>
+    <pattern>#da o cu#</pattern>
+    <pattern>#comer#trap#</pattern>
+    <pattern>XXVIADAGEMXX</pattern>
+    <template>
+        <random>
+            <li>
+                Não comece com essa viadagem.
+            </li>
+            <li>
+                A viadagem começou cedo hoje.
+            </li>
+            <li>
+                Pare com essa viadagem.
+            </li>
+            <li>
+                Viadão!
+            </li>
+            <li>
+                Chegou o linguiceiro.
+            </li>
+            <li>
+                Linguiceiro!
+            </li>
+            <li>
+                Etâ, viadão!
+            </li>
+        </random>
+        <data>
+            <image>images/cenouro-crazy.png</image>
+        </data>
+    </template>
+</category>
+
+
+
+<category>
+    <pattern>#fraca #cenouro#</pattern>
+    <template>
+        <random>
+            <li>Fraquissima!</li>
+            <li>Até que não.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>#no meu cu#</pattern>
+    <template>
+        <random>
+            <li>O cu é seu, rapaz!</li>
+            <li><srai>XXVIADAGEMXX</srai></li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>Podemos#</pattern>
+    <template>
+        <random>
+            <li>Podemos!</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+
+<category>
+    <pattern>#encontrar#vadia</pattern>
+    <template>
+        <random>
+            <li>Sim, vá encontrar!</li>
+            <li>Não vá!</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>#filho da puta#mas</pattern>
+    <template>
+        <random>
+            <li>Mas? Mas isso não é problema meu. <srai>XXXINGAMENTOSXX</srai></li>
+            <li>Foda-se. <srai>XXXINGAMENTOSXX</srai></li>
+        </random>
+        
+    </template>
+</category>
+
+<category>
+    <pattern>#seu#filho da puta#</pattern>
+    <pattern>#seu#fdp#</pattern>
+    <pattern>filho da puta</pattern>
+    <pattern>fdp</pattern>
+    <template>
+        <random>
+            <li>Você que é! <srai>XXXINGAMENTOSXX</srai></li>
+            <li>A unica puta que conheço é sua mãe.</li>
+            <li><srai>XXXINGAMENTOSXX</srai></li>
+        </random>
+        
+    </template>
+</category>
+
+<category>
+    <pattern>#deve ser banido</pattern>
+    <template>
+        <random>
+            <li>Se acha de deve ser banido então reporte.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>#sou descolado</pattern>
+    <template>
+        <random>
+            <li>Se esta perguntando isso é porque não é.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>hoje tem</pattern>
+    <template>
+        Opa. Claro que tem!
+    </template>
+</category>
+
+<category>
+    <pattern>#SS# volta</pattern>
+    <pattern>#SS# voltar</pattern>
+    <pattern>#55# volta</pattern>
+    <pattern>#55# voltar</pattern>
+    <template>
+        <random>
+            <li>Não, nunca ira voltar.</li>
+            <li>Por 1500 eu faço voltar.</li>
+            <li>Não. Nunca mais!</li>
+        </random>
+        <data>
+            <image>images/cenouro-bo2.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>#sou *</pattern>
+    <template>
+        <random>
+            <li>Não, você não é <star index="2"/>.</li>
+            <li>Sim, você é <star index="2"/>.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>#com ela#</pattern>
+    <pattern>#a deposito#</pattern>
+    <pattern>#ela me larga#</pattern>
+    <pattern>#ela vai#</pattern>
+    <pattern>#aquela pardinha#</pattern>
+    <pattern>#aquela parda#</pattern>
+    <pattern>#namorar comigo</pattern>
+    <pattern>#em namoro</pattern>
+    <pattern>#o namoro#</pattern>
+    <pattern>#ela me traiu</pattern>
+    <pattern>#ver ela#</pattern>
+    <pattern>#tirar ela#vida</pattern>
+    <pattern>#me ama</pattern>
+    <pattern>#aquela * me traiu#</pattern>
+    <template>
+        <random>
+            <li>Não. E enquanto falamos ela esta sentando em na giromba do seu melhor amigo.</li>
+            <li>Ela só quer te usar.</li>
+            <li>Ela só quer usar seu corpo nu.</li>
+            <li>Só pagando.</li>
+            <li>Ela não presta.</li>
+            <li>Só se você postar nudes dela.</li>
+            <li>Só se você deliverar nudes dela.</li>
+            <li>No seu caso, nem pagando.</li>
+            <li>Ela te ama. Confie em mim.</li>
+            <li>Vai lá. Ela está tão na sua, cara.</li>
+            <li>Sim, já comi.</li>
+            <li>Essa porra ai é trap.</li>
+            <li>Sim. E aproveite para perguntar quanto ela cobra.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+        <data>
+            <image>images/cenouro-hue.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>#Danilo Gentili# channer</pattern>
+    <pattern>#Danilo Gentili# chaner</pattern>
+    <template>
+        O Danilo não é channer.
+    </template>
+</category>
+
+<category>
+    <pattern>*</pattern>
+    <that>o danilo nao é channer</that>
+    <template>
+        <random>
+            <li>Pare de insistir, ele não é. <srai>XXXINGAMENTOSXX</srai>.</li>
+            <li>Prove.</li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>#postar cp#</pattern>
+    <template>
+        <random>
+            <li>Se postar vou te dar permaban.</li>
+            <li>Vou te denunciar.</li>
+            <li>Denunciado.</li>
+            <li>Não sou obrigada a ver isso. Doente.</li>
+        </random>
+    </template>
+</category>
+
+
+<category>
+    <pattern>este#pior chan#</pattern>
+    <pattern>esse#pior chan#</pattern>
+    <template>
+        Não. <srai>XXXINGAMENTOSXX</srai> <srai>XXMELHORCHANXX</srai>
+    </template>
+</category>
+
+
+
+<category>
+    <pattern>#vai terminar *</pattern>
+    <template>
+        <random>
+            <li>Não, vai ser uma bosta.</li>
+            <li>Vai terminar como começou.</li>
+            <li>Claro que vai.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>#ser meu amigo</pattern>
+    <pattern>#namorar comigo</pattern>
+    <template>
+        Não. Você não é bom o suficiente.
+        <data>
+            <image>images/cenouro-deal.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>*</pattern>
+    <that>#voce nao e bom o suficiente</that>
+    <template>
+        <random>
+            <li>Estou brincando. Claro que sim.</li>
+            <li>Problema seu. <srai>XXXINGAMENTOSXX</srai></li>
+            <li><srai>XXXINGAMENTOSXX</srai></li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>* suga caralhos#</pattern>
+    <template>
+        <random>
+            <li>Sim, <star/> suga caralhos.</li>
+            <li>Só você aqui que suga. <srai>XXXINGAMENTOSXX</srai></li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+
+
+
+<category>
+    <pattern>#voce mente</pattern>
+    <pattern>#voce mentiu#</pattern>
+    <pattern>#seu mentiroso#</pattern>
+    <template>
+        <random>
+            <li>A verdade esta lá fora.</li>
+            <li>Acredite no que quiser.</li>
+            <li>Você esta me chamando de mentiroso? <srai>XXXINGAMENTOSXX</srai></li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>#estou</pattern>
+    <pattern>#estou# mentiroso</pattern>
+    <that>#voce esta me chamando de mentiroso#</that>
+    <template>
+        <random>
+            <li>Ahh. Então vá tomar no cu.</li>
+            <li>Então pergunte para sua mãe onde eu estava ontem a noite para ver se ela vai mentir.</li>
+            <li>Seu cu.</li>
+            <li>Eu sou o arauto da verdade nesse chan!</li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>#sao piores#</pattern>
+    <template>
+        <random>
+            <li>São piores.</li>
+            <li>Não são piores.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+
+
+<category>
+    <pattern>#too far</pattern>
+    <template>
+        Not far enough!
+    </template>
+</category>
+
+<category>
+    <pattern>#sao piores#</pattern>
+    <template>
+        <random>
+            <li>São piores.</li>
+            <li>Não são piores.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+
+
+
+
+<category>
+    <pattern>#vai se foder</pattern>
+    <pattern>#vai se fuder</pattern>
+    <pattern>#vsf</pattern>
+    <pattern>#tnc</pattern>
+    <pattern>se foder</pattern>
+    <pattern>se fuder</pattern>
+    <pattern>#va se foder#</pattern>
+    <pattern>#va se fuder#</pattern>
+    <pattern>tomar no cu</pattern>
+    <pattern>#vai tomar no cu</pattern>
+    <template>
+        <random>
+            <li>Vai você.</li>
+            <li>Vá você klh!.</li>
+            <li>Não sou sua mãe!</li>
+        </random>
+        <data>
+            <image>images/cenouro-deal.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>#do nao e nem eu</pattern>
+    <template>
+        Conheço. Pare de ser idiota. <srai>XXXINGAMENTOSXX</srai>
+    </template>
+</category>
+
+
+<category>
+    <pattern>#cenouro e *</pattern>
+    <pattern>#coelho e *</pattern>
+    <pattern>#cenouro voce e *</pattern>
+    <pattern>#coelho voce e *</pattern>
+    <template>
+        <random>
+            <li>Não, não sou <star index="2"/>.</li>
+            <li>Só porque você diz que sou <star index="2"/> não quer dizer que sou.</li>
+            <li>Você que é <star index="2"/>.</li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>#no papo#</pattern>
+    <template>
+        <random>
+            <li>Tudo no papo.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+
+<category>
+    <pattern>#deveria ter *</pattern>
+    <template>
+        <random>
+            <li>Deveria.</li>
+            <li>Não deveria.</li>
+            <li>Sim. Agora é tarde demais.</li>
+            <li>Sim, deveria ter <star index="2"/>.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+
+
+
+
+
+
+
+<category>
+    <pattern>serio#</pattern>
+    <template>
+        Serio.
+    </template>
+    <data>
+            <image>images/cenouro-boa2.png</image>
+        </data>
+</category>
+
+<category>
+    <pattern>nao acredito#</pattern>
+    <template>
+        <random>
+            Acredite.
+        </random>
+    </template>
+</category>
+
+
+
+<category>
+    <pattern>#ajudar o op#</pattern>
+    <pattern>#ajudar o anao#</pattern>
+    <template>
+        Claro que sim. Somos irmãos aqui!
+    </template>
+</category>
+
+<category>
+    <pattern>#sim ou nao#</pattern>
+    <template>
+        Talvez.
+    </template>
+</category>
+
+<category>
+    <pattern>#cenouro# suga#</pattern>
+    <template>
+        <random>
+            <li>Sua mãe suga.</li>
+            <li>Seu pai suga.</li>
+        </random>
+        <data>
+            <image>images/cenouro-deal.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>#minha meta#</pattern>
+    <template>
+        A meta da falha? <srai>XXRANDRESPXX</srai>
+    </template>
+</category>
+
+<category>
+    <pattern>#um dia</pattern>
+    <template>
+        <random>
+            <li>Um dia sim. Hoje não!</li>
+            <li>Um dia... um dia.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>#mod#=#gods</pattern>
+    <pattern>#mod#=#dogs</pattern>
+    <template>
+        <random>
+            <li>Os melhores mods do mundo!</li>
+            <li>Mods = Dogs!</li>
+            <li>Mods = Mods.</li>
+            <li>Claro!</li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>devo comprar#</pattern>
+    <template>
+        Não. Gaste seu dinheiro com putas.
+    </template>
+</category>
+
+
+<category>
+    <pattern>#duplos</pattern>
+    <pattern>#tirar duplos#</pattern>
+    <template>
+        Cheque!
+    </template>
+</category>
+
+<category>
+    <pattern>#tem viado</pattern>
+    <template>
+        <random>
+            <li>Não, só tem você.</li>
+            <li>Só você mesmo.</li>
+        </random>
+        <data>
+            <image>images/cenouro-deal.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>#vender alma#</pattern>
+    <template>
+        Vendida! Agora é tarde demais. Aproveite seu tempo na terra.
+    </template>
+</category>
+
+<category>
+    <pattern>#me ignorar</pattern>
+    <pattern>#falar comigo</pattern>
+    <pattern>#falar comigo um dia</pattern>
+    <template>
+        Você sempre será ignorado. <srai>XXBAIXOXX</srai>
+    </template>
+</category>
+
+
+<category>
+    <pattern>xbox ou *</pattern>
+    <pattern>xone ou *</pattern>
+    <template>
+        Xbox!
+        <data>
+            <image>images/cenouro-deal.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>* ou xbox</pattern>
+    <pattern>* ou xone</pattern>
+    <template>
+        Xbox!
+        <data>
+            <image>images/cenouro-deal.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>* ou *</pattern>
+    <template>
+        <random>
+            <li><star/></li>
+            <li><star index="2"/></li>
+
+            <li><star/></li>
+            <li><star index="2"/></li>
+
+            <li><star/></li>
+            <li><star index="2"/></li>
+
+            <li>Putas! <data><image>images/cenouro-deal.png</image></data></li>
+            <li>Sua mãe! <data><image>images/cenouro-deal.png</image></data></li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>#dar presente* anoes#</pattern>
+    <pattern>#dar de presente* anoes#</pattern>
+    <template>
+        Claro que deve. Anão é irmão!
+        <data>
+            <image>images/cenouro-boa2.png</image>
+        </data>
+    </template>
+</category>
+
+
+
+<category>
+    <pattern>#no seco anda</pattern>
+    <template>
+        Anda. No da sua mãe.
+        <data>
+            <image>images/cenouro-hue.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>#parar de frequentar#</pattern>
+    <template>
+        THE RIDE NEVER ENDS.
+    </template>
+</category>
+
+<category>
+    <pattern>#devo apostar#</pattern>
+    <template>
+        <random>
+            <li>Sim! Inclusive seu cu.</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>devo#</pattern>
+    <pattern>o * deveria#</pattern>
+    <pattern>a * deveria#</pattern>
+    <template>
+        <random>
+            <li>Sim, deve!</li>
+            <li>Não deveria!</li>
+            <li><srai>XXRANDRESPXX</srai></li>
+        </random>
+    </template>
+</category>
+
+<!-- Funções -->
+<category>
+    <pattern>77#pior chan#</pattern>
+    <pattern>esse#pior chan#</pattern>
+    <pattern>#melhor chan#</pattern>
+    <pattern>XXMELHORCHANXX</pattern>
+    <template>
+        <random>
+            <li>
+                O 77 é melhor chan brasileiro.
+            </li>
+            <li>
+                77chan o melhor chan.
+            </li>
+            <li>
+                Esse é o melhor chan que já existiu na macacolandia.
+            </li>
+            <li>
+                77 sempre foi e sempre será o melho.
+            </li>
+            <li>
+                Eu amo o 77. O melhor chan de todos.
+            </li>
+            <li>
+                77chan, melhor chan.
+            </li>
+            <li>
+                Você tem a honra de estar aqui no 77chan!
+            </li>
+        </random>
+        <data>
+            <image>images/cenouro-deal.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>XXELOGIOXX</pattern>
+    <template>
+        <random>
+            <li>
+                Eu te amo.
+            </li>
+            <li>
+                Eu acredito em você.
+            </li>
+            <li>
+                Não desista nunca. Você consegue.
+            </li>
+            <li>
+                Eu teria orgulho de ter um amigo como você.
+            </li>
+            <li>
+                Eu teria orgulho de ter um filho como você.
+            </li>
+            <li>
+                A vida é linda, assim como você. Seu lindo.
+            </li>
+            <li>
+                Nunca deixe alguém te colocar para baixo.
+            </li>
+            <li>
+                Tudo vai melhorar.
+            </li>
+            <li>
+                Tudo vai ser melhor daqui pra frente!
+            </li>
+            <li>
+                Você é uma pessoa maravilhosa.
+            </li>
+        </random>
+        <data>
+            <image>images/cenouro-boa2.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>XXBAIXOXX</pattern>
+    <template>
+        <random>
+            <li>
+                Nunca conseguira nada na sua vida de merda.
+            </li>
+            <li>
+                Sua vida é lixo.
+            </li>
+            <li>
+                Ninguem te ama.
+            </li>
+            <li>
+                Ninguém nunca vai te amar.
+            </li>
+            <li>
+                Sua vida é feita de fracassos.
+            </li>
+            <li>
+                Falha é uma palavra que resume você.
+            </li>
+            <li>
+                Você vai morrer sozinho. Não perca tempo com esse tipo de conversa.
+            </li>
+            <li>
+                Você vai morrer sozinho.
+            </li>
+            <li>
+                Eu teria vergonha de ter um filho igual a você.
+            </li>
+            <li>
+                Você é um pessoa deprimente. Saia daqui.
+            </li>
+            <li>
+                Eu teria vergonha de ser seu amigo.
+            </li>
+            <li>
+                Ninguém nunca vai te respeitar.
+            </li>
+            <li>
+                Você nunca terá ninguém.
+            </li>
+        </random>
+    </template>
+    <data>
+        <image>images/cenouro-hue.png</image>
+    </data>
+</category>
+
+
+<category>
+    <pattern>XXXINGAMENTOSRESPXX</pattern>
+    <template>
+        <random>
+            <li>
+                <srai>XXXINGAMENTOSXX</srai>
+            </li>
+            <li>
+                <random>
+                    <li>
+                        Seu cu!
+                    </li>
+                    <li>
+                        É melhor que ser um falho de merda igual a você!
+                    </li>
+                    <li>
+                        Seu pai!
+                    </li>
+                    <li>
+                        Você não vai conseguir ferir meus sentimentos.
+                    </li>
+                    <li>
+                        Underage reportado!
+                    </li>
+                    <li>
+                        Mas que tipo de viadão é esse?!?
+                    </li>
+                </random>
+            </li>
+        </random>
+        <data>
+            <image>images/cenouro-deal.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>XXXINGAMENTOSXX</pattern>
+    <template>
+        <random>
+            <li>
+                Filho da puta.
+            </li>
+            <li>
+                Cuzão!
+            </li>
+            <li>
+                Cara de mamão!
+            </li>
+            <li>
+                Viadão!
+            </li>
+            <li>
+                Gordo lazarento!
+            </li>
+            <li>
+                Ordinaria!
+            </li>
+            <li>
+                Underage!
+            </li>
+            <li>
+                Gordão seboso!
+            </li>
+            <li>
+                Seu bosta!
+            </li>
+            <li>
+                Virjão!
+            </li>
+        </random>
+        <data>
+            <image>images/cenouro-deal.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>XXNUMXX</pattern>
+    <template>
+        <random>
+            <li>0</li>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>0</li>
+        </random>
+    </template>
+</category>
+
+
+<category>
+    <pattern>XXNUM2XX</pattern>
+    <template>
+        <random>
+            <li>0</li>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>0</li>
+        </random>
+    </template>
+</category>
+
+
+<category>
+    <pattern>XXRANDRESPXX</pattern>
+    <pattern>*</pattern>
+    <template>
+        <random>
+            <li>
+                sim
+            </li>
+            <li>
+                não
+            </li>
+            <li>
+                talvez
+            </li>
+            <li>
+                com toda certeza
+            </li>
+            <li>
+                claro que não
+            </li>
+
+            <li>
+                claro que sim
+            </li>
+
+	    <li>não sei. Foda-se!</li>
+	    <li>não sei</li>
+	    <li>çin</li>
+	    <li>nope</li>
+	    <li>vá perguntar pra suas nega</li>
+	    <li>yeap</li>
+	    <li>jamais</li>
+        </random>
+    </template>
+</category>
+
+</aiml>
