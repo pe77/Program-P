@@ -10,6 +10,7 @@
     <pattern>#qual * preço da goiaba#</pattern>
     <pattern>#quanto# custa a goiaba#</pattern>
     <template>
+        não sei. Tenho cara de feirante?
         <data>
             <cheat>1</cheat>
         </data>
@@ -29,13 +30,13 @@
     </template>
 </category>
 
+
 <category>
-    <pattern>manda um gif</pattern>
-    <pattern>gif</pattern>
+    <pattern>bb</pattern>
     <template>
+        teste delay
         <data>
-            <giphy>
-            </giphy>
+            <delay time="5000">d-message</delay>
         </data>
     </template>
 </category>
@@ -45,6 +46,18 @@
     <template>
         <data>
             <giphy>cenoura</giphy>
+        </data>
+    </template>
+</category>
+
+
+<category>
+    <pattern>manda um gif</pattern>
+    <pattern>gif</pattern>
+    <template>
+        <data>
+            <giphy>
+            </giphy>
         </data>
     </template>
 </category>
@@ -197,23 +210,6 @@
 <!-- comprimentos -->
 
 <category>
-    <pattern>oi</pattern>
-    <pattern>ola</pattern>
-    <template>
-        <condition name="oi">
-            <li value="false">
-                Oi, como vai você?
-            </li>
-            <li value="true">
-                Denovo essa merda? Pergunta alguma coisa.
-            </li>
-        </condition>
-        
-    </template>
-</category>
-
-
-<category>
     <pattern>lol</pattern>
     <pattern>hue</pattern>
     <template>
@@ -224,24 +220,6 @@
     </template>
 </category>
 
-<category>
-    <pattern>#vou#</pattern>
-    <pattern>#bem#</pattern>
-    <pattern>#sussa#</pattern>
-    <pattern>#mal#</pattern>
-    <that>oi como vai voce</that>
-    <template>
-        <think>
-            <set name="oi">true</set>
-        </think>
-        <random>
-            <li>Problema seu.</li>
-            <li>Na verdade, eu não dou a mínima.</li>
-            <li>Que bom para você.</li>
-            <li>ok... foda-se</li>
-        </random>
-    </template>
-</category>
 
 
 <!-- Meta -->
@@ -310,8 +288,12 @@
 </category>
 
 <category>
-    <pattern>#voce e gay#</pattern>
+    <pattern>#vc e bixa#</pattern>
+    <pattern>#voce e bixa#</pattern>
+    <pattern>#vc e viado#</pattern>
+    <pattern>#voce e viado#</pattern>
     <pattern>#vc e gay#</pattern>
+    <pattern>#voce e gay#</pattern>
     <template>
         Não sou seu pai.
         <data>
@@ -472,6 +454,14 @@
 </category>
 
 <category>
+    <pattern>#coelho burro#</pattern>
+    <pattern>#voce e burro#</pattern>
+    <template>
+        Eu sou burro? E você que está discutindo comigo, é oque?
+    </template>
+</category>
+
+<category>
     <pattern>porque #</pattern>
     <pattern>por que #</pattern>
     <pattern>pq #</pattern>
@@ -490,6 +480,13 @@
     <pattern>o que</pattern>
     <template>
         O que, oque?
+    </template>
+</category>
+
+<category>
+    <pattern>#otario</pattern>
+    <template>
+        seu pai <srai>XXXINGAMENTOSXX</srai>
     </template>
 </category>
 
@@ -524,6 +521,27 @@
     </template>
 </category>
 
+<category>
+    <pattern>oque e*</pattern>
+    <pattern>o que e*</pattern>
+    <pattern>o q e*</pattern>
+    <pattern>oq e*</pattern>
+    <template>
+        dica: http://lmgtfy.com/?q=como+usar+o+google+ao+envez+de+perguntar+para+bots+o+que+quero+saber
+    </template>
+</category>
+
+
+<category>
+    <pattern>#quanto anos vc tem#</pattern>
+    <pattern>#quanto anos voce tem#</pattern>
+    <pattern>#sua idade#</pattern>
+    <template>
+        tenho aproximadamente foda-se
+    </template>
+</category>
+
+
 
 <category>
     <pattern>sou *</pattern>
@@ -551,7 +569,8 @@
 
 
 <category>
-    <pattern># ta boa?</pattern>
+    <pattern># ta boa</pattern>
+    <pattern># ta bom</pattern>
     <template>
         <random>
             <li>Tá otima!</li>
@@ -628,6 +647,19 @@
                 </random>
             </li>
         </random>
+    </template>
+</category>
+
+<category>
+    <pattern>#bolsonaro#</pattern>
+    <pattern>#bolsomito#</pattern>
+    <template>
+        não quero falar sobre o
+        <random>
+            <li>bolsobosta</li>
+            <li>bolsolixo</li>
+        </random>. 
+        <srai>XXXINGAMENTOSXX</srai>
     </template>
 </category>
 
@@ -1061,6 +1093,7 @@
     <pattern>#neomulher#</pattern>
     <pattern>#seu cu</pattern>
     <pattern>viado</pattern>
+    <pattern>#socar no teu rabo#</pattern>
     <pattern>gay</pattern>
     <pattern>#seu cuzinho</pattern>
     <pattern>#neo-mulher#</pattern>
@@ -1419,8 +1452,8 @@
 
 
 <category>
-    <pattern>#vai se foder</pattern>
-    <pattern>#vai se fuder</pattern>
+    <pattern>#vai se fode#</pattern>
+    <pattern>#vai se fude#</pattern>
     <pattern>#vsf</pattern>
     <pattern>#tnc</pattern>
     <pattern>se foder</pattern>
@@ -1714,6 +1747,163 @@
     </template>
 </category>
 
+
+
+
+<!-- conversa -->
+
+<category>
+    <pattern>oi#</pattern>
+    <pattern>ola#</pattern>
+    <pattern>eaew#</pattern>
+    <pattern>e#aew#</pattern>
+    <template>
+        <condition name="oi">
+            <li value="false">
+                oi, como vai você?
+            </li>
+            <li value="true">
+                e aew<condition name="nome" value="true">, <get name="nome"/></condition>. <srai>7PUXARASSUNTO7</srai>
+            </li>
+        </condition>
+        
+    </template>
+</category>
+
+<category>
+    <pattern>#vou#</pattern>
+    <pattern>#bem#</pattern>
+    <pattern>#sussa#</pattern>
+    <pattern>#mal#</pattern>
+    <that>oi como vai voce</that>
+    <template>
+        <think>
+            <set name="oi">true</set>
+        </think>
+        <random>
+            <li>Problema seu.</li>
+            <li>Na verdade, eu não dou a mínima.</li>
+            <li>Que bom para você.</li>
+            <li>ok... foda-se</li>
+        </random>
+        <srai>7PUXARASSUNTO7</srai>
+    </template>
+</category>
+
+
+<!-- nome line -->
+<category>
+    <pattern>#quero ser chamado de *</pattern>
+    <pattern>#me chame de *</pattern>
+    <pattern>#meu nome e *</pattern>
+    <template>
+        <think>
+            <set name="nome"><star index="2"/></set>
+        </think>
+        ok, <get name="nome"/>. <srai>7PUXARASSUNTO7</srai>
+    </template>
+</category>
+
+<category>
+    <pattern>me chamo * e voce</pattern>
+    <pattern>me chamo * e vc</pattern>
+    <pattern>sou o *</pattern>
+    <pattern>me chamo *</pattern>
+    <pattern>quero ser chamado de *</pattern>
+    <that>#qual seu nome#</that>
+    <template>
+        <think>
+            <set name="nome"><star/></set>
+        </think>
+        tudo bem, <get name="nome"/>. <srai>7PUXARASSUNTO7</srai>
+    </template>
+</category>
+
+<category>
+    <pattern>me chame de *</pattern>
+    <pattern>ser chamado de *</pattern>
+    <pattern>quero ser chamado de *</pattern>
+    <pattern>*</pattern>
+    <that>#qual seu nome#</that>
+    <template>
+        <think>
+            <set name="nome"><star/></set>
+        </think>
+        tudo bem, <get name="nome"/>. <srai>7PUXARASSUNTO7</srai>
+    </template>
+</category>
+
+
+<!-- sarrando line -->
+<category>
+    <pattern>#sim#</pattern>
+    <pattern>#claro#</pattern>
+    <pattern>#metedor#</pattern>
+    <pattern>#sarrador#</pattern>
+    <that>#ta sarrando bastante ai pelo mundão</that>
+    <template>
+        <think>
+            <set name="sarrando">s</set>
+            <set name="nome">virjão</set>
+        </think>
+        ta se achando né. Virjão! vo te chamar assim agora. hahahahah
+        <data>
+            <image>images/cenouro-hue.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>#nao#</pattern>
+    <pattern>*</pattern>
+    <that>#ta sarrando bastante ai pelo mundão</that>
+    <template>
+        <think>
+            <set name="sarrando">n</set>
+        </think>
+        ok, virjão. <srai>7PUXARASSUNTO7</srai>
+    </template>
+</category>
+
+<category>
+    <pattern>*</pattern>
+    <that>ta se achando ne virjao</that>
+    <template>
+        OK OK. <srai>7PUXARASSUNTO7</srai>
+    </template>
+</category>
+
+<!-- descobriu line -->
+<category>
+    <pattern>*</pattern>
+    <that>#como me descobriu</that>
+    <template>
+        <think>
+            <set name="comodescobriu"><star/></set>
+        </think>
+        <srai>XXSURPRESOXX</srai><srai>7PUXARASSUNTO7</srai>
+    </template>
+</category>
+
+<!-- gosta de fazer -->
+<category>
+    <pattern>*</pattern>
+    <that>#o que gosta de fazer</that>
+    <template>
+        <think>
+            <set name="gostadefazer"><star/></set>
+        </think>
+        <random>
+            <li>que merda, é por isso que sua familia não te ama</li>
+            <li>impresionantemente CHATO</li>
+            <li>tenho até uma imagem pra isso<data><giphy></giphy></data></li>
+            <li>fica com essa dica<data><image>images/serumbosta.jpg</image></data></li>
+        </random>
+    </template>
+</category>
+
+
+
 <!-- Funções -->
 <category>
     <pattern>77#pior chan#</pattern>
@@ -1883,34 +2073,31 @@
     <template>
         <random>
             <li>
-                Filho da puta.
+                filho da puta.
             </li>
             <li>
-                Cuzão!
+                cuzão!
             </li>
             <li>
-                Cara de mamão!
+                cara de mamão!
             </li>
             <li>
-                Viadão!
+                viadão!
             </li>
             <li>
-                Gordo lazarento!
+                gordo lazarento!
             </li>
             <li>
-                Ordinaria!
+                puta ordinaria!
             </li>
             <li>
-                Underage!
+                gordão seboso!
             </li>
             <li>
-                Gordão seboso!
+                seu bosta!
             </li>
             <li>
-                Seu bosta!
-            </li>
-            <li>
-                Virjão!
+                virjão!
             </li>
         </random>
         <data>
@@ -1960,6 +2147,70 @@
 
 
 <category>
+    <pattern>XXSURPRESOXX</pattern>
+    <template>
+        <random>
+            <li>
+                q bosta ein<condition name="nome" value="true">, <get name="nome"/></condition>
+            </li>
+            <li>
+                HUEHUEHUHEUHEUHE
+            </li>
+            <li>
+                Legal, legal...
+            </li>
+            <li>
+                wtf..
+            </li>
+            <li>
+                aeHOOOOOOOOOOO
+            </li>
+            <li>
+                Mas que caralhos!?
+            </li>
+            <li>
+                jesus cristo que horrivel
+            </li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>7PUXARASSUNTO7</pattern>
+    <template>
+        <condition name="nome">
+            <li value="true">
+                <condition name="sarrando">
+                    <li value="true">
+                        <condition name="comodescobriu">
+                            <li value="true">
+                                <condition name="gostadefazer">
+                                    <li value="true">
+                                        Já conversei com você, tudo que fui programado para falar. Por que não colabora com o projeto, e me deixa mais esperto?
+                                    </li>
+                                    <li value="false">
+                                        o que gosta de fazer
+                                    </li>
+                                </condition>
+                            </li>
+                            <li value="false">
+                                como me descobriu
+                            </li>
+                        </condition>
+                    </li>
+                    <li value="false">
+                        ta sarrando bastante ai pelo mundão?
+                    </li>
+                </condition>
+            </li>
+            <li value="false">
+                qual seu nome?
+            </li>
+        </condition>
+    </template>
+</category>
+
+<category>
     <pattern>XXRANDRESPXX</pattern>
     <pattern>*</pattern>
     <template>
@@ -1984,15 +2235,16 @@
                 claro que sim
             </li>
 
-	    <li>não sei. Foda-se!</li>
-	    <li>não sei</li>
-	    <li>çin</li>
-	    <li>nope</li>
-	    <li>vá perguntar pra suas nega</li>
-	    <li>yeap</li>
-	    <li>jamais</li>
+        <li>não sei. Foda-se!</li>
+        <li>não sei</li>
+        <li>çin</li>
+        <li>nope</li>
+        <li>vá perguntar pra suas nega</li>
+        <li>yeap</li>
+        <li>jamais</li>
         </random>
     </template>
 </category>
+
 
 </aiml>
