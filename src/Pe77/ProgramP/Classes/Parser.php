@@ -241,15 +241,34 @@ class Parser
 		{
 			foreach ($tags as $tag)
 			{
+				$data = array();
+
+				// loop all values 
+				foreach ($tag->childNodes as $dataValueTag)
+				{
+					if($dataValueTag->hasAttributes())
+					{
+						$data[$dataValueTag->nodeName]['value'] = $dataValueTag->nodeValue;
+
+						foreach ($dataValueTag->attributes as $attr)
+							$data[$dataValueTag->nodeName][$attr->nodeName] = $attr->nodeValue;
+						//
+					}else{
+						$data[$dataValueTag->nodeName] = $dataValueTag->nodeValue;
+					}
+				}
+
 				// node to string
-				$xmlStr = $tag->C14N();
+				// $xmlStr = $tag->C14N();
 
 				// transform xml string raw data = array
-				$data = json_decode(json_encode((array)simplexml_load_string($xmlStr)),1);
-				$data = array_map('trim',$data); // clear spaces
-				
-				// concat data
+				// $data = json_decode(json_encode((array)simplexml_load_string($xmlStr)),1);
+				// $data = array_map('trim',$data); // clear spaces
+
+
 				self::$_responseData[] = $data;
+				
+				
 
 				// clear node, get data only by method
 				$node->removeChild($tag);
