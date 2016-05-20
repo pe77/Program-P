@@ -36,7 +36,7 @@
     <template>
         teste delay
         <data>
-            <delay time="5000">d-message</delay>
+            <delay time="5000">delay-message(<get name="nome"/>)</delay>
         </data>
     </template>
 </category>

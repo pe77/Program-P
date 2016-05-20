@@ -248,15 +248,17 @@ class Parser
 				{
 					if($dataValueTag->hasAttributes())
 					{
-						$data[$dataValueTag->nodeName]['value'] = $dataValueTag->nodeValue;
+						$data[$dataValueTag->nodeName]['value'] = self::ProcessTemplate($dataValueTag);
 
 						foreach ($dataValueTag->attributes as $attr)
 							$data[$dataValueTag->nodeName][$attr->nodeName] = $attr->nodeValue;
 						//
 					}else{
-						$data[$dataValueTag->nodeName] = $dataValueTag->nodeValue;
+						$data[$dataValueTag->nodeName] = self::ProcessTemplate($dataValueTag);
 					}
 				}
+
+				// ProcessTemplate
 
 				// node to string
 				// $xmlStr = $tag->C14N();
@@ -1103,6 +1105,10 @@ class Parser
 	static private function GetAllTagsByName($domNode, $tagName, $getOne = false)
 	{
 		$arrResponse = array();
+
+		// $x = gettype($domNode) == 'string' ? $domNode : 'obj';
+
+		// echo '<p>$tagName(', $tagName, ')[' . $x . ']';//, ' | ', $domNode;
 		
 		foreach(self::$_domXPath->query($tagName, $domNode) as $node)
 			$arrResponse[] = $node;
