@@ -5,6 +5,225 @@
 <meta name="language" content="pt-br"/>
 
 
+
+<!-- START LINE -->
+<!-- oi line -->
+
+<category>
+    <pattern>oi#</pattern>
+    <pattern>ola#</pattern>
+    <pattern>eaew#</pattern>
+    <pattern>e#ae#</pattern>
+    <template>
+        <condition name="oi">
+            <li value="false">
+                oi, como vai você?
+            </li>
+            <li value="true">
+                e aew<condition name="nome" value="true">, <get name="nome"/></condition>. <srai>7PUXARASSUNTO7</srai>
+            </li>
+        </condition>
+        
+    </template>
+</category>
+
+<category>
+    <pattern>#vou#</pattern>
+    <pattern>blz</pattern>
+    <pattern>beleza</pattern>
+    <pattern>#bem#</pattern>
+    <pattern>#sussa#</pattern>
+    <pattern>#mal#</pattern>
+    <that>oi como vai voce</that>
+    <template>
+        <think>
+            <set name="oi">true</set>
+        </think>
+        <random>
+            <li>legal, legal...</li>
+            <li>na verdade, eu não ligo.</li>
+            <li>que bom para você.</li>
+            <li>ok... foda-se</li>
+        </random>
+        <srai>7PUXARASSUNTO7</srai>
+    </template>
+</category>
+
+
+<!-- nome line -->
+<category>
+    <pattern>#quero ser chamado de *</pattern>
+    <pattern>#me chame de *</pattern>
+    <pattern>#meu nome e *</pattern>
+    <template>
+        <think>
+            <set name="nome"><star index="2"/></set>
+        </think>
+        ok, <get name="nome"/>. <srai>7PUXARASSUNTO7</srai>
+    </template>
+</category>
+
+<category>
+    <pattern>me chamo * e voce</pattern>
+    <pattern>me chamo * e vc</pattern>
+    <pattern>sou o *</pattern>
+    <pattern>me chamo *</pattern>
+    <pattern>quero ser chamado de *</pattern>
+    <that>#qual seu nome#</that>
+    <template>
+        <think>
+            <set name="nome"><star/></set>
+        </think>
+        tudo bem, <get name="nome"/>. <srai>7PUXARASSUNTO7</srai>
+    </template>
+</category>
+
+<category>
+    <pattern>me chame de *</pattern>
+    <pattern>ser chamado de *</pattern>
+    <pattern>quero ser chamado de *</pattern>
+    <pattern>*</pattern>
+    <that>#qual seu nome#</that>
+    <template>
+        <think>
+            <set name="nome"><star/></set>
+        </think>
+        tudo bem, <get name="nome"/>. <srai>7PUXARASSUNTO7</srai>
+    </template>
+</category>
+
+
+<!-- sarrando line -->
+<category>
+    <pattern>#sim#</pattern>
+    <pattern>#claro#</pattern>
+    <pattern>#metedor#</pattern>
+    <pattern>#sarrador#</pattern>
+    <that>#ta sarrando bastante ai pelo mundão</that>
+    <template>
+        <think>
+            <set name="sarrando">s</set>
+            <set name="nome">virjão</set>
+        </think>
+        ta se achando né. Virjão! vo te chamar assim agora. hahahahah
+        <data>
+            <image>images/cenouro-hue.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>#nao#</pattern>
+    <pattern>*</pattern>
+    <that>#ta sarrando bastante ai pelo mundão</that>
+    <template>
+        <think>
+            <set name="sarrando">n</set>
+        </think>
+        ok, virjão. <srai>7PUXARASSUNTO7</srai>
+    </template>
+</category>
+
+<category>
+    <pattern>*</pattern>
+    <that>ta se achando ne virjao</that>
+    <template>
+        OK OK. <srai>7PUXARASSUNTO7</srai>
+    </template>
+</category>
+
+<!-- descobriu line -->
+<category>
+    <pattern>#um amigo#</pattern>
+    <that>#como me descobriu</that>
+    <template>
+        <think>
+            <set name="comodescobriu">amigo</set>
+        </think>
+        e qual o nome dele?
+    </template>
+</category>
+
+<category>
+    <pattern>e *</pattern>
+    <pattern>se chama *</pattern>
+    <pattern>*</pattern>
+    <that>e qual o nome dele</that>
+    <template>
+        <think>
+            <set name="comodescobriunome"><star/></set>
+        </think>
+        <srai>7PUXARASSUNTO7</srai>
+    </template>
+</category>
+
+<category>
+    <pattern>*</pattern>
+    <that>#como me descobriu</that>
+    <template>
+        <think>
+            <set name="comodescobriu"><star/></set>
+        </think>
+        <srai>XXSURPRESOXX</srai><srai>7PUXARASSUNTO7</srai>
+    </template>
+</category>
+
+<!-- gosta de fazer line -->
+<category>
+    <pattern>*</pattern>
+    <that>#o que vc gosta de fazer</that>
+    <template>
+        <think>
+            <set name="gostadefazer"><star/></set>
+        </think>
+        <random>
+            <li>que merda, é por isso que sua familia não te ama.</li>
+            <li>impresionantemente CHATO.</li>
+            <li>tenho até uma imagem pra isso<data><giphy></giphy></data></li>
+            <li>fica com essa dica<data><image>images/serumbosta.jpg</image></data></li>
+        </random>
+        <srai>7PUXARASSUNTO7</srai>
+    </template>
+</category>
+
+
+<!-- premio line-->
+<category>
+    <pattern>4f8e9qcas599001d</pattern>
+    <template>
+        <think>
+            <set name="premio">sim</set>
+        </think>
+        [sistema]: validando codigo... Aguarde
+        <data><delay time="2000">[sistema]: resgatando premio...</delay></data>
+        <data><delay time="5000">[sistema]: Parabéns!</delay></data>
+        <data><delay time="6000">Otário!! hushaisuhiasuhiushiuhehheheha aeHOOOOOOOOOOOOOOOO</delay></data>
+    </template>
+</category>
+
+
+
+<!-- zuado line-->
+<category>
+    <pattern>#quero#</pattern>
+    <pattern>#sim#</pattern>
+    <pattern>#claro#</pattern>
+    <pattern>#mostra#</pattern>
+    <that>#quer ver uma parada bem zuada que eu achei#</that>
+    <template>
+        <think>
+            <set name="zuado">true</set>
+        </think>
+        se liga
+        <data><image><get name="userpic"/></image></data>
+        <data><delay time="3000">que medo dessa porra</delay></data>
+    </template>
+</category>
+
+<!-- END LINE -->
+
+
+
 <!-- cheats -->
 <category>
     <pattern>#qual * preço da goiaba#</pattern>
@@ -16,7 +235,6 @@
         </data>
     </template>
 </category>
-
 
 
 <category>
@@ -135,9 +353,78 @@
 
 
 
+<!-- filosofia -->
+
+<category>
+    <pattern>#qual o sentido da vida</pattern>
+    <template>
+        <random>
+            <li>se foder muito</li>
+            <li>tomar na jabiraca</li>
+        </random>
+    </template>
+</category>
 
 
 <!-- eastereggs -->
+<category>
+    <pattern>eu quero saber</pattern>
+    <template>
+        quem é que transa
+        <data>
+            <image>images/cenouro-hue.png</image>
+        </data>
+        <data><delay time="1000">NESSA PORRA</delay></data>
+    </template>
+</category>
+
+
+<category>
+    <pattern>#conhece o mario</pattern>
+    <template>
+        que te comeu atras do armario?
+        <data>
+            <image>images/cenouro-hue.png</image>
+        </data>
+    </template>
+</category>
+
+
+<category>
+    <pattern>666</pattern>
+    <template>
+        sai capeta!
+        <data>
+            <image>images/cenouro-fudeu.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>siga em frente olhe para o lado</pattern>
+    <template>
+        se liga no mestiço
+        <data><delay time="2000">na batida do cavaco</delay></data>
+        <data><delay time="3000">aeHOOOOOOOOOOOOO</delay></data>
+        <data>
+            <image>images/cenouro-hue.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>siga em frente</pattern>
+    <template>
+        olhe para o lado 
+        <data><delay time="2000">se liga no mestiço</delay></data>
+        <data><delay time="5000">na batida do cavaco</delay></data>
+        <data><delay time="6000">aeHOOOOOOOOOOOOO</delay></data>
+        <data>
+            <image>images/cenouro-hue.png</image>
+        </data>
+    </template>
+</category>
+
 <category>
     <pattern>#ta quanto esse revolv#</pattern>
     <pattern>#quanto ta esse revolv#</pattern>
@@ -224,12 +511,37 @@
 
 <!-- Meta -->
 <category>
+    <pattern>seu lindo</pattern>
+    <pattern>lindo</pattern>
+    <pattern>gostoso</pattern>
+    <pattern>bonito</pattern>
+    <template>
+        obrigado. <srai>XXELOGIOXX</srai>
+    </template>
+</category>
+
+
+<category>
     <pattern>#quem e voce#</pattern>
     <pattern>#quem e vc#</pattern>
     <pattern>#o que e voce#</pattern>
     <pattern>#o que e vce#</pattern>
     <template>
         Sou o Cenouro, ué! Não sabe ler não?
+    </template>
+</category>
+
+<category>
+    <pattern>#onde voce trabalha#</pattern>
+    <pattern>#onde vc trabalha#</pattern>
+    <pattern>#voce trabalha#</pattern>
+    <pattern>#vc trabalha#</pattern>
+    <template>
+        <random>
+            <li>não trabalho, sou 100% vagabundo</li>
+            <li>eu nem sei o que é isso</li>
+            <li>não trabalho, não. Vivo de bolsafamilia!</li>
+        </random>
     </template>
 </category>
 
@@ -289,11 +601,17 @@
 
 <category>
     <pattern>#vc e bixa#</pattern>
+    <pattern>#vc e bicha#</pattern>
     <pattern>#voce e bixa#</pattern>
+    <pattern>#voce e bicha#</pattern>
     <pattern>#vc e viado#</pattern>
     <pattern>#voce e viado#</pattern>
     <pattern>#vc e gay#</pattern>
     <pattern>#voce e gay#</pattern>
+    <pattern>bicha</pattern>
+    <pattern>bixa</pattern>
+    <pattern>viado</pattern>
+    <pattern>viadinho</pattern>
     <template>
         Não sou seu pai.
         <data>
@@ -417,6 +735,7 @@
 
 <category>
     <pattern>#quando vou#</pattern>
+    <pattern>#quando vai#</pattern>
     <pattern>#quando irei#</pattern>
     <template>
         <think>
@@ -445,6 +764,13 @@
 
 <!-- escapes -->
 <category>
+    <pattern>estou com *</pattern>
+    <template>
+        como é que eu vo sabe disso, carai!?
+    </template>
+</category>
+
+<category>
     <pattern>porque</pattern>
     <pattern>por que</pattern>
     <pattern>pq</pattern>
@@ -462,7 +788,7 @@
 </category>
 
 <category>
-    <pattern>porque #</pattern>
+    <pattern>porque#</pattern>
     <pattern>por que #</pattern>
     <pattern>pq #</pattern>
     <template>
@@ -763,15 +1089,14 @@
 <category>
     <pattern>* vai pegar *</pattern>
     <pattern>* vai ficar *</pattern>
-
+    <pattern>a * pega o *</pattern>
+    <pattern>o * pega a *</pattern>
     <template>
         <random>
-            <li>Claro que vai.</li>
-            <li>Não vai não.</li>
-            <li>Desiste. Não vai.</li>
-            <li>Só tentando pra saber.</li>
-            <li>Talvez vá. Não tem como saber.</li>
-            <li><srai>XXRANDRESPXX</srai></li>
+            <li>verifica se um dos dois ta mancando ou com marcas pelo corpo.</li>
+            <li>talvez. não tem como saber</li>
+            <li>acho que sim. Rola muito tensão sexual ali</li>
+            <li>dificil essa. <data><delay time="1000">acho que <srai>XXRANDRESPXX</srai></delay></data></li>
         </random>
         <data>
             <image>images/cenouro-boa2.png</image>
@@ -783,18 +1108,18 @@
 
 <category>
     <pattern>* gosta de #</pattern>
-
+    <pattern>* curte *</pattern>
+    <pattern>* curti *</pattern>
+    <pattern>* e chegado *</pattern>
     <template>
         <random>
-            <li>Gosta.</li>
-            <li>A-DO-RA.</li>
-            <li>Não gosta.</li>
-            <li>Acho que <star/> gosta sim.</li>
-            <li>Acho que <star/> não gosta.</li>
+            <li>gosta sim</li>
+            <li>A-DO-RA</li>
+            <li>não gosta</li>
             <li><star/> não gosta.</li>
             <li><star/> gosta.</li>
-            <li><srai>XXRANDRESPXX</srai></li>
         </random>
+        <data><delay time="1000">ta na cara</delay></data>
         <data>
             <image>images/cenouro-boa2.png</image>
         </data>
@@ -1198,7 +1523,7 @@
     <pattern>fdp</pattern>
     <template>
         <random>
-            <li>Você que é! <srai>XXXINGAMENTOSXX</srai></li>
+            <li>Você que é!</li>
             <li>A unica puta que conheço é sua mãe.</li>
         </random>
         <srai>XXXINGAMENTOSXX</srai>
@@ -1461,7 +1786,8 @@
     <pattern>#va se foder#</pattern>
     <pattern>#va se fuder#</pattern>
     <pattern>tomar no cu</pattern>
-    <pattern>#vai tomar no cu</pattern>
+    <pattern>#vai tomar no cu#</pattern>
+    <pattern>#vai tomar teu no cu#</pattern>
     <template>
         <random>
             <li>Vai você.</li>
@@ -1748,255 +2074,7 @@
 </category>
 
 
-
-
-<!-- conversa -->
-
-<category>
-    <pattern>oi#</pattern>
-    <pattern>ola#</pattern>
-    <pattern>eaew#</pattern>
-    <pattern>e#ae#</pattern>
-    <template>
-        <condition name="oi">
-            <li value="false">
-                oi, como vai você?
-            </li>
-            <li value="true">
-                e aew<condition name="nome" value="true">, <get name="nome"/></condition>. <srai>7PUXARASSUNTO7</srai>
-            </li>
-        </condition>
-        
-    </template>
-</category>
-
-<category>
-    <pattern>#vou#</pattern>
-    <pattern>#bem#</pattern>
-    <pattern>#sussa#</pattern>
-    <pattern>#mal#</pattern>
-    <that>oi como vai voce</that>
-    <template>
-        <think>
-            <set name="oi">true</set>
-        </think>
-        <random>
-            <li>Problema seu.</li>
-            <li>Na verdade, eu não dou a mínima.</li>
-            <li>Que bom para você.</li>
-            <li>ok... foda-se</li>
-        </random>
-        <srai>7PUXARASSUNTO7</srai>
-    </template>
-</category>
-
-
-<!-- nome line -->
-<category>
-    <pattern>#quero ser chamado de *</pattern>
-    <pattern>#me chame de *</pattern>
-    <pattern>#meu nome e *</pattern>
-    <template>
-        <think>
-            <set name="nome"><star index="2"/></set>
-        </think>
-        ok, <get name="nome"/>. <srai>7PUXARASSUNTO7</srai>
-    </template>
-</category>
-
-<category>
-    <pattern>me chamo * e voce</pattern>
-    <pattern>me chamo * e vc</pattern>
-    <pattern>sou o *</pattern>
-    <pattern>me chamo *</pattern>
-    <pattern>quero ser chamado de *</pattern>
-    <that>#qual seu nome#</that>
-    <template>
-        <think>
-            <set name="nome"><star/></set>
-        </think>
-        tudo bem, <get name="nome"/>. <srai>7PUXARASSUNTO7</srai>
-    </template>
-</category>
-
-<category>
-    <pattern>me chame de *</pattern>
-    <pattern>ser chamado de *</pattern>
-    <pattern>quero ser chamado de *</pattern>
-    <pattern>*</pattern>
-    <that>#qual seu nome#</that>
-    <template>
-        <think>
-            <set name="nome"><star/></set>
-        </think>
-        tudo bem, <get name="nome"/>. <srai>7PUXARASSUNTO7</srai>
-    </template>
-</category>
-
-
-<!-- sarrando line -->
-<category>
-    <pattern>#sim#</pattern>
-    <pattern>#claro#</pattern>
-    <pattern>#metedor#</pattern>
-    <pattern>#sarrador#</pattern>
-    <that>#ta sarrando bastante ai pelo mundão</that>
-    <template>
-        <think>
-            <set name="sarrando">s</set>
-            <set name="nome">virjão</set>
-        </think>
-        ta se achando né. Virjão! vo te chamar assim agora. hahahahah
-        <data>
-            <image>images/cenouro-hue.png</image>
-        </data>
-    </template>
-</category>
-
-<category>
-    <pattern>#nao#</pattern>
-    <pattern>*</pattern>
-    <that>#ta sarrando bastante ai pelo mundão</that>
-    <template>
-        <think>
-            <set name="sarrando">n</set>
-        </think>
-        ok, virjão. <srai>7PUXARASSUNTO7</srai>
-    </template>
-</category>
-
-<category>
-    <pattern>*</pattern>
-    <that>ta se achando ne virjao</that>
-    <template>
-        OK OK. <srai>7PUXARASSUNTO7</srai>
-    </template>
-</category>
-
-<!-- descobriu line -->
-<category>
-    <pattern>#um amigo#</pattern>
-    <that>#como me descobriu</that>
-    <template>
-        <think>
-            <set name="comodescobriu">amigo</set>
-        </think>
-        e qual o nome dele?
-    </template>
-</category>
-
-<category>
-    <pattern>e *</pattern>
-    <pattern>se chama *</pattern>
-    <pattern>*</pattern>
-    <that>e qual o nome dele</that>
-    <template>
-        <think>
-            <set name="comodescobriunome"><star/></set>
-        </think>
-        <srai>7PUXARASSUNTO7</srai>
-    </template>
-</category>
-
-<category>
-    <pattern>*</pattern>
-    <that>#como me descobriu</that>
-    <template>
-        <think>
-            <set name="comodescobriu"><star/></set>
-        </think>
-        <srai>XXSURPRESOXX</srai><srai>7PUXARASSUNTO7</srai>
-    </template>
-</category>
-
-<!-- gosta de fazer line -->
-<category>
-    <pattern>*</pattern>
-    <that>#o que vc gosta de fazer</that>
-    <template>
-        <think>
-            <set name="gostadefazer"><star/></set>
-        </think>
-        <random>
-            <li>que merda, é por isso que sua familia não te ama</li>
-            <li>impresionantemente CHATO</li>
-            <li>tenho até uma imagem pra isso<data><giphy></giphy></data></li>
-            <li>fica com essa dica<data><image>images/serumbosta.jpg</image></data></li>
-        </random>
-    </template>
-</category>
-
-
-<!-- premio line-->
-<category>
-    <pattern>4f8e9qcas599001d</pattern>
-    <template>
-        <think>
-            <set name="premio">sim</set>
-        </think>
-        [sistema]: validando codigo... Aguarde
-        <data><delay time="2000">[sistema]: resgatando premio...</delay></data>
-        <data><delay time="5000">[sistema]: Parabéns!</delay></data>
-        <data><delay time="6000">Otário!! hushaisuhiasuhiushiuhehheheha aeHOOOOOOOOOOOOOOOO</delay></data>
-    </template>
-</category>
-
-
-
-<!-- zuado line-->
-<category>
-    <pattern>#quero#</pattern>
-    <pattern>#sim#</pattern>
-    <pattern>#claro#</pattern>
-    <pattern>#mostra#</pattern>
-    <that>#quer ver uma parada bem zuada que eu achei#</that>
-    <template>
-        <think>
-            <set name="zuado">true</set>
-        </think>
-        se liga
-        <data><image><get name="userpic"/></image></data>
-        <data><delay time="3000">que medo dessa porra</delay></data>
-    </template>
-</category>
-
-
 <!-- Funções -->
-<category>
-    <pattern>77#pior chan#</pattern>
-    <pattern>esse#pior chan#</pattern>
-    <pattern>#melhor chan#</pattern>
-    <pattern>XXMELHORCHANXX</pattern>
-    <template>
-        <random>
-            <li>
-                O 77 é melhor chan brasileiro.
-            </li>
-            <li>
-                77chan o melhor chan.
-            </li>
-            <li>
-                Esse é o melhor chan que já existiu na macacolandia.
-            </li>
-            <li>
-                77 sempre foi e sempre será o melho.
-            </li>
-            <li>
-                Eu amo o 77. O melhor chan de todos.
-            </li>
-            <li>
-                77chan, melhor chan.
-            </li>
-            <li>
-                Você tem a honra de estar aqui no 77chan!
-            </li>
-        </random>
-        <data>
-            <image>images/cenouro-deal.png</image>
-        </data>
-    </template>
-</category>
-
 <category>
     <pattern>XXELOGIOXX</pattern>
     <template>
@@ -2008,12 +2086,6 @@
                 Seu lindo.
             </li>
             <li>
-                Eu acredito em você.
-            </li>
-            <li>
-                Não desista nunca. Você consegue.
-            </li>
-            <li>
                 Eu teria orgulho de ter um amigo como você.
             </li>
             <li>
@@ -2021,15 +2093,6 @@
             </li>
             <li>
                 A vida é linda, assim como você. Seu lindo.
-            </li>
-            <li>
-                Nunca deixe alguém te colocar para baixo.
-            </li>
-            <li>
-                Tudo vai melhorar.
-            </li>
-            <li>
-                Tudo vai ser melhor daqui pra frente!
             </li>
             <li>
                 Você é uma pessoa maravilhosa.
@@ -2258,7 +2321,7 @@
                                                                 me pergunta alguma coisa ai
                                                             </li>
                                                             <li value="false">
-                                                                quer ver uma parada bem zuada que eu achei hoje?
+                                                                quer ver uma parada bem zuada que eu achei hoje? Mas é bem merda mesmo!
                                                             </li>
                                                         </condition>
                                                     </li>
@@ -2273,12 +2336,12 @@
                                         </condition>
                                     </li>
                                     <li value="false">
-                                        o que vc gosta de fazer
+                                        o que vc gosta de fazer?
                                     </li>
                                 </condition>
                             </li>
                             <li value="false">
-                                como me descobriu
+                                como me descobriu?
                             </li>
                         </condition>
                     </li>
