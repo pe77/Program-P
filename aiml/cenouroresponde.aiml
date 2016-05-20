@@ -1875,6 +1875,30 @@
 
 <!-- descobriu line -->
 <category>
+    <pattern>#um amigo#</pattern>
+    <that>#como me descobriu</that>
+    <template>
+        <think>
+            <set name="comodescobriu">amigo</set>
+        </think>
+        e qual o nome dele?
+    </template>
+</category>
+
+<category>
+    <pattern>e *</pattern>
+    <pattern>se chama *</pattern>
+    <pattern>*</pattern>
+    <that>e qual o nome dele</that>
+    <template>
+        <think>
+            <set name="comodescobriunome"><star/></set>
+        </think>
+        <srai>7PUXARASSUNTO7</srai>
+    </template>
+</category>
+
+<category>
     <pattern>*</pattern>
     <that>#como me descobriu</that>
     <template>
@@ -1885,10 +1909,10 @@
     </template>
 </category>
 
-<!-- gosta de fazer -->
+<!-- gosta de fazer line -->
 <category>
     <pattern>*</pattern>
-    <that>#o que gosta de fazer</that>
+    <that>#o que vc gosta de fazer</that>
     <template>
         <think>
             <set name="gostadefazer"><star/></set>
@@ -1946,6 +1970,9 @@
         <random>
             <li>
                 Eu te amo.
+            </li>
+            <li>
+                Seu lindo.
             </li>
             <li>
                 Eu acredito em você.
@@ -2020,6 +2047,9 @@
             </li>
             <li>
                 Ninguém nunca vai te respeitar.
+            </li>
+            <li>
+                Ninguém nunca vai te amar.
             </li>
             <li>
                 Você nunca terá ninguém.
@@ -2189,7 +2219,7 @@
                                         Já conversei com você, tudo que fui programado para falar. Por que não colabora com o projeto, e me deixa mais esperto?
                                     </li>
                                     <li value="false">
-                                        o que gosta de fazer
+                                        o que vc gosta de fazer
                                     </li>
                                 </condition>
                             </li>
@@ -2212,7 +2242,6 @@
 
 <category>
     <pattern>XXRANDRESPXX</pattern>
-    <pattern>*</pattern>
     <template>
         <random>
             <li>
@@ -2245,6 +2274,10 @@
         </random>
     </template>
 </category>
+
+<default>
+    <srai>XXRANDRESPXX</srai>
+</default>
 
 
 </aiml>
