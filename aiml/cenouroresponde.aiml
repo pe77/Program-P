@@ -23,7 +23,6 @@
                 e aew<condition name="nome" value="true">, <get name="nome"/></condition>. <srai>7PUXARASSUNTO7</srai>
             </li>
         </condition>
-        
     </template>
 </category>
 
@@ -514,6 +513,15 @@
 
 
 <!-- Meta -->
+<category>
+    <pattern>#grosso</pattern>
+    <pattern>#grosseiro</pattern>
+    <template>
+        poxa. Desculpa...
+        <data><delay time="5000">ZUERA</delay></data>
+        <data><delay time="7000">se fode ae. <srai>XXXINGAMENTOSXX</srai></delay></data>
+    </template>
+</category>
 <category>
     <pattern>seu lindo</pattern>
     <pattern>lindo</pattern>
@@ -1525,6 +1533,7 @@
     <pattern>filho da puta</pattern>
     <pattern>#pau no cu#</pattern>
     <pattern>#fdp</pattern>
+    <pattern>#filho da puta</pattern>
     <template>
         <random>
             <li>Você que é!</li>
@@ -2320,9 +2329,9 @@
                                             <li value="true">
                                                 <condition name="userpic">
                                                     <li value="true">
-                                                        <condition name="zuado">
+                                                        <condition name="z@uado">
                                                             <li value="true">
-                                                                me pergunta alguma coisa ai
+                                                                <srai>XXCONVITEXX</srai>
                                                             </li>
                                                             <li value="false">
                                                                 quer ver uma parada bem zuada que eu achei hoje? Mas é bem merda mesmo!
@@ -2330,7 +2339,7 @@
                                                         </condition>
                                                     </li>
                                                     <li value="false">
-                                                        me pergunta alguma coisa ai
+                                                        <srai>XXCONVITEXX</srai>
                                                     </li>
                                                 </condition>
                                             </li>
@@ -2358,6 +2367,15 @@
                 qual seu nome?
             </li>
         </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>XXCONVITEXX</pattern>
+    <template>
+        manda meu contato pros seus amigos, manolo
+        <data><delay time="1000">https://m.me/cenouro</delay></data>
+        <data><delay time="10000">me pergunta alguma coisa!</delay></data>
     </template>
 </category>
 
