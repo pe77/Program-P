@@ -2373,9 +2373,8 @@
 <category>
     <pattern>XXCONVITEXX</pattern>
     <template>
-        manda meu contato pros seus amigos, manolo
-        <data><delay time="1000">https://m.me/cenouro</delay></data>
-        <data><delay time="10000">me pergunta alguma coisa!</delay></data>
+        manda meu contato pros seus amigos, manolo https://m.me/cenouro
+        <data><delay time="120000">me pergunta alguma coisa!</delay></data>
     </template>
 </category>
 
