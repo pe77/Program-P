@@ -45,7 +45,10 @@ if($_REQUEST['requestType'] == 'talk')
 		'data'=>null,
 	);
 
-	$response['message'] = trim($programP->GetResponse($user, $bot, $_REQUEST['input']));
+	$response['message'] = $programP->GetResponse($user, $bot, $_REQUEST['input']);
+
+	// revome line breaks, extra spaces and tabs
+	$response['message'] = preg_replace("/\s+/", " ", $response['message']);
 
 	if($programP->GetData())
 		$response['data'] = $programP->GetData();
