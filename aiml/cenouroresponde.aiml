@@ -41,7 +41,6 @@
         </think>
         <random>
             <li>legal, legal...</li>
-            <li>na verdade, eu não ligo.</li>
             <li>que bom para você.</li>
             <li>ok... foda-se</li>
         </random>
@@ -105,7 +104,8 @@
             <set name="sarrando">s</set>
             <set name="nome">virjão</set>
         </think>
-        ta se achando né. Virjão! vo te chamar assim agora. hahahahah
+        ta se achando né. Virjão!
+        <srai>7PUXARASSUNTO7</srai>
         <data>
             <image>images/cenouro-hue.png</image>
         </data>
@@ -198,6 +198,9 @@
         <data><delay time="2000">[sistema]: resgatando premio...</delay></data>
         <data><delay time="5000">[sistema]: Parabéns!</delay></data>
         <data><delay time="6000">Otário!! hushaisuhiasuhiushiuhehheheha aeHOOOOOOOOOOOOOOOO</delay></data>
+        <data><delay time="7000">....</delay></data>
+        <data><delay time="8000">...</delay></data>
+        <data><delay time="10000">fica chateado não <srai>7PUXARASSUNTO7</srai></delay></data>
     </template>
 </category>
 
@@ -209,7 +212,7 @@
     <pattern>#sim#</pattern>
     <pattern>#claro#</pattern>
     <pattern>#mostra#</pattern>
-    <that>#quer ver uma parada bem zuada que eu achei#</that>
+    <that>#validando codigo#</that>
     <template>
         <think>
             <set name="zuado">true</set>
@@ -1520,7 +1523,7 @@
     <pattern>#seu#fdp#</pattern>
     <pattern>filho da puta</pattern>
     <pattern>#pau no cu#</pattern>
-    <pattern>fdp</pattern>
+    <pattern>#fdp</pattern>
     <template>
         <random>
             <li>Você que é!</li>
@@ -2331,7 +2334,7 @@
                                                 </condition>
                                             </li>
                                             <li value="false">
-                                                Parabéns! Você conseguiu conversar sobre tudo que sei. Me escreva exatamente o codigo: "4f8e9qcas599001d" e ganhe
+                                                Parabéns! Você conseguiu conversar sobre tudo que sei. Escreva exatamente o codigo: "4f8e9qcas599001d" e ganhe
                                             </li>
                                         </condition>
                                     </li>
