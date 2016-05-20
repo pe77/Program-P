@@ -1194,14 +1194,14 @@
     <pattern>#seu#filho da puta#</pattern>
     <pattern>#seu#fdp#</pattern>
     <pattern>filho da puta</pattern>
+    <pattern>#pau no cu#</pattern>
     <pattern>fdp</pattern>
     <template>
         <random>
             <li>Você que é! <srai>XXXINGAMENTOSXX</srai></li>
             <li>A unica puta que conheço é sua mãe.</li>
-            <li><srai>XXXINGAMENTOSXX</srai></li>
         </random>
-        
+        <srai>XXXINGAMENTOSXX</srai>
     </template>
 </category>
 
@@ -1756,7 +1756,7 @@
     <pattern>oi#</pattern>
     <pattern>ola#</pattern>
     <pattern>eaew#</pattern>
-    <pattern>e#aew#</pattern>
+    <pattern>e#ae#</pattern>
     <template>
         <condition name="oi">
             <li value="false">
@@ -1926,6 +1926,39 @@
     </template>
 </category>
 
+
+<!-- premio line-->
+<category>
+    <pattern>4f8e9qcas599001d</pattern>
+    <template>
+        <think>
+            <set name="premio">sim</set>
+        </think>
+        [sistema]: validando codigo... Aguarde
+        <data><delay time="2000">[sistema]: resgatando premio...</delay></data>
+        <data><delay time="5000">[sistema]: Parabéns!</delay></data>
+        <data><delay time="6000">Otário!! hushaisuhiasuhiushiuhehheheha aeHOOOOOOOOOOOOOOOO</delay></data>
+    </template>
+</category>
+
+
+
+<!-- zuado line-->
+<category>
+    <pattern>#quero#</pattern>
+    <pattern>#sim#</pattern>
+    <pattern>#claro#</pattern>
+    <pattern>#mostra#</pattern>
+    <that>#quer ver uma parada bem zuada que eu achei#</that>
+    <template>
+        <think>
+            <set name="zuado">true</set>
+        </think>
+        se liga
+        <data><image><get name="userpic"/></image></data>
+        <data><delay time="3000">que medo dessa porra</delay></data>
+    </template>
+</category>
 
 
 <!-- Funções -->
@@ -2216,7 +2249,28 @@
                             <li value="true">
                                 <condition name="gostadefazer">
                                     <li value="true">
-                                        Já conversei com você, tudo que fui programado para falar. Por que não colabora com o projeto, e me deixa mais esperto?
+                                        <condition name="premio">
+                                            <li value="true">
+                                                <condition name="userpic">
+                                                    <li value="true">
+                                                        <condition name="zuado">
+                                                            <li value="true">
+                                                                me pergunta alguma coisa ai
+                                                            </li>
+                                                            <li value="false">
+                                                                quer ver uma parada bem zuada que eu achei hoje?
+                                                            </li>
+                                                        </condition>
+                                                    </li>
+                                                    <li value="false">
+                                                        me pergunta alguma coisa ai
+                                                    </li>
+                                                </condition>
+                                            </li>
+                                            <li value="false">
+                                                Parabéns! Você conseguiu conversar sobre tudo que sei. Me escreva exatamente o codigo: "4f8e9qcas599001d" e ganhe
+                                            </li>
+                                        </condition>
                                     </li>
                                     <li value="false">
                                         o que vc gosta de fazer
@@ -2237,6 +2291,17 @@
                 qual seu nome?
             </li>
         </condition>
+    </template>
+</category>
+
+
+<category>
+    <pattern>XXSETVARXX * *</pattern>
+    <template>
+        <think>
+            <set><name><star/></name><value><star index="2"/></value></set>
+        </think>
+        <star/>::<star index="2"/>
     </template>
 </category>
 
