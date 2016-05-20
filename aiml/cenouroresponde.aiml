@@ -212,6 +212,7 @@
     <pattern>#sim#</pattern>
     <pattern>#claro#</pattern>
     <pattern>#mostra#</pattern>
+    <pattern>#manda#</pattern>
     <that>#validando codigo#</that>
     <template>
         <think>
