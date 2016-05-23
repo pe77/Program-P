@@ -90,6 +90,16 @@
     </template>
 </category>
 
+<!-- pergunta algo line -->
+
+<category>
+    <pattern>#pergunta alguma coisa</pattern>
+    <pattern>pergunte-me alg#</pattern>
+    <pattern>#seu chato</pattern>
+    <template>
+        quantos anos vc tem?
+    </template>
+</category>
 
 <!-- sarrando line -->
 <category>
@@ -577,11 +587,11 @@
 
 <category>
     <pattern>#quem criou voce#</pattern>
+    <pattern>#quem te criou#</pattern>
     <pattern>#quem fez voce#</pattern>
     <template>
         <random>
-            <li>Não é da sua conta.</li>
-            <li>Ninguém, por isso sou mal criado.</li>
+            <li>ninguém, por isso sou mal criado</li>
             <li>0010 1100 1001 1110 0110 1110</li>
             <li>O P.</li>
         </random>
@@ -779,6 +789,18 @@
     <pattern>estou com *</pattern>
     <template>
         como é que eu vo sabe disso, carai!?
+    </template>
+</category>
+
+<category>
+    <pattern>#vc precisa de um *</pattern>
+    <pattern>#voce precisa de um *</pattern>
+    <template>
+        <random>
+            <li>vc que precisa de um</li>
+            <li>vc que precisa de um <star/></li>
+            <li>preciso de nada não, obrigado</li>
+        </random>
     </template>
 </category>
 
@@ -1094,6 +1116,15 @@
 
 
 
+
+<!-- RELIGIÃO -->
+<category>
+    <pattern>#voce acredita em *</pattern>
+    <pattern>#vc acredita em *</pattern>
+    <template>
+        não tenho idade pra acreditar nessa bobagem
+    </template>
+</category>
 
 
 <!-- relacionamento -->
@@ -1542,6 +1573,16 @@
         <srai>XXXINGAMENTOSXX</srai>
     </template>
 </category>
+
+
+<category>
+    <pattern>#coelho chato</pattern>
+    <pattern>#seu chato</pattern>
+    <template>
+        eu não, vc que é
+    </template>
+</category>
+
 
 <category>
     <pattern>#deve ser banido</pattern>
