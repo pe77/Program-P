@@ -10,6 +10,8 @@ class Parser
 	static private $_user;
 	static private $_bot;
 	
+	static private $_config;
+	
 	static private $_domDoc;
 	static private $_domXPath;
 	
@@ -26,6 +28,11 @@ class Parser
 	static function GetResponseData()
 	{
 		return self::$_responseData;
+	}
+
+	static function SetConfig($config)
+	{
+		return self::$_config = $config;
 	}
 	
 	/**
@@ -48,7 +55,10 @@ class Parser
 		self::$_domDoc->preserveWhiteSpace = false;
 		self::$_domDoc->loadXML($bot->aimlString());
 		self::$_domXPath = new \DomXPath(self::$_domDoc);
-		
+
+		// includes
+		self::$_domDoc = self::IncludeMerge(self::$_domDoc);
+
 		// set bot and user
 		self::$_user = $user;
 		self::$_bot = $bot;
@@ -108,6 +118,68 @@ class Parser
 		
 		// return response
 		return self::$_response;
+	}
+
+	// check if have any 'include' tag for mixin propose
+	static private function IncludeMerge($domDoc)
+	{
+		$xpathQuery = '//include';
+
+		$includeDomDocs = array();
+
+		// get inlude nodes
+		foreach(self::$_domXPath->query($xpathQuery, $domDoc) as $includeNode)
+		{
+			if($includeNode->hasAttributes())
+			{
+				foreach ($includeNode->attributes as $attr)
+				{
+					switch ($attr->nodeName) {
+						case 'file':
+
+							$fileFullName = self::$_config['aiml']['dir'] . '/' . $attr->nodeValue;
+
+							// check if the file exists
+					        if(!file_exists($fileFullName))
+					            throw new \Exception("Include file AIML not found in : " . $fileFullName);
+					        //
+
+					        // read aiml file
+        					$aimlString = file_get_contents($fileFullName);
+
+        					// create domdoc
+        					$includeDoc = new \DOMDocument;
+        					$includeDoc->loadXML($aimlString);
+
+        					// save
+        					$includeDomDocs[] = $includeDoc;
+
+							break;
+					}
+				}
+			}
+		}
+
+
+		// import all include docs
+		foreach ($includeDomDocs as $includeDoc)
+		{
+			// load topcs, category(with subtags too)
+			$includeTags = array('category', 'topics');
+			$domXPath = new \DomXPath($includeDoc);
+
+			foreach ($includeTags as $tag)
+			{
+				foreach($domXPath->query('//' . $tag, $includeDoc) as $node)
+				{
+					// import node
+					$node = $domDoc->importNode($node, true);
+					$domDoc->documentElement->appendChild($node);
+				}
+			}
+		}
+
+		return $domDoc;
 	}
 	
 	static private function Find($input)

@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <aiml version="2.5">
+
 <meta name="author" content="P."/>
 <meta name="language" content="pt-br"/>
 
-
+<!-- includes -->
+<include file="cenouro-cheats.aiml"/>
+<include file="cenouro-eastereggs.aiml"/>
+<include file="cenouro-math.aiml"/>
 
 <!-- START LINE -->
 <!-- oi line -->
@@ -237,132 +241,7 @@
 
 
 
-<!-- cheats -->
-<category>
-    <pattern>#qual * preço da goiaba#</pattern>
-    <pattern>#quanto# custa a goiaba#</pattern>
-    <template>
-        não sei. Tenho cara de feirante?
-        <data>
-            <cheat>1</cheat>
-        </data>
-    </template>
-</category>
 
-
-<category>
-    <pattern>aa</pattern>
-    <template>
-        <data>
-            <image>
-                images/cenouro-boa2.png
-            </image>
-        </data>
-    </template>
-</category>
-
-
-<category>
-    <pattern>bb</pattern>
-    <template>
-        teste delay
-        <data>
-            <delay time="5000">delay-message(<get name="nome"/>)</delay>
-        </data>
-    </template>
-</category>
-
-<category>
-    <pattern>cc</pattern>
-    <template>
-        <data>
-            <giphy>cenoura</giphy>
-        </data>
-    </template>
-</category>
-
-
-<category>
-    <pattern>manda um gif</pattern>
-    <pattern>gif</pattern>
-    <template>
-        <data>
-            <giphy>
-            </giphy>
-        </data>
-    </template>
-</category>
-
-
-<category>
-    <pattern>*manda um gif sobre *</pattern>
-    <pattern>*manda um gif de *</pattern>
-    <pattern>*tem gif de *</pattern>
-    <pattern>*da um gif de *</pattern>
-    <pattern>*tem gif de *</pattern>
-    <pattern>*um gif de *</pattern>
-    <template>
-        <data>
-            <giphy><star index="2"/></giphy>
-        </data>
-    </template>
-</category>
-
-
-
-<category>
-    <pattern>manda um gif sobre *</pattern>
-    <pattern>manda um gif de *</pattern>
-    <pattern>tem gif de *</pattern>
-    <pattern>da um gif de *</pattern>
-    <pattern>tem gif de *</pattern>
-    <pattern>um gif de *</pattern>
-    <pattern>gif *</pattern>
-    <template>
-        <data>
-            <giphy><star/></giphy>
-        </data>
-    </template>
-</category>
-
-
-<category>
-    <pattern>#o que o * merece</pattern>
-    <template>
-	o <star index="2"/> merece isso aqui
-	<random>
-            <li><data><giphy>dildo</giphy></data></li>
-            <li><data><giphy>penis</giphy></data></li>
-            <li><data><giphy>love</giphy></data></li>
-        </random>
-    </template>
-</category>
-
-
-<category>
-    <pattern>#como sera meu dia em um gif</pattern>
-    <pattern>#como sera meu dia em gif</pattern>
-    <pattern>#como sera meu dia</pattern>
-    <pattern>#como sera # dia</pattern>
-    <pattern>#como sera # noite</pattern>
-    <pattern>#como sera minha *</pattern>
-    <pattern>#como sera meu *</pattern>
-    <pattern>#como sera nossa *</pattern>
-    <pattern>#como sera sua *</pattern>
-    <pattern>#como sera * dela</pattern>
-    <pattern>#como sera * dele</pattern>
-    <template>
-        <random>
-            <li><data><giphy>sad</giphy></data></li>
-            <li><data><giphy>happy</giphy></data></li>
-            <li><data><giphy>facepalm</giphy></data></li>
-            <li><data><giphy>awesome</giphy></data></li>
-            <li><data><giphy>lol</giphy></data></li>
-            <li><data><giphy>funny</giphy></data></li>
-            <li><data><giphy>sleepy</giphy></data></li>
-        </random>
-    </template>
-</category>
 
 
 
@@ -379,133 +258,6 @@
 </category>
 
 
-<!-- eastereggs -->
-<category>
-    <pattern>eu quero saber</pattern>
-    <template>
-        quem é que transa
-        <data>
-            <image>images/cenouro-hue.png</image>
-        </data>
-        <data><delay time="1000">NESSA PORRA</delay></data>
-    </template>
-</category>
-
-
-<category>
-    <pattern>#conhece o mario</pattern>
-    <template>
-        que te comeu atras do armario?
-        <data>
-            <image>images/cenouro-hue.png</image>
-        </data>
-    </template>
-</category>
-
-
-<category>
-    <pattern>666</pattern>
-    <template>
-        sai capeta!
-        <data>
-            <image>images/cenouro-fudeu.png</image>
-        </data>
-    </template>
-</category>
-
-<category>
-    <pattern>siga em frente olhe para o lado</pattern>
-    <template>
-        se liga no mestiço
-        <data><delay time="2000">na batida do cavaco</delay></data>
-        <data><delay time="3000">aeHOOOOOOOOOOOOO</delay></data>
-        <data>
-            <image>images/cenouro-hue.png</image>
-        </data>
-    </template>
-</category>
-
-<category>
-    <pattern>siga em frente</pattern>
-    <template>
-        olhe para o lado 
-        <data><delay time="2000">se liga no mestiço</delay></data>
-        <data><delay time="5000">na batida do cavaco</delay></data>
-        <data><delay time="6000">aeHOOOOOOOOOOOOO</delay></data>
-        <data>
-            <image>images/cenouro-hue.png</image>
-        </data>
-    </template>
-</category>
-
-<category>
-    <pattern>#ta quanto esse revolv#</pattern>
-    <pattern>#quanto ta esse revolv#</pattern>
-    <template>
-        Custa 500 conto!
-    </template>
-</category>
-
-<category>
-    <pattern>#desse tamanho vendendo revolv#</pattern>
-    <that>Custa 500 conto</that>
-    <template>
-        Custa 500 conto!
-    </template>
-</category>
-
-
-<category>
-    <pattern>#To ligado que esse bi#</pattern>
-    <that>Custa 500 conto</that>
-    <template>
-        É mas eu não vou devolver não!
-    </template>
-</category>
-
-
-<category>
-    <pattern>#vai devolver#</pattern>
-    <that>e mas eu nao vou devolver nao</that>
-    <template>
-        ... morri... HUE
-    </template>
-</category>
-
-<category>
-    <pattern>#e a tampa</pattern>
-    <pattern>#pega a tampa#</pattern>
-    <template>
-        A tampa do teu cú, viado! TROSLEI!!!!1!
-        <data>
-            <image>images/cenouro-boa.png</image>
-        </data>
-    </template>
-</category>
-
-
-<category>
-    <pattern>o negocio e #</pattern>
-    <pattern>#qual e o negocio#</pattern>
-    <pattern>#qual o negocio#</pattern>
-    <template>
-        O NEGOCIO É COMER C. E B!
-        <data>
-            <image>images/cenouro-boa.png</image>
-        </data>
-    </template>
-</category>
-
-<category>
-    <pattern>#onde esta a fabiola#</pattern>
-    <pattern>#cadê a fabiola#</pattern>
-    <pattern>#kd a fabiola#</pattern>
-    <pattern>#onde foi a fabiola#</pattern>
-    <pattern>e a fabiola#</pattern>
-    <template>
-        Foi fazer a unha.
-    </template>
-</category>
 
 <!-- comprimentos -->
 
@@ -655,8 +407,6 @@
     </template>
 </category>
 
-
-
 <category>
     <pattern>#voce ta *</pattern>
     <pattern>#voce esta *</pattern>
@@ -670,118 +420,6 @@
         </random>
     </template>
 </category>
-
-
-
-<!-- Contas -->
-
-<category>
-    <pattern>quanto e *</pattern>
-    <template>
-        <think>
-            <set name="count"><count><star index="1"/></count></set>
-        </think>
-        <condition name="count">
-            <li value="false">
-                Não manjo essas matemáticas. 
-            </li>
-            <li value="true">
-                É <get name="count"/>. 
-                <random>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li>..e 1% vagabundo!</li>
-                    <li>...eu acho.</li>
-                    <li>Pega essa.</li>
-                    <li>Vacilão!</li>
-                    <li>Acho que ia me pegar não é?!</li>
-                </random>
-                <data>
-            <image>images/cenouro-deal.png</image>
-        </data>
-
-                <del name="count"></del>
-            </li>
-        </condition>
-    </template>
-</category>
-
-<category>
-    <pattern>#quanto#anjo#</pattern>
-    <pattern>#quanto#vagabundo#</pattern>
-    <template>
-        <think>
-            <set name="anjo">
-                <count><count><srai>XXNUMXX</srai>*10</count>+<srai>XXNUM2XX</srai></count>
-            </set>
-        </think>
-
-        <get name="anjo"/> % anjo. <count>100-<get name="anjo"/></count>% é vagabundo.
-
-        <del name="anjo"></del>
-
-        <data>
-            <image>images/cenouro-boa2.png</image>
-        </data>
-    </template>
-</category>
-
-<category>
-    <pattern>#ate quando#</pattern>
-    <template>
-        <think>
-            <set name="atequando">
-                <count><srai>XXNUMXX</srai>+<srai>XXNUM2XX</srai></count>
-            </set>
-        </think>
-
-        <random>
-            <li>Até quando deus quiser!</li>
-            <li>Só deus sabe.</li>
-            <li>Pra sempre.</li>
-            <li>Até daqui uns <get name="atequando"/> dias.</li>
-            <li>Até daqui uns <get name="atequando"/> meses.</li>
-            <li>Até daqui uns <get name="atequando"/> semanas.</li>
-            <li>Até daqui sun <get name="atequando"/> anos. hehe</li>
-        </random>
-
-        <del name="atequando"></del>
-
-    </template>
-</category>
-
-<category>
-    <pattern>#quando vou#</pattern>
-    <pattern>#quando vai#</pattern>
-    <pattern>#quando irei#</pattern>
-    <template>
-        <think>
-            <set name="atequando">
-                <count><srai>XXNUMXX</srai>+<srai>XXNUM2XX</srai></count>
-            </set>
-        </think>
-
-        <random>
-            <li>Quando deus quiser!</li>
-            <li>Só deus sabe.</li>
-            <li>Nunca!</li>
-            <li>Daqui <get name="atequando"/> horas, ou não.</li>
-            <li>Daqui <get name="atequando"/> dias.</li>
-            <li>Daqui uns <get name="atequando"/> meses.</li>
-            <li>Daqui uns <get name="atequando"/> semanas.</li>
-            <li>Daqui uns <get name="atequando"/> anos. hehe</li>
-        </random>
-
-        <del name="atequando"></del>
-
-    </template>
-</category>
-
 
 
 <!-- escapes -->

@@ -18,7 +18,8 @@ class ProgramP
     function __construct($config)
     {
         $this->_config = $config;
-        
+
+        Parser::SetConfig($this->_config);
 
         Connect::init($this->_config['db']);        
     }
@@ -104,9 +105,8 @@ class ProgramP
 
         // check if the file exists
         if(!file_exists($fileFullName))
-        {
             throw new \Exception("File AIML not found in : " . $fileFullName);
-        }
+        //
 
         // read aiml file
         $aimlString = file_get_contents($fileFullName);

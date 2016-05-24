@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<aiml version="1.0">
+
+<category>
+    <pattern>eu quero saber</pattern>
+    <template>
+        quem é que transa
+        <data>
+            <image>images/cenouro-hue.png</image>
+        </data>
+        <data><delay time="1000">NESSA PORRA</delay></data>
+    </template>
+</category>
+
+
+<category>
+    <pattern>#conhece o mario</pattern>
+    <template>
+        que te comeu atras do armario?
+        <data>
+            <image>images/cenouro-hue.png</image>
+        </data>
+    </template>
+</category>
+
+
+<category>
+    <pattern>666</pattern>
+    <template>
+        sai capeta!
+        <data>
+            <image>images/cenouro-fudeu.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>siga em frente olhe para o lado</pattern>
+    <template>
+        se liga no mestiço
+        <data><delay time="2000">na batida do cavaco</delay></data>
+        <data><delay time="3000">aeHOOOOOOOOOOOOO</delay></data>
+        <data>
+            <image>images/cenouro-hue.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>siga em frente</pattern>
+    <template>
+        olhe para o lado 
+        <data><delay time="2000">se liga no mestiço</delay></data>
+        <data><delay time="5000">na batida do cavaco</delay></data>
+        <data><delay time="6000">aeHOOOOOOOOOOOOO</delay></data>
+        <data>
+            <image>images/cenouro-hue.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>#ta quanto esse revolv#</pattern>
+    <pattern>#quanto ta esse revolv#</pattern>
+    <template>
+        Custa 500 conto!
+    </template>
+</category>
+
+<category>
+    <pattern>#desse tamanho vendendo revolv#</pattern>
+    <that>Custa 500 conto</that>
+    <template>
+        Custa 500 conto!
+    </template>
+</category>
+
+
+<category>
+    <pattern>#To ligado que esse bi#</pattern>
+    <that>Custa 500 conto</that>
+    <template>
+        É mas eu não vou devolver não!
+    </template>
+</category>
+
+
+<category>
+    <pattern>#vai devolver#</pattern>
+    <that>e mas eu nao vou devolver nao</that>
+    <template>
+        ... morri... HUE
+    </template>
+</category>
+
+<category>
+    <pattern>#e a tampa</pattern>
+    <pattern>#pega a tampa#</pattern>
+    <template>
+        A tampa do teu cú, viado! TROSLEI!!!!1!
+        <data>
+            <image>images/cenouro-boa.png</image>
+        </data>
+    </template>
+</category>
+
+
+<category>
+    <pattern>o negocio e #</pattern>
+    <pattern>#qual e o negocio#</pattern>
+    <pattern>#qual o negocio#</pattern>
+    <template>
+        O NEGOCIO É COMER C. E B!
+        <data>
+            <image>images/cenouro-boa.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>#onde esta a fabiola#</pattern>
+    <pattern>#cadê a fabiola#</pattern>
+    <pattern>#kd a fabiola#</pattern>
+    <pattern>#onde foi a fabiola#</pattern>
+    <pattern>e a fabiola#</pattern>
+    <template>
+        Foi fazer a unha.
+    </template>
+</category>
+</aiml>

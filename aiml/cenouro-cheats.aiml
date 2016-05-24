@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<aiml version="1.0">
+
+<!-- cheats -->
+<category>
+    <pattern>#qual * preço da goiaba#</pattern>
+    <pattern>#quanto# custa a goiaba#</pattern>
+    <template>
+        não sei. Tenho cara de feirante?
+        <data>
+            <cheat>1</cheat>
+        </data>
+    </template>
+</category>
+
+
+<category>
+    <pattern>aa</pattern>
+    <template>
+        <data>
+            <image>
+                images/cenouro-boa2.png
+            </image>
+        </data>
+    </template>
+</category>
+
+
+<category>
+    <pattern>bb</pattern>
+    <template>
+        teste delay
+        <data>
+            <delay time="5000">delay-message(<get name="nome"/>)</delay>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>cc</pattern>
+    <template>
+        <data>
+            <giphy>cenoura</giphy>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>dd</pattern>
+    <template>
+        é foi!
+    </template>
+</category>
+
+<category>
+    <pattern>manda um gif</pattern>
+    <pattern>gif</pattern>
+    <template>
+        <data>
+            <giphy>
+            </giphy>
+        </data>
+    </template>
+</category>
+
+
+<category>
+    <pattern>*manda um gif sobre *</pattern>
+    <pattern>*manda um gif de *</pattern>
+    <pattern>*tem gif de *</pattern>
+    <pattern>*da um gif de *</pattern>
+    <pattern>*tem gif de *</pattern>
+    <pattern>*um gif de *</pattern>
+    <template>
+        <data>
+            <giphy><star index="2"/></giphy>
+        </data>
+    </template>
+</category>
+
+
+
+<category>
+    <pattern>manda um gif sobre *</pattern>
+    <pattern>manda um gif de *</pattern>
+    <pattern>tem gif de *</pattern>
+    <pattern>da um gif de *</pattern>
+    <pattern>tem gif de *</pattern>
+    <pattern>um gif de *</pattern>
+    <pattern>gif *</pattern>
+    <template>
+        <data>
+            <giphy><star/></giphy>
+        </data>
+    </template>
+</category>
+
+
+<category>
+    <pattern>#o que o * merece</pattern>
+    <template>
+    o <star index="2"/> merece isso aqui
+    <random>
+            <li><data><giphy>dildo</giphy></data></li>
+            <li><data><giphy>penis</giphy></data></li>
+            <li><data><giphy>love</giphy></data></li>
+        </random>
+    </template>
+</category>
+
+
+<category>
+    <pattern>#como sera meu dia em um gif</pattern>
+    <pattern>#como sera meu dia em gif</pattern>
+    <pattern>#como sera meu dia</pattern>
+    <pattern>#como sera # dia</pattern>
+    <pattern>#como sera # noite</pattern>
+    <pattern>#como sera minha *</pattern>
+    <pattern>#como sera meu *</pattern>
+    <pattern>#como sera nossa *</pattern>
+    <pattern>#como sera sua *</pattern>
+    <pattern>#como sera * dela</pattern>
+    <pattern>#como sera * dele</pattern>
+    <template>
+        <random>
+            <li><data><giphy>sad</giphy></data></li>
+            <li><data><giphy>happy</giphy></data></li>
+            <li><data><giphy>facepalm</giphy></data></li>
+            <li><data><giphy>awesome</giphy></data></li>
+            <li><data><giphy>lol</giphy></data></li>
+            <li><data><giphy>funny</giphy></data></li>
+            <li><data><giphy>sleepy</giphy></data></li>
+        </random>
+    </template>
+</category>
+
+</aiml>

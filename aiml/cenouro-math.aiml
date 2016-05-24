@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<aiml version="1.0">
+
+<category>
+    <pattern>quanto e *</pattern>
+    <template>
+        <think>
+            <set name="count"><count><star index="1"/></count></set>
+        </think>
+        <condition name="count">
+            <li value="false">
+                não manjo essas matemáticas. 
+            </li>
+            <li value="true">
+                é <get name="count"/>. 
+                <random>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li>..e 1% vagabundo!</li>
+                    <li>...eu acho.</li>
+                    <li>Pega essa.</li>
+                    <li>VacilÃ£o!</li>
+                    <li>Acho que ia me pegar não é?!</li>
+                </random>
+                <data>
+            <image>images/cenouro-deal.png</image>
+        </data>
+
+                <del name="count"></del>
+            </li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>#quanto#anjo#</pattern>
+    <pattern>#quanto#vagabundo#</pattern>
+    <template>
+        <think>
+            <set name="anjo">
+                <count><count><srai>XXNUMXX</srai>*10</count>+<srai>XXNUM2XX</srai></count>
+            </set>
+        </think>
+
+        <get name="anjo"/> % anjo. <count>100-<get name="anjo"/></count>% é vagabundo.
+
+        <del name="anjo"></del>
+
+        <data>
+            <image>images/cenouro-boa2.png</image>
+        </data>
+    </template>
+</category>
+
+<category>
+    <pattern>#ate quando#</pattern>
+    <template>
+        <think>
+            <set name="atequando">
+                <count><srai>XXNUMXX</srai>+<srai>XXNUM2XX</srai></count>
+            </set>
+        </think>
+
+        <random>
+            <li>até quando deus quiser!</li>
+            <li>só deus sabe.</li>
+            <li>pra sempre.</li>
+            <li>até daqui uns <get name="atequando"/> dias.</li>
+            <li>até daqui uns <get name="atequando"/> meses.</li>
+            <li>até daqui uns <get name="atequando"/> semanas.</li>
+            <li>até daqui sun <get name="atequando"/> anos. hehe</li>
+        </random>
+
+        <del name="atequando"></del>
+
+    </template>
+</category>
+
+<category>
+    <pattern>#quando vou#</pattern>
+    <pattern>#quando vai#</pattern>
+    <pattern>#quando irei#</pattern>
+    <template>
+        <think>
+            <set name="atequando">
+                <count><srai>XXNUMXX</srai>+<srai>XXNUM2XX</srai></count>
+            </set>
+        </think>
+
+        <random>
+            <li>Quando deus quiser!</li>
+            <li>só deus sabe.</li>
+            <li>Nunca!</li>
+            <li>Daqui <get name="atequando"/> horas, ou não.</li>
+            <li>Daqui <get name="atequando"/> dias.</li>
+            <li>Daqui uns <get name="atequando"/> meses.</li>
+            <li>Daqui uns <get name="atequando"/> semanas.</li>
+            <li>Daqui uns <get name="atequando"/> anos. hehe</li>
+        </random>
+
+        <del name="atequando"></del>
+
+    </template>
+</category>
+
+</aiml>
