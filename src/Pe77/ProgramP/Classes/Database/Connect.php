@@ -74,9 +74,10 @@ class Connect
 			trigger_error("Classe [Connect] não iniciada [init]. Beijo do Gordo, WOW!");
 		//
 		
-        // tenta abrir uma conexão
-        self::$connIdent = mysql_connect(self::$host, self::$user, self::$pass) or die('Erro ao conectar com a base de dados. Por que? - Você deve estar se perguntando : ' . mysql_error());
-		mysql_select_db(self::$dbName, self::$connIdent) or die('Base de dados não encontrada. Luke i am your father : ' . mysql_error());
+        	// tenta abrir uma conexão
+		// die('' . self::$host . " | " . self::$user . " | " . self::$pass);
+        	self::$connIdent = mysqli_connect(self::$host, self::$user, self::$pass) or die('Erro ao conectar com a base de dados. Por que? - Você deve estar se perguntando : Erro ao acessar o DB');
+		mysqli_select_db(self::$connIdent, self::$dbName) or die('Base de dados não encontrada. Luke i am your father : ' . mysqli_error(self::$connIdent));
         
 		// seta a conexão para aberta
 		self::$isConnected = true;
@@ -84,14 +85,14 @@ class Connect
 	
 	public static function CreateDatabase($database) 
 	{
-		self::$connIdent = mysql_connect(self::$host, self::$user, self::$pass);
+		self::$connIdent = mysqli_connect(self::$host, self::$user, self::$pass);
 		$sql = '
 				CREATE DATABASE 
 					IF NOT EXISTS
 				' . $database . ';
 			';
 		
-		mysql_query($sql, self::$connIdent) or die('Query inválida: ' . mysql_errno() . "\nEssequeéli:\n" . $sql);
+		mysqli_query(self::$connIdent, $sql) or die('Query inválida: ' . mysqli_errno() . "\nEssequeéli:\n" . $sql);
 	}
 	
 	/**
@@ -101,13 +102,13 @@ class Connect
 	 */
 	public static function CheckDatabaseExist($database) 
 	{
-		self::$connIdent = mysql_connect(self::$host, self::$user, self::$pass);
+		self::$connIdent = mysqli_connect(self::$host, self::$user, self::$pass);
 		
 		$sql = 'SELECT COUNT(*) AS `exists` FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMATA.SCHEMA_NAME="' . $database . '"';
 		
-		$result = mysql_query($sql, self::$connIdent) or die('Query inválida: ' . mysql_errno() . "\nEssequeéli:\n" . $sql);
+		$result = mysqli_query(self::$connIdent, $sql) or die('Query inválida: ' . mysqli_errno() . "\nEssequeéli:\n" . $sql);
 		
-		$data = mysql_fetch_assoc($result);
+		$data = mysqli_fetch_assoc($result);
 		return $data['exists'] == '1';
 	}
 	
@@ -124,7 +125,7 @@ class Connect
 			self::OpenConnect();
 		//
 		
-		$result = mysql_query($sql, self::$connIdent) or die('Query inválida: ' . mysql_error() . "\nEssequeéli:\n" . $sql);
+		$result = mysqli_query(self::$connIdent, $sql) or die('Query inválida: ' . mysqli_error(self::$connIdent) . "\nEssequeéli:\n" . $sql);
 		return $result;
 	}
 	
@@ -138,7 +139,7 @@ class Connect
 		$data = array();
 		$result = self::Query($sql);
 		
-		while ($row = mysql_fetch_assoc($result))
+		while ($row = mysqli_fetch_assoc($result))
 			$data[] = $row;
 		//
 		
@@ -150,7 +151,7 @@ class Connect
 	 */
 	public static function Close() 
 	{
-		mysql_close(self::$connIdent);
+		mysqli_close(self::$connIdent);
 	}
 	
 	/**
